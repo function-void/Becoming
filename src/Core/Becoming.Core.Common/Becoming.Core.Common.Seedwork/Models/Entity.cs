@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Seedwork;
+﻿namespace Becoming.Core.Common.Seedwork.Models;
 
 public abstract class Entity : IEquatable<Entity>
 {
