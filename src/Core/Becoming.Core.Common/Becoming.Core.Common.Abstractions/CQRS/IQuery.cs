@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace Becoming.Core.Common.Abstractions;
+namespace Becoming.Core.Common.Abstractions.CQRS;
 
 public interface IQuery<out TResponse> : IRequest<TResponse> { }

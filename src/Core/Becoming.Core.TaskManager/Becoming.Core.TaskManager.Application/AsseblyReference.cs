@@ -1,6 +1,3 @@
 ﻿namespace Becoming.Core.TaskManager.Application;
 
-public class Class1
-{
-
-}
+public sealed record class AsseblyReference;

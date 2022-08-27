@@ -10,10 +10,13 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="11.0.1" />
+	  <PackageReference Include="MediatR" Version="10.0.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
 		<ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Presentation\Becoming.Core.Common.Presentation.csproj" />
+		<ProjectReference Include="..\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />
 	</ItemGroup>
 </Project>
