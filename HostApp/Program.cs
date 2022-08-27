@@ -3,6 +3,10 @@ using HostApp.Middleware;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -15,6 +19,35 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
         options.SerializerOptions.IncludeFields = true
         );
+
+    builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        );
+
+    #region authentication
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        var jwtSettings = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
+
+        options.SaveToken = jwtSettings.SaveToken;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = jwtSettings.ValidateIssuer,
+            ValidateAudience = jwtSettings.ValidateAudience,
+            ValidateLifetime = jwtSettings.ValidateLifetime,
+            ValidateIssuerSigningKey = jwtSettings.ValidateIssuerSigningKey,
+            ValidIssuer = jwtSettings.Issuer,
+            ValidAudience = jwtSettings.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+        };
+    });
+    #endregion
 
     #region api
     builder.Services.AddEndpointsApiExplorer();
@@ -31,18 +64,19 @@ var builder = WebApplication.CreateBuilder(args);
     {
         options.GroupNameFormat = "'v'VVV";
         options.SubstituteApiVersionInUrl = true;
+    })
+    .AddCors(options =>
+    {
+        options.AddPolicy("CORS_Policy", builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
     });
     #endregion
 }
 
 var app = builder.Build();
 {
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var dataContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    //    dataContext.Database.Migrate();
-    //}
-
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -53,6 +87,7 @@ var app = builder.Build();
     });
 
     app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseCors("CORS_Policy");
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();

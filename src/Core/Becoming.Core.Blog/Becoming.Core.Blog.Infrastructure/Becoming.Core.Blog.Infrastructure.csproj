@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Becoming.Core.Blog.Application\Becoming.Core.Blog.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
