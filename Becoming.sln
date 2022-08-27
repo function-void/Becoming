@@ -39,13 +39,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Abstra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{0E320ACA-C22F-444F-99A7-0EC1E41FBE82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Tests", "src\test\Architecture\Architecture.Tests\Architecture.Tests.csproj", "{D30E1C47-0068-407F-89CA-152A4D02B8FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Tests", "src\test\Architecture\Architecture.Tests\Architecture.Tests.csproj", "{D30E1C47-0068-407F-89CA-152A4D02B8FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.Common.Seedwork", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj", "{915B2472-77A9-4E44-9C6A-3188DD4C4028}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Seedwork", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj", "{915B2472-77A9-4E44-9C6A-3188DD4C4028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.Common.Presentation", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Presentation\Becoming.Core.Common.Presentation.csproj", "{D51D2789-B624-46DA-B277-05C597885D7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Presentation", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Presentation\Becoming.Core.Common.Presentation.csproj", "{D51D2789-B624-46DA-B277-05C597885D7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.Common.Primitives", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj", "{4E52CA52-A542-425B-8AE2-9E9853A09FEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Primitives", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj", "{4E52CA52-A542-425B-8AE2-9E9853A09FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Application", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj", "{036377CA-4369-4331-916E-B3DFFAF8BC07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Presentation", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Presentation\Becoming.Core.TaskManager.Presentation.csproj", "{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Domain", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj", "{11A420AD-C03F-4AD5-9DE5-497C5562225B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Infrastructure", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj", "{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +105,22 @@ Global
 		{4E52CA52-A542-425B-8AE2-9E9853A09FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E52CA52-A542-425B-8AE2-9E9853A09FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E52CA52-A542-425B-8AE2-9E9853A09FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036377CA-4369-4331-916E-B3DFFAF8BC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036377CA-4369-4331-916E-B3DFFAF8BC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036377CA-4369-4331-916E-B3DFFAF8BC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036377CA-4369-4331-916E-B3DFFAF8BC07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A420AD-C03F-4AD5-9DE5-497C5562225B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A420AD-C03F-4AD5-9DE5-497C5562225B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A420AD-C03F-4AD5-9DE5-497C5562225B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A420AD-C03F-4AD5-9DE5-497C5562225B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +145,10 @@ Global
 		{915B2472-77A9-4E44-9C6A-3188DD4C4028} = {DD675355-1DC5-4E64-968D-0F007513DA13}
 		{D51D2789-B624-46DA-B277-05C597885D7D} = {DD675355-1DC5-4E64-968D-0F007513DA13}
 		{4E52CA52-A542-425B-8AE2-9E9853A09FEE} = {DD675355-1DC5-4E64-968D-0F007513DA13}
+		{036377CA-4369-4331-916E-B3DFFAF8BC07} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
+		{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
+		{11A420AD-C03F-4AD5-9DE5-497C5562225B} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
+		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02523AB5-4071-4312-AF4B-ADCCAB4C1B24}

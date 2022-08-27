@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
-  </ItemGroup>
-
 </Project>

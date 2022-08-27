@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj" />
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
+  </ItemGroup>
+
+</Project>
