@@ -1,9 +1,9 @@
-﻿using Becoming.Core.Common.Seedwork;
-using System.Xml.Linq;
+﻿using Becoming.Core.Common.Seedwork.Models;
+
 
 namespace Becoming.Core.Blog.Domain;
 
-public sealed class Blog : Entity
+public sealed class BlogAggregate : Entity
 {
     #region private fields
     private readonly List<Article> _articles = new();
@@ -29,9 +29,9 @@ public sealed class Blog : Entity
     #endregion
 
     #region methods
-    public static Blog Create(Guid id, string title, List<Author> authors)
+    public static BlogAggregate Create(Guid id, string title, List<Author> authors)
     {
-        return new Blog(id, title, authors);
+        return new BlogAggregate(id, title, authors);
     }
 
     public Article AddArticle(Author author, string text)
@@ -70,7 +70,7 @@ public sealed class Article : Entity
     public Article(
         Guid id,
         string text,
-        Blog blog,
+        BlogAggregate blog,
         Author author
         ) : base(id)
     {

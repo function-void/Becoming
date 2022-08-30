@@ -7,13 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="TaskManager\Queries\" />
+    <Folder Include="TaskManagerFeatures\Queries\GetTaskManager\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Abstractions\Becoming.Core.Common.Abstractions.csproj" />
+    <ProjectReference Include="..\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>
