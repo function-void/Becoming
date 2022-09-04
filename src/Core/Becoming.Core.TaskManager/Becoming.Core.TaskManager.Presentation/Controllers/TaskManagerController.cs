@@ -4,7 +4,7 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Becoming.Core.Common.Presentation;
-using Becoming.Core.TaskManager.Application.TaskManager.Commands.CreateTaskManager;
+using Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 
@@ -19,14 +19,14 @@ public sealed class TaskManagerController : ApiController
         Mapper = mapper;
     }
 
-    [HttpPost("{action}")]
+    [HttpPost]
     [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateTaskManagerRequest request, CancellationToken token)
     {
-        var createTaskId = await Sender.Send(new CreateTaskManagerCommand(request.title), token);
-        return CreatedAtAction(nameof(Get), new { createTaskId }, createTaskId);
+        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request.title), token);
+        return CreatedAtAction(nameof(Get), new { taskManagerId }, taskManagerId);
     }
 
     [HttpGet("{taskManagerId:guid}")]

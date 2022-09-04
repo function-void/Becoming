@@ -11,5 +11,7 @@ public abstract class AggregateRoot : IAggregateRoot
 
     public virtual AggregateType RootType => AggregateType.NoDefinition;
 
-    protected void PublishEvent(IDomainEvent @event) => _domainEvents.Enqueue(@event);
+    public void PublishDomainEvent(IDomainEvent @event) => _domainEvents.Enqueue(@event);
+
+    public void ClearDomainEvents() => _domainEvents.Clear();
 }

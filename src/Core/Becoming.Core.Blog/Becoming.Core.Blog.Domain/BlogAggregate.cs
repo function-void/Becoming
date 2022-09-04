@@ -11,7 +11,7 @@ public sealed class BlogAggregate : Entity
     #endregion
 
     #region ctor
-    internal Blog(
+    internal BlogAggregate(
         Guid id,
         string title,
         List<Author> authors

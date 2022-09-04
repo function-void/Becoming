@@ -10,7 +10,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddControllers();
+    var configuration = builder.Configuration;
+    builder.Services.AddPresentationControllers();
+    builder.Services.AddTaskManager(configuration);
 
     builder.Services.Configure<ApiBehaviorOptions>(options =>
         options.SuppressModelStateInvalidFilter = true
