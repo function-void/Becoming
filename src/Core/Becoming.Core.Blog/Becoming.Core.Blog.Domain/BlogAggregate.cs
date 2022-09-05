@@ -11,7 +11,7 @@ public sealed class BlogAggregate : Entity
     #endregion
 
     #region ctor
-    internal BlogAggregate(
+    public BlogAggregate(
         Guid id,
         string title,
         List<Author> authors
@@ -97,7 +97,7 @@ public sealed class Article : Entity
 
     public void AddComment(Comment comment)
     {
-        if (comment == null) throw new ArgumentNullException();
+        if (comment is null) throw new ArgumentNullException();
         if (comment.ArticleId != default) throw new ArgumentException();
 
         _comments.Add(comment);
