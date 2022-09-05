@@ -1,3 +1,3 @@
 ﻿namespace Becoming.Core.TaskManager.Application;
 
-public sealed record class AsseblyReference;
+public sealed record class AssemblyReference;
