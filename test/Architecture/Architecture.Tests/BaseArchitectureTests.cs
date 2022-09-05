@@ -13,7 +13,8 @@ public abstract class BaseArchitectureTests
     private readonly Assembly _applicationAssembly;
     private readonly Assembly _infrastructureAssembly;
     private readonly Assembly _presentationAssembly;
-    public BaseArchitectureTests(
+
+    protected BaseArchitectureTests(
         Assembly domainAssembly,
         Assembly applicationAssembly,
         Assembly infrastructureAssembly,
