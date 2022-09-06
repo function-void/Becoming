@@ -2,6 +2,7 @@
 
 namespace Becoming.Core.Common.Abstractions.CQRS;
 
-public interface ICommandHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
-    where TRequest : ICommand<TResponse>
-{ }
+public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
+    where TCommand : ICommand<TResponse>
+{
+}

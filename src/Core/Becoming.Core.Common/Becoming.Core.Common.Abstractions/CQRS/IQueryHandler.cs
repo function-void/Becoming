@@ -2,6 +2,6 @@
 
 namespace Becoming.Core.Common.Abstractions.CQRS;
 
-public interface IQueryHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
-    where TRequest : IQuery<TResponse>
+public interface IQueryHandler<in TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
+    where TQuery : IQuery<TResponse>
 { }

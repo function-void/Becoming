@@ -15,9 +15,9 @@ public sealed class TaskManagerAggregate : Entity
     public string Title { get; private set; }
 }
 
-public class Task : AuditableEntity
+public class SummaryTask : AuditableEntity
 {
-    public Task(Guid id, string title) : base(id)
+    public SummaryTask(Guid id, string title) : base(id)
     {
         Title = title;
     }
@@ -30,7 +30,17 @@ public class Subtask
 
 }
 
-public sealed class Category
+public sealed class Category : ValueObject
 {
-    public string Name { get; set; } = null!;
+    public Category(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; private set; } = null!;
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Name;
+    }
 }
