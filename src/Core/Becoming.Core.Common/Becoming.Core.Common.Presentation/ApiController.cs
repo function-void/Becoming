@@ -3,7 +3,6 @@
 namespace Becoming.Core.Common.Presentation;
 
 [Route(ApiConfigureSettings.API_DEFAULT_ROUTE)]
-[ApiVersion(ApiConfigureSettings.API_ACTRUAL_VERSION)]
 [ApiController]
 public abstract class ApiController : ControllerBase
 {

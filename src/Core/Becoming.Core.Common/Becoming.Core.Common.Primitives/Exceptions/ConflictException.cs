@@ -1,5 +1,6 @@
 ﻿namespace Becoming.Core.Common.Primitives.Exceptions;
 
+[Serializable]
 public sealed class ConflictException : ApplicationException
 {
     public ConflictException() : base() { }

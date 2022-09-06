@@ -3,9 +3,13 @@ using Becoming.Core.Common.Seedwork.Interfaces;
 
 namespace Becoming.Core.Common.Seedwork.Models;
 
-public abstract class AggregateRoot : IAggregateRoot
+public abstract class AggregateRoot : Entity, IAggregateRoot
 {
     private readonly ConcurrentQueue<IDomainEvent> _domainEvents = new();
+
+    protected AggregateRoot(Guid id) : base(id)
+    {
+    }
 
     public IProducerConsumerCollection<IDomainEvent> DomainEvents => _domainEvents;
 

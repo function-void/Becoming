@@ -1,8 +1,11 @@
 ﻿namespace Becoming.Core.Common.Primitives.Exceptions;
 
+[Serializable]
 public sealed class EntityNotFoundException : ApplicationException
 {
-    public EntityNotFoundException() : base() { }
+    private const string DefaultMessage = "Entity does not exist.";
+
+    public EntityNotFoundException() : base(DefaultMessage) { }
 
     public EntityNotFoundException(string message) : base(message) { }
 

@@ -3,7 +3,7 @@ using Becoming.Core.Common.Seedwork.Models;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
-public sealed class TaskManagerAggregate : Entity
+public sealed class TaskManagerAggregate : AggregateRoot
 {
     public TaskManagerAggregate(Guid id, string title, Category category) : base(id)
     {

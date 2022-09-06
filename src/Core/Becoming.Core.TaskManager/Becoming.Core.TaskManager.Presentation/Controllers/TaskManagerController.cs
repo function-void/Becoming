@@ -8,6 +8,7 @@ using Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 
+[ApiVersion(ApiConfigureSettings.API_ACTRUAL_VERSION)]
 public sealed class TaskManagerController : ApiController
 {
     public ISender Sender { get; }
