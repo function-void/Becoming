@@ -25,7 +25,7 @@ public sealed class TaskManagerController : ApiController
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateTaskManagerRequest request, CancellationToken token)
     {
-        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request.title), token);
+        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request.Title), token);
         return CreatedAtAction(nameof(Get), new { taskManagerId }, taskManagerId);
     }
 
