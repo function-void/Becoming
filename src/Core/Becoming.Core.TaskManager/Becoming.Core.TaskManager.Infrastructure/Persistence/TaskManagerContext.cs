@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Becoming.Core.TaskManager.Infrastructure.Persistence.Constants;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Persistence;
@@ -12,7 +13,7 @@ public class TaskManagerContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.HasDefaultSchema("task_manager");
+        builder.HasDefaultSchema(DbConstants.SchemaName);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(builder);
     }
