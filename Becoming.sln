@@ -41,19 +41,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Presen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.Common.Primitives", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj", "{4E52CA52-A542-425B-8AE2-9E9853A09FEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Application", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj", "{036377CA-4369-4331-916E-B3DFFAF8BC07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.TaskManager.Application", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj", "{036377CA-4369-4331-916E-B3DFFAF8BC07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Presentation", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Presentation\Becoming.Core.TaskManager.Presentation.csproj", "{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.TaskManager.Presentation", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Presentation\Becoming.Core.TaskManager.Presentation.csproj", "{B76CECFA-DF25-4F6E-A22E-07CA37CA74FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Domain", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj", "{11A420AD-C03F-4AD5-9DE5-497C5562225B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.TaskManager.Domain", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj", "{11A420AD-C03F-4AD5-9DE5-497C5562225B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Infrastructure", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj", "{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.TaskManager.Infrastructure", "src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj", "{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D5B67551-123E-4435-A2C4-CEF290059165}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{EBCA286D-A221-4369-B431-B78BF1E66E29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Tests", "test\Architecture\Architecture.Tests\Architecture.Tests.csproj", "{C704A7FC-B3D6-43C0-BCD2-1C852489D1D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.Common.Infrastructure.Hangfire", "src\Core\Becoming.Core.Common\Becoming.Core.Common.Infrastructure.Hangfire\Becoming.Core.Common.Infrastructure.Hangfire.csproj", "{80A2BEFB-9DCA-4477-9FCF-E8521223D578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,10 @@ Global
 		{C704A7FC-B3D6-43C0-BCD2-1C852489D1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C704A7FC-B3D6-43C0-BCD2-1C852489D1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C704A7FC-B3D6-43C0-BCD2-1C852489D1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A2BEFB-9DCA-4477-9FCF-E8521223D578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A2BEFB-9DCA-4477-9FCF-E8521223D578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A2BEFB-9DCA-4477-9FCF-E8521223D578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A2BEFB-9DCA-4477-9FCF-E8521223D578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +155,7 @@ Global
 		{A27DD138-6D0A-4E05-9F7B-E0D4358CF6A5} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
 		{EBCA286D-A221-4369-B431-B78BF1E66E29} = {D5B67551-123E-4435-A2C4-CEF290059165}
 		{C704A7FC-B3D6-43C0-BCD2-1C852489D1D8} = {EBCA286D-A221-4369-B431-B78BF1E66E29}
+		{80A2BEFB-9DCA-4477-9FCF-E8521223D578} = {DD675355-1DC5-4E64-968D-0F007513DA13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02523AB5-4071-4312-AF4B-ADCCAB4C1B24}
