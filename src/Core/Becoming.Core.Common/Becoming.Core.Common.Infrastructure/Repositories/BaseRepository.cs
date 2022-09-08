@@ -1,5 +1,6 @@
 ﻿using Becoming.Core.Common.Abstractions.Contracts;
-using Becoming.Core.Common.Infrastructure.Model;
+using Becoming.Core.Common.Infrastructure.Shared;
+using Becoming.Core.Common.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -10,7 +11,7 @@ public abstract class BaseRepository<Model> : IBaseRepository<Model> where Model
     protected DbContext _context;
     protected DbSet<Model> _dbSet;
 
-    protected BaseRepository(DbContext context)
+    protected BaseRepository(BaseContext context)
     {
         _context = context;
         _dbSet = context.Set<Model>();

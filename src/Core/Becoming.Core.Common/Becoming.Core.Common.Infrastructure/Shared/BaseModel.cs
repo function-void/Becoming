@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Infrastructure.Model;
+﻿namespace Becoming.Core.Common.Infrastructure.Shared;
 
 public abstract class BaseModel
 {
