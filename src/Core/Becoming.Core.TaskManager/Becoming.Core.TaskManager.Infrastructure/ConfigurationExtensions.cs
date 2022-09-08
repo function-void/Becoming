@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Becoming.Core.TaskManager.Infrastructure;
 
-public static class DependencyInjection
+public static class ConfigurationExtensions
 {
     public static IServiceCollection AddTaskManagerInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {

@@ -15,7 +15,7 @@ public abstract class BaseContext : DbContext
         _dateTimeProvider = dateTimeProvider;
     }
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         foreach (var entry in ChangeTracker.Entries<AuditableModel>())
         {

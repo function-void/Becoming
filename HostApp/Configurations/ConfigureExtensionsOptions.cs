@@ -1,12 +1,11 @@
 ﻿using Becoming.Core.TaskManager.Application;
 using Becoming.Core.TaskManager.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace HostApp.Configurations;
 
-public static class DepedencyInjectionOptions
+public static class ConfigureExtensionsOptions
 {
     public static IServiceCollection AddPresentationControllers(this IServiceCollection services)
     {

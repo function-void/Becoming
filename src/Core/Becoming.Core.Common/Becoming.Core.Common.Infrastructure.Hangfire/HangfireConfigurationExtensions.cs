@@ -18,6 +18,7 @@ public static class HangfireConfigurationExtensions
         {
             services.AddHangfire(configuration =>
             {
+                configuration.UseMediatR();
                 configuration.UseMemoryStorage();
             });
         }
@@ -25,17 +26,17 @@ public static class HangfireConfigurationExtensions
         {
             var hfDbConnection = configuration.GetConnectionString("DbConstants.HangfireDbSettingsConnectionName");
 
-            services
-                .AddEntityFrameworkNpgsql()
-                .AddDbContext<HangfireDbContext>(opt => opt.UseNpgsql(hfDbConnection,
-                npgsqlOptionsAction: options =>
+            services.AddEntityFrameworkNpgsql().AddDbContext<HangfireDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString: hfDbConnection, npgsqlOptionsAction: options =>
                 {
                     options.EnableRetryOnFailure(
                         maxRetryCount: 5,
                         maxRetryDelay: TimeSpan.FromSeconds(5),
                         errorCodesToAdd: null
                         );
-                }), ServiceLifetime.Scoped);
+                });
+            }, ServiceLifetime.Scoped);
 
             services.AddHangfire(configuration =>
             {

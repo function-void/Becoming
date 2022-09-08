@@ -1,6 +1,6 @@
 ﻿using Becoming.Core.Common.Abstractions.Contracts;
 
-namespace Becoming.Core.Common.Infrastructure.Services;
+namespace Becoming.Core.Common.Infrastructure.Services.Services;
 
 public sealed class DateTimeProvider : IDateTimeProvider
 {
