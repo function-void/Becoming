@@ -23,7 +23,7 @@ public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTask
             new Category(request.Category)
             );
 
-        _repository.EmbodyAsync(taskManager);
+        _repository.EmbodyAsync(taskManager, cancellationToken);
 
         return Task.FromResult(Guid.NewGuid());
     }

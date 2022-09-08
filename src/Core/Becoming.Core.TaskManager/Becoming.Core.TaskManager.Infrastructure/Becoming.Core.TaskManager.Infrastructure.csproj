@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Repositories\" />
+	  <ProjectReference Include="..\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />
 	</ItemGroup>
 
 </Project>

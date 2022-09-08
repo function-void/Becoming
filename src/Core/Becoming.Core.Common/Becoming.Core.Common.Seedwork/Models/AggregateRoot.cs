@@ -7,9 +7,7 @@ public abstract class AggregateRoot : Entity, IAggregateRoot
 {
     private readonly ConcurrentQueue<IDomainEvent> _domainEvents = new();
 
-    protected AggregateRoot(Guid id) : base(id)
-    {
-    }
+    protected AggregateRoot(Guid id) : base(id) { }
 
     public IProducerConsumerCollection<IDomainEvent> DomainEvents => _domainEvents;
 

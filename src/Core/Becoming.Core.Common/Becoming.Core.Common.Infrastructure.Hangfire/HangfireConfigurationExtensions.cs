@@ -27,12 +27,21 @@ public static class HangfireConfigurationExtensions
 
             services
                 .AddEntityFrameworkNpgsql()
-                .AddDbContext<HangfireDbContext>(opt => opt.UseNpgsql(hfDbConnection));
+                .AddDbContext<HangfireDbContext>(opt => opt.UseNpgsql(hfDbConnection,
+                npgsqlOptionsAction: options =>
+                {
+                    options.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(5),
+                        errorCodesToAdd: null
+                        );
+                }), ServiceLifetime.Scoped);
 
             services.AddHangfire(configuration =>
             {
                 configuration.UseMediatR();
                 configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
+                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 5 });
             }).AddHangfireServer();
         }
 
