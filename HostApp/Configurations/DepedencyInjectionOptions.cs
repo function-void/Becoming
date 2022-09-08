@@ -10,6 +10,7 @@ public static class DepedencyInjectionOptions
 {
     public static IServiceCollection AddPresentationControllers(this IServiceCollection services)
     {
+        // TODO: add a reflection with the apicontroller to get list presentation assembly
         var presentationAssemblyList = new List<Assembly>
         {
             typeof(Becoming.Core.Blog.Presentation.AssemblyReference).Assembly,

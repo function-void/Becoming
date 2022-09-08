@@ -1,7 +1,7 @@
 ﻿
 namespace Becoming.Core.TaskManager.Infrastructure.Models;
 
-public class SubtaskSaveModel
+public sealed class SubtaskSaveModel
 {
     public string? Description { get; set; }
     public SummaryTaskSaveModel SummaryTask { get; set; } = null!;

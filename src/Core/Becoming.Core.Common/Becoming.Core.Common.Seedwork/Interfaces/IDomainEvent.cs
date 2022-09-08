@@ -4,8 +4,9 @@ namespace Becoming.Core.Common.Seedwork.Interfaces;
 
 public interface IDomainEvent
 {
-    Guid EventId { get; }
-    Guid AggregateId { get; }
-    DateTime CreatedAt { get; }
-    AggregateType AggregateType { get; }
+    Guid EventId { get; init; }
+    Guid AggregateId { get; init; }
+    DateTime CreatedAt { get; init; }
+    //TODO: change on guid enumeration
+    AggregateType Type { get; }
 }
