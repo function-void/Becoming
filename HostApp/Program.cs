@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using HostApp.Configurations.OptionsModel;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -27,28 +28,14 @@ var builder = WebApplication.CreateBuilder(args);
         );
 
     #region authentication
+    builder.Services.ConfigureOptions<ConfigureJwtBearerOptions>();
     builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     })
-    .AddJwtBearer(options =>
-    {
-        var jwtSettings = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
-
-        options.SaveToken = jwtSettings.SaveToken;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = jwtSettings.ValidateIssuer,
-            ValidateAudience = jwtSettings.ValidateAudience,
-            ValidateLifetime = jwtSettings.ValidateLifetime,
-            ValidateIssuerSigningKey = jwtSettings.ValidateIssuerSigningKey,
-            ValidIssuer = jwtSettings.Issuer,
-            ValidAudience = jwtSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
-        };
-    });
+    .AddJwtBearer();
     #endregion
 
     #region api
