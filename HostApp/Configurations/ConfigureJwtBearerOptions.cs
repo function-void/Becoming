@@ -37,7 +37,7 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.SecretKey))
         };
 
-        _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} configurated:");
+        _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
         _logger.LogInformation($"SaveToken: {_settings.SaveToken}");
         _logger.LogInformation($"ValidateIssuer: {_settings.ValidateIssuer}");
         _logger.LogInformation($"ValidateAudience: {_settings.ValidateAudience}");

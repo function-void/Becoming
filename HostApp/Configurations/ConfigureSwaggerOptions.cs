@@ -53,7 +53,7 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
             }
         });
 
-        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} configurated!");
+        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} is configured!");
     }
 
     private OpenApiInfo CreateVersionInfo(ApiVersionDescription desc)
