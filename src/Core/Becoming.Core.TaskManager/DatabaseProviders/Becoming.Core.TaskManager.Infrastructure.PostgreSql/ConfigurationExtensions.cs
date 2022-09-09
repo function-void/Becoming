@@ -1,5 +1,5 @@
 ﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
-using HostApp.Configurations.OptionsModel;
+using HostApp.Configurations.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +16,7 @@ public static class ConfigurationExtensions
         services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(
             (serviceProvider, options) =>
             {
-                var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>().Value;
+                var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseModelOptions>>().Value;
 
                 options.UseNpgsql(
                     connectionString: configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName),

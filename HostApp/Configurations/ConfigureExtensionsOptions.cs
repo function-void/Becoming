@@ -1,5 +1,4 @@
 ﻿using Becoming.Core.TaskManager.Application;
-using Becoming.Core.TaskManager.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 
@@ -30,7 +29,7 @@ public static class ConfigureExtensionsOptions
     public static IServiceCollection AddTaskManager(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTaskManagerApplication(configuration);
-        services.AddTaskManagerInfrastructure(configuration);
+        //services.AddTaskManagerInfrastructure(configuration);
 
         return services;
     }

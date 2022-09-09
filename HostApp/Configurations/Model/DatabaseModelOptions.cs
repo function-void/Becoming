@@ -1,8 +1,8 @@
-﻿namespace HostApp.Configurations.OptionsModel;
+﻿namespace HostApp.Configurations.Model;
 
-public sealed class DatabaseOptions
+public sealed class DatabaseModelOptions
 {
-    public const string SectionName = nameof(DatabaseOptions);
+    public const string SectionName = nameof(DatabaseModelOptions);
 
     public string ProviderName { get; set; } = null!;
     public int MaxRetryCount { get; set; }

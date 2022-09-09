@@ -5,15 +5,22 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using HostApp.Configurations.OptionsModel;
+using HostApp.Configurations.Model;
+using Microsoft.Extensions.Options;
+using HostApp.Configurations.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     var configuration = builder.Configuration;
     builder.Services.AddPresentationControllers();
     builder.Services.AddTaskManager(configuration);
+
+    builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
+    builder.Services.ConfigureOptions<JwtModelOptionsSetup>();
+    builder.Services.ConfigureOptions<ConfigureJwtBearerOptions>();
+    builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+    builder.Services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
 
     builder.Services.Configure<ApiBehaviorOptions>(options =>
         options.SuppressModelStateInvalidFilter = true
@@ -28,7 +35,7 @@ var builder = WebApplication.CreateBuilder(args);
         );
 
     #region authentication
-    builder.Services.ConfigureOptions<ConfigureJwtBearerOptions>();
+
     builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -41,13 +48,13 @@ var builder = WebApplication.CreateBuilder(args);
     #region api
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-    builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-    builder.Services.AddApiVersioning(o =>
+
+    builder.Services.AddApiVersioning(options =>
     {
-        o.AssumeDefaultVersionWhenUnspecified = true;
-        o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-        o.ReportApiVersions = true;
-        o.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader());
+        options.AssumeDefaultVersionWhenUnspecified = true;
+        options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+        options.ReportApiVersions = true;
+        options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader());
     })
     .AddVersionedApiExplorer(options =>
     {

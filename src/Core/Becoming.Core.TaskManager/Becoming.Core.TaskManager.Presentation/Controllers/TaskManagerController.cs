@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Becoming.Core.Common.Presentation;
 using Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 using Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 
@@ -42,6 +45,13 @@ public sealed class TaskManagerController : ApiController
     public async Task<IActionResult> Get(Guid taskManagerId, CancellationToken token)
     {
         return Ok(await Sender.Send(new GetTaskManagerByIdQuery(taskManagerId), token));
+    }
+
+    [Authorize]
+    [HttpGet("test")]
+    public IActionResult Get()
+    {
+        return Ok();
     }
     #endregion
 }

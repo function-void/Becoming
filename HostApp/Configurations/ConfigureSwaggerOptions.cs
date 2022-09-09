@@ -1,23 +1,34 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HostApp.Configurations;
 
 public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
 {
+    private readonly ILogger<ConfigureSwaggerOptions> _logger;
     private readonly IApiVersionDescriptionProvider _provider;
 
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => _provider = provider;
+    public ConfigureSwaggerOptions(ILogger<ConfigureSwaggerOptions> logger, IApiVersionDescriptionProvider provider)
+    {
+        _logger = logger;
+        _provider = provider;
+    }
 
-    public void Configure(string name, SwaggerGenOptions options) => Configure(options);
+    public void Configure(string name, SwaggerGenOptions options)
+    {
+        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
+        Configure(options);
+    }
 
     public void Configure(SwaggerGenOptions options)
     {
         foreach (var description in _provider.ApiVersionDescriptions)
+        {
             options.SwaggerDoc(description.GroupName, CreateVersionInfo(description));
+        }
 
         options.AddSecurityDefinition("Bearer_Auth", new OpenApiSecurityScheme()
         {
@@ -41,11 +52,12 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
                 }, Array.Empty<string>()
             }
         });
+
+        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} configurated!");
     }
 
     private OpenApiInfo CreateVersionInfo(ApiVersionDescription desc)
     {
-        var info = new OpenApiInfo() { Title = ".NET Core (.NET 6) Web API", Version = desc.ApiVersion.ToString() };
-        return info;
+        return new OpenApiInfo() { Title = "Becoming - .NET Core (.NET 6) Web API", Version = desc.ApiVersion.ToString() };
     }
 }

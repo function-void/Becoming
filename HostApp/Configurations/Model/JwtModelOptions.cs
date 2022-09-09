@@ -1,8 +1,8 @@
-﻿namespace HostApp.Configurations.OptionsModel;
+﻿namespace HostApp.Configurations.Model;
 
-public sealed class JwtOptions
+public sealed class JwtModelOptions
 {
-    public const string SectionName = nameof(JwtOptions);
+    public const string SectionName = nameof(JwtModelOptions);
     public const string SecretKeySectionName = "SecretKey";
 
     public string SecretKey { get; set; } = null!;
