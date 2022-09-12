@@ -1,12 +1,9 @@
 ﻿using Becoming.Core.Common.Infrastructure.Services;
 using Becoming.Core.TaskManager.Application;
-using Becoming.Core.TaskManager.Infrastructure;
 using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 using HostApp.Configurations.Model;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace HostApp.ConfigurationsLayers;
 
@@ -42,6 +39,7 @@ public static class ConfigureExtensionsOptions
     {
         using var scope = services.BuildServiceProvider().CreateScope();
         var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
+        var providersName = configuration.GetSection("DatabaseProviders").GetChildren().Select(x => x.Value).ToList();
 
         services.AddSharedServicesInfrastructure();
 
