@@ -9,7 +9,7 @@ namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructure(
+    public static IServiceCollection AddTaskManagerInfrastructurePostgreSql(
         this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,

@@ -14,8 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddApllicationLayers(configuration);
     builder.Services.AddInfrastructureLayers(configuration, builder.Environment);
 
+
     builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
     builder.Services.ConfigureOptions<JwtModelOptionsSetup>();
+
     builder.Services.ConfigureOptions<ConfigureApiBehaviorOptions>();
     builder.Services.ConfigureOptions<ConfigureApiExplorerOptions>();
     builder.Services.ConfigureOptions<ConfigureApiVersioningOptions>();
@@ -23,6 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.ConfigureOptions<ConfigureCorsOptions>();
     builder.Services.ConfigureOptions<ConfigureForwardedHeadersOptions>();
     builder.Services.ConfigureOptions<ConfigureJsonOptions>();
+
     builder.Services.ConfigureOptions<ConfigureJwtBearerOptions>();
     builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
@@ -53,6 +56,7 @@ var app = builder.Build();
             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName);
     });
 
+    app.UseForwardedHeaders();
     app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseCors("CORS_Policy");
     app.UseHttpsRedirection();

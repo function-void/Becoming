@@ -36,18 +36,22 @@ public static class ConfigureExtensionsOptions
         return services;
     }
 
-    public static IServiceCollection AddInfrastructureLayers(
-        this IServiceCollection services,
-        IConfiguration configuration,
-        IWebHostEnvironment hostEnvironment
-        )
+    public static IServiceCollection AddInfrastructureLayers(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
     {
         var databaseModelOptions = configuration.Get<DatabaseModelOptions>();
         services.AddSharedServicesInfrastructure();
 
-        if (databaseModelOptions.ProviderName == "PostgreSql")
+        switch (databaseModelOptions.ProviderName)
         {
-            services.AddTaskManagerInfrastructure(configuration, hostEnvironment, databaseModelOptions);
+            case "PostgreSql":
+                {
+                    services.AddTaskManagerInfrastructurePostgreSql(configuration, hostEnvironment, databaseModelOptions);
+                    break;
+                }
+            case "MicrosoftSQLServer":
+                {
+                    break;
+                }
         }
 
         return services;
