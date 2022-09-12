@@ -44,7 +44,7 @@ public class ErrorHandlingMiddleware
 
         switch (error)
         {
-            case ValidationException or BadRequestException or ArgumentNullException:
+            case ValidationException or BadRequestException or ArgumentException:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 problem.Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1";
                 problem.Status = (int)HttpStatusCode.BadRequest;

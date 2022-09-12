@@ -20,6 +20,7 @@ public static class HangfireConfigurationExtensions
             {
                 configuration.UseMediatR();
                 configuration.UseMemoryStorage();
+                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 5 });
             });
         }
         else
