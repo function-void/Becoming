@@ -36,7 +36,7 @@ public class ErrorHandlingMiddleware
         }
     }
 
-    // TODO: add exception for options pattern
+    // TODO: add exception for options pattern when used option validation
     private async Task HandleExceptionAsync(HttpContext context, Exception error)
     {
         HttpResponse response = context.Response;
