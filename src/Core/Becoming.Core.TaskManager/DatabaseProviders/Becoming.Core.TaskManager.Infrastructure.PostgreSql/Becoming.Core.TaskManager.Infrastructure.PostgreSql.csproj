@@ -24,7 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\HostApp\HostApp.csproj" />
 		<ProjectReference Include="..\..\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj" />
 	</ItemGroup>
 

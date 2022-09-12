@@ -7,7 +7,10 @@ namespace Becoming.Core.TaskManager.Infrastructure;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection RegisterTaskManagerServiceInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration
+        )
     {
 
         services.AddScoped<ITaskManagerRepository, TaskManagerRepository>();

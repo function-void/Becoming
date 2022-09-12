@@ -1,8 +1,12 @@
-﻿using Becoming.Core.TaskManager.Application;
+﻿using Becoming.Core.Common.Infrastructure.Services;
+using Becoming.Core.TaskManager.Application;
+using Becoming.Core.TaskManager.Infrastructure;
+using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
+using HostApp.Configurations.Model;
 
-namespace HostApp.Configurations;
+namespace HostApp.ConfigurationsLayers;
 
 public static class ConfigureExtensionsOptions
 {
@@ -26,10 +30,25 @@ public static class ConfigureExtensionsOptions
         return services;
     }
 
-    public static IServiceCollection AddTaskManager(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApllicationLayers(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTaskManagerApplication(configuration);
-        //services.AddTaskManagerInfrastructure(configuration);
+        return services;
+    }
+
+    public static IServiceCollection AddInfrastructureLayers(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment hostEnvironment
+        )
+    {
+        var databaseModelOptions = configuration.Get<DatabaseModelOptions>();
+        services.AddSharedServicesInfrastructure();
+
+        if (databaseModelOptions.ProviderName == "PostgreSql")
+        {
+            services.AddTaskManagerInfrastructure(configuration, hostEnvironment, databaseModelOptions);
+        }
 
         return services;
     }

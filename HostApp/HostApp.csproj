@@ -19,10 +19,12 @@
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Application\Becoming.Core.Blog.Application.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Infrastructure\Becoming.Core.Blog.Infrastructure.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Presentation\Becoming.Core.Blog.Presentation.csproj" />
+    <ProjectReference Include="..\src\Core\Becoming.Core.Common\Becoming.Core.Common.Infrastructure.Services\Becoming.Core.Common.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Presentation\Becoming.Core.TaskManager.Presentation.csproj" />
+    <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\DatabaseProviders\Becoming.Core.TaskManager.Infrastructure.PostgreSql\Becoming.Core.TaskManager.Infrastructure.PostgreSql.csproj" />
   </ItemGroup>
 
 </Project>

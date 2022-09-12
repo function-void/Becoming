@@ -3,8 +3,6 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Runtime;
-using System.Net;
 
 namespace HostApp.Configurations;
 

@@ -6,7 +6,7 @@ namespace Becoming.Core.Common.Infrastructure.Services
 {
     public static class ServiceConfigurationExtensions
     {
-        public static void AddServicesInfrastructure(this IServiceCollection services)
+        public static void AddSharedServicesInfrastructure(this IServiceCollection services)
         {
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         }

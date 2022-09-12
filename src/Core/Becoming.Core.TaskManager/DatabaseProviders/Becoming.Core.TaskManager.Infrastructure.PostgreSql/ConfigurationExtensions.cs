@@ -1,42 +1,46 @@
 ﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
-using HostApp.Configurations.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructure(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public static IServiceCollection AddTaskManagerInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment environment,
+        dynamic modelOptions
+        )
     {
         services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(
             (serviceProvider, options) =>
             {
-                var databaseOptions = serviceProvider.GetRequiredService<IOptions<DatabaseModelOptions>>().Value;
-
                 options.UseNpgsql(
                     connectionString: configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName),
                     npgsqlOptionsAction: options =>
                     {
                         options.EnableRetryOnFailure(
-                            maxRetryCount: databaseOptions.MaxRetryCount,
-                            maxRetryDelay: TimeSpan.FromSeconds(databaseOptions.MaxRetryDelay),
+                            maxRetryCount: modelOptions.MaxRetryCount,
+                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
                             errorCodesToAdd: null
                             );
 
-                        options.CommandTimeout(databaseOptions.CommandTimeout);
+                        options.CommandTimeout(modelOptions.CommandTimeout);
                     });
 
                 if (environment.IsDevelopment())
                 {
-                    options.EnableDetailedErrors(databaseOptions.EnableDetailedErrors);
-                    options.EnableSensitiveDataLogging(databaseOptions.EnableSensitiveDataLogging);
+                    options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
+                    options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
                 }
             }, ServiceLifetime.Scoped);
+
+
+        services.RegisterTaskManagerServiceInfrastructure(configuration);
 
         return services;
     }

@@ -4,13 +4,15 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using HostApp.Configurations.Model;
 using Microsoft.Extensions.Options;
 using HostApp.Configurations.Setup;
+using HostApp.ConfigurationsLayers;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     // TODO: add option pattern for db context
     var configuration = builder.Configuration;
     builder.Services.AddPresentationControllers();
-    builder.Services.AddTaskManager(configuration);
+    builder.Services.AddApllicationLayers(configuration);
+    builder.Services.AddInfrastructureLayers(configuration, builder.Environment);
 
     builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
     builder.Services.ConfigureOptions<JwtModelOptionsSetup>();
@@ -25,6 +27,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
     builder.Services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
+    builder.Services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
 
     #region authentication
     builder.Services.AddAuthentication().AddJwtBearer();
