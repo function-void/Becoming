@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Runtime;
+using System.Net;
 
 namespace HostApp.Configurations;
 
@@ -19,7 +21,7 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
 
     public void Configure(string name, SwaggerGenOptions options)
     {
-        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
+        _logger.LogInformation(message: $"\n{nameof(ConfigureSwaggerOptions)} {name} started!");
         Configure(options);
     }
 
@@ -53,7 +55,15 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
             }
         });
 
-        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} is configured!");
+        _logger.LogInformation($"{nameof(ConfigureSwaggerOptions)} is configured!");
+        _logger.LogInformation($"Description: {"Jwt Bearer Authorization"}");
+        _logger.LogInformation($"Name: {"Authorization"}");
+        _logger.LogInformation($"In: {ParameterLocation.Header}");
+        _logger.LogInformation($"Type: {SecuritySchemeType.Http}");
+        _logger.LogInformation($"Scheme: {JwtBearerDefaults.AuthenticationScheme}");
+        _logger.LogInformation($"BearerFormat: {"JWT"}");
+
+        _logger.LogInformation(Environment.NewLine);
     }
 
     private OpenApiInfo CreateVersionInfo(ApiVersionDescription desc)
