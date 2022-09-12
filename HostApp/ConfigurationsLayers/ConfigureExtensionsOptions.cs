@@ -4,6 +4,8 @@ using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 using HostApp.Configurations.Model;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Becoming.Core.Common.Infrastructure.Routing;
 
 namespace HostApp.ConfigurationsLayers;
 
@@ -18,7 +20,11 @@ public static class ConfigureExtensionsOptions
             typeof(Becoming.Core.TaskManager.Presentation.AssemblyReference).Assembly,
         };
 
-        services.AddControllers().ConfigureApplicationPartManager(apm =>
+        services.AddControllers(options =>
+        {
+            options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()))
+        })
+        .ConfigureApplicationPartManager(apm =>
         {
             foreach (var assembly in presentationAssemblyList)
             {
