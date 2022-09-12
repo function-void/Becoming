@@ -14,7 +14,8 @@ public class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<Forwarded
 
     public void Configure(string name, ForwardedHeadersOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureForwardedHeadersOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureForwardedHeadersOptions)} {name} started!");
         Configure(options);
     }
 
@@ -24,7 +25,6 @@ public class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<Forwarded
 
         _logger.LogInformation($"{nameof(ForwardedHeadersOptions)} is configured:");
         _logger.LogInformation($"ForwardedHeaders: {ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

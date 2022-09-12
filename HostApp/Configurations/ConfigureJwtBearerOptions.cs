@@ -19,7 +19,8 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
 
     public void Configure(string name, JwtBearerOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureJwtBearerOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureJwtBearerOptions)} {name} started!");
         Configure(options);
     }
 
@@ -46,7 +47,6 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
         _logger.LogInformation($"ValidIssuer: {_settings.Issuer}");
         _logger.LogInformation($"ValidAudience: {_settings.Audience}");
         _logger.LogInformation($"SecretKey: {_settings.SecretKey}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

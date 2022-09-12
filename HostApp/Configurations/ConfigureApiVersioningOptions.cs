@@ -15,7 +15,8 @@ public class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
 
     public void Configure(string name, ApiVersioningOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureApiVersioningOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureApiVersioningOptions)} {name} started!");
         Configure(options);
     }
 
@@ -31,7 +32,6 @@ public class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
         _logger.LogInformation($"DefaultApiVersion: {""}");
         _logger.LogInformation($"ReportApiVersions: {true}");
         _logger.LogInformation($"ApiVersionReader: {""}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

@@ -14,7 +14,8 @@ public class ConfigureApiExplorerOptions : IConfigureNamedOptions<ApiExplorerOpt
 
     public void Configure(string name, ApiExplorerOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureApiExplorerOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureApiExplorerOptions)} {name} started!");
         Configure(options);
     }
 
@@ -26,7 +27,6 @@ public class ConfigureApiExplorerOptions : IConfigureNamedOptions<ApiExplorerOpt
         _logger.LogInformation($"{nameof(ConfigureApiExplorerOptions)} is configured:");
         _logger.LogInformation($"GroupNameFormat: {"'v'VVV"}");
         _logger.LogInformation($"SubstituteApiVersionInUrl: {true}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

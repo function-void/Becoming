@@ -15,7 +15,8 @@ public class ConfigureAuthenticationOptions : IConfigureNamedOptions<Authenticat
 
     public void Configure(string name, AuthenticationOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureAuthenticationOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureAuthenticationOptions)} {name} started!");
         Configure(options);
     }
 
@@ -29,7 +30,6 @@ public class ConfigureAuthenticationOptions : IConfigureNamedOptions<Authenticat
         _logger.LogInformation($"DefaultAuthenticateScheme: {JwtBearerDefaults.AuthenticationScheme}");
         _logger.LogInformation($"DefaultChallengeScheme: {JwtBearerDefaults.AuthenticationScheme}");
         _logger.LogInformation($"DefaultScheme: {JwtBearerDefaults.AuthenticationScheme}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

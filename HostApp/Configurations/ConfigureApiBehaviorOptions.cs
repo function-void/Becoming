@@ -14,7 +14,8 @@ public class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOpt
 
     public void Configure(string name, ApiBehaviorOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureSwaggerOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
         Configure(options);
     }
 
@@ -24,7 +25,6 @@ public class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOpt
 
         _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
         _logger.LogInformation($"SuppressModelStateInvalidFilter: {true}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

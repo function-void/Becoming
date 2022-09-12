@@ -21,7 +21,8 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
 
     public void Configure(string name, SwaggerGenOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureSwaggerOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
         Configure(options);
     }
 
@@ -62,7 +63,6 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
         _logger.LogInformation($"Type: {SecuritySchemeType.Http}");
         _logger.LogInformation($"Scheme: {JwtBearerDefaults.AuthenticationScheme}");
         _logger.LogInformation($"BearerFormat: {"JWT"}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 

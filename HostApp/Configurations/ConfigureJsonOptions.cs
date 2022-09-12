@@ -14,7 +14,8 @@ public class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
 
     public void Configure(string name, JsonOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureJsonOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureJsonOptions)} {name} started!");
         Configure(options);
     }
 
@@ -24,7 +25,6 @@ public class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
 
         _logger.LogInformation($"{nameof(ConfigureJsonOptions)} is configured:");
         _logger.LogInformation($"IncludeFields: {true}");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }

@@ -14,7 +14,8 @@ public class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
 
     public void Configure(string name, CorsOptions options)
     {
-        _logger.LogInformation(message: $"\n{nameof(ConfigureCorsOptions)} {name} started!");
+        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation(message: $"{nameof(ConfigureCorsOptions)} {name} started!");
         Configure(options);
     }
 
@@ -23,7 +24,6 @@ public class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
         options.AddPolicy("CORS_Policy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
         _logger.LogInformation($"{nameof(ConfigureCorsOptions)} is configured:");
-
         _logger.LogInformation(Environment.NewLine);
     }
 }
