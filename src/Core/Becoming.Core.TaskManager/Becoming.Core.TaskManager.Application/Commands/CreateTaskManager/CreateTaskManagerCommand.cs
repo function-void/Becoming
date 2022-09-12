@@ -11,10 +11,10 @@ public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTask
     private readonly ITaskManagerRepository _repository;
 
     public CreateTaskManagerCommandHandler(
-        //ITaskManagerRepository repository
+        ITaskManagerRepository repository
         )
     {
-        //_repository = repository;
+        _repository = repository;
     }
 
     public Task<Guid> Handle(CreateTaskManagerCommand request, CancellationToken cancellationToken)

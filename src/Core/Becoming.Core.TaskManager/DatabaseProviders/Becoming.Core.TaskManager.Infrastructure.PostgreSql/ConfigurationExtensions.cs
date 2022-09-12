@@ -1,4 +1,7 @@
 ﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+using Becoming.Core.TaskManager.Domain.Repositories;
+using Becoming.Core.TaskManager.Infrastructure.Persistence;
+using Becoming.Core.TaskManager.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +43,8 @@ public static class ConfigurationExtensions
             }, ServiceLifetime.Scoped);
 
 
-        services.RegisterTaskManagerServiceInfrastructure(configuration);
+        services.AddScoped<ITaskManagerRepository, TaskManagerRepository>();
+        services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
 
         return services;
     }

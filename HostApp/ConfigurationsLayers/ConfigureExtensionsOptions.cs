@@ -5,6 +5,8 @@ using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 using HostApp.Configurations.Model;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace HostApp.ConfigurationsLayers;
 
@@ -38,7 +40,9 @@ public static class ConfigureExtensionsOptions
 
     public static IServiceCollection AddInfrastructureLayers(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
     {
-        var databaseModelOptions = configuration.Get<DatabaseModelOptions>();
+        using var scope = services.BuildServiceProvider().CreateScope();
+        var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
+
         services.AddSharedServicesInfrastructure();
 
         switch (databaseModelOptions.ProviderName)

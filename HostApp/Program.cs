@@ -8,13 +8,6 @@ using HostApp.ConfigurationsLayers;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    // TODO: add option pattern for db context
-    var configuration = builder.Configuration;
-    builder.Services.AddPresentationControllers();
-    builder.Services.AddApllicationLayers(configuration);
-    builder.Services.AddInfrastructureLayers(configuration, builder.Environment);
-
-
     builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
     builder.Services.ConfigureOptions<JwtModelOptionsSetup>();
 
@@ -31,6 +24,12 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
     builder.Services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
+
+    // TODO: add option pattern for db context
+    var configuration = builder.Configuration;
+    builder.Services.AddPresentationControllers();
+    builder.Services.AddApllicationLayers(configuration);
+    builder.Services.AddInfrastructureLayers(configuration, builder.Environment);
 
     #region authentication
     builder.Services.AddAuthentication().AddJwtBearer();
