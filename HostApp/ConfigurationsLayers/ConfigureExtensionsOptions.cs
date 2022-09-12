@@ -39,7 +39,7 @@ public static class ConfigureExtensionsOptions
     {
         using var scope = services.BuildServiceProvider().CreateScope();
         var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
-        var providersName = configuration.GetSection("DatabaseProviders").GetChildren().Select(x => x.Value).ToList();
+        var providerNames = configuration.GetSection("DatabaseProviders").GetChildren().Select(x => x.Value).ToList();
 
         services.AddSharedServicesInfrastructure();
 
