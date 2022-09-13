@@ -4,12 +4,9 @@ using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 using HostApp.Configurations.Model;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Becoming.Core.Common.Infrastructure.Routing;
-using System.Security.AccessControl;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Becoming.Core.Common.Presentation;
-using System.Linq;
+using Microsoft.Extensions.DependencyModel;
+using System.Diagnostics;
 
 namespace HostApp.ConfigurationsLayers;
 
@@ -17,11 +14,11 @@ public static class ConfigureExtensionsOptions
 {
     public static IServiceCollection AddPresentationControllers(this IServiceCollection services)
     {
-        var presentationAssemblyList = Assembly
-            .GetExecutingAssembly().GetReferencedAssemblies()
-            .Select(x => Assembly.Load(x))
-            .Where(x => x.DefinedTypes.Where(x => !x.IsAbstract)
-                .Any(x => x.BaseType == typeof(ApiController)))
+        var presentationAssemblyList = DependencyContext.Default.RuntimeLibraries
+            .Where(x => x.Name.Contains("Presentation"))
+            .Select(x => Assembly.Load(x.Name))
+            .Where(assembly => assembly.DefinedTypes.Where(t => !t.IsAbstract)
+                .Any(t => t.BaseType == typeof(ApiController) && t.IsSubclassOf(typeof(ApiController))))
             .ToList();
 
         services.AddControllers().ConfigureApplicationPartManager(apm =>
