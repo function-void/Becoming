@@ -20,11 +20,7 @@ public static class ConfigureExtensionsOptions
             typeof(Becoming.Core.TaskManager.Presentation.AssemblyReference).Assembly,
         };
 
-        services.AddControllers(options =>
-        {
-            options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()))
-        })
-        .ConfigureApplicationPartManager(apm =>
+        services.AddControllers().ConfigureApplicationPartManager(apm =>
         {
             foreach (var assembly in presentationAssemblyList)
             {

@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.ConfigureOptions<ConfigureApiVersioningOptions>();
     builder.Services.ConfigureOptions<ConfigureAuthenticationOptions>();
     builder.Services.ConfigureOptions<ConfigureCorsOptions>();
+    builder.Services.ConfigureOptions<ConfigureMvcOptions>();
     builder.Services.ConfigureOptions<ConfigureForwardedHeadersOptions>();
     builder.Services.ConfigureOptions<ConfigureJsonOptions>();
 
