@@ -65,7 +65,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseProviders", "Databa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseProviders", "DatabaseProviders", "{DA43651C-3C9C-4494-824D-A456127F199C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.TaskManager.Infrastructure.PostgreSql", "src\Core\Becoming.Core.TaskManager\DatabaseProviders\Becoming.Core.TaskManager.Infrastructure.PostgreSql\Becoming.Core.TaskManager.Infrastructure.PostgreSql.csproj", "{5C7A125A-659A-4B2D-8799-ADF3100243AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Becoming.Core.TaskManager.Infrastructure.PostgreSql", "src\Core\Becoming.Core.TaskManager\DatabaseProviders\Becoming.Core.TaskManager.Infrastructure.PostgreSql\Becoming.Core.TaskManager.Infrastructure.PostgreSql.csproj", "{5C7A125A-659A-4B2D-8799-ADF3100243AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Becoming.Core.Storage", "Becoming.Core.Storage", "{814F65A3-FB97-46EC-B1DB-47F4ED70B431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Becoming.Core.Storage.Application", "src\Core\Becoming.Core.Storage\Becoming.Core.Storage.Application\Becoming.Core.Storage.Application.csproj", "{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +153,10 @@ Global
 		{5C7A125A-659A-4B2D-8799-ADF3100243AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C7A125A-659A-4B2D-8799-ADF3100243AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C7A125A-659A-4B2D-8799-ADF3100243AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +191,8 @@ Global
 		{9804726C-9077-40B3-B69D-69C85FF43E4A} = {722473CB-B8F0-4A22-9DC7-0D1B662D2217}
 		{DA43651C-3C9C-4494-824D-A456127F199C} = {F853A893-5C87-47A7-968F-73ED0E997B8C}
 		{5C7A125A-659A-4B2D-8799-ADF3100243AA} = {9804726C-9077-40B3-B69D-69C85FF43E4A}
+		{814F65A3-FB97-46EC-B1DB-47F4ED70B431} = {55AC8D09-FC04-44B8-936A-20FB6A5773F2}
+		{BC63B816-5DBA-48A3-8C8B-4A9D3D045B47} = {814F65A3-FB97-46EC-B1DB-47F4ED70B431}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02523AB5-4071-4312-AF4B-ADCCAB4C1B24}
