@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
+public sealed class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
 {
     private readonly ILogger<ConfigureCorsOptions> _logger;
 

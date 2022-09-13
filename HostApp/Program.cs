@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
     builder.Services.ConfigureOptions<JwtModelOptionsSetup>();
+    builder.Services.ConfigureOptions<ApiVersioningModelOptionsSetup>();
 
     builder.Services.ConfigureOptions<ConfigureApiBehaviorOptions>();
     builder.Services.ConfigureOptions<ConfigureApiExplorerOptions>();
@@ -25,6 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
     builder.Services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
+    builder.Services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
 
     // TODO: add option pattern for db context
     var configuration = builder.Configuration;

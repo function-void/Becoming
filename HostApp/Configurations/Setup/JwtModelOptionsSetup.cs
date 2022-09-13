@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;
 
-public class JwtModelOptionsSetup : IConfigureOptions<JwtModelOptions>
+public sealed class JwtModelOptionsSetup : IConfigureOptions<JwtModelOptions>
 {
     private readonly IConfiguration _configuration;
 

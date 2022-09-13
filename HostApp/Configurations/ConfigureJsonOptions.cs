@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
+public sealed class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
 {
     private readonly ILogger<ConfigureJsonOptions> _logger;
 

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOptions>
+public sealed class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOptions>
 {
     private readonly ILogger<ConfigureApiBehaviorOptions> _logger;
 

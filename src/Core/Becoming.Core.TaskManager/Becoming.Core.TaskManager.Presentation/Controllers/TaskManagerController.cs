@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Becoming.Core.Common.Presentation;
 using Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 using Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;

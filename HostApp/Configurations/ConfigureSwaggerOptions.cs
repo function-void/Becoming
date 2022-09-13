@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HostApp.Configurations;
 
-public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
+public sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
 {
     private readonly ILogger<ConfigureSwaggerOptions> _logger;
     private readonly IApiVersionDescriptionProvider _provider;

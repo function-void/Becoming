@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<ForwardedHeadersOptions>
+public sealed class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<ForwardedHeadersOptions>
 {
     private readonly ILogger<ConfigureForwardedHeadersOptions> _logger;
 

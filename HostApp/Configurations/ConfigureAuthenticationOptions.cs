@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureAuthenticationOptions : IConfigureNamedOptions<AuthenticationOptions>
+public sealed class ConfigureAuthenticationOptions : IConfigureNamedOptions<AuthenticationOptions>
 {
     private readonly ILogger<ConfigureAuthenticationOptions> _logger;
 
