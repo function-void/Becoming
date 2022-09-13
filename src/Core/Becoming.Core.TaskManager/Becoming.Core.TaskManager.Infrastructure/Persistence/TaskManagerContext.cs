@@ -1,10 +1,12 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+﻿using Becoming.Core.Common.Abstractions.Contracts;
+using Becoming.Core.Common.Infrastructure.Persistence;
+using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Persistence;
 
-public abstract class TaskManagerContext : DbContext
+public abstract class TaskManagerContext : BaseContext
 {
     protected TaskManagerContext(DbContextOptions options) : base(options) { }
 

@@ -1,5 +1,6 @@
 ﻿
 using Becoming.Core.Common.Abstractions.Contracts;
+using Becoming.Core.Common.Infrastructure.Services.Services;
 using Becoming.Core.Common.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,9 @@ public abstract class BaseContext : DbContext
 {
     private readonly IDateTimeProvider _dateTimeProvider;
 
-    protected BaseContext(DbContextOptions<BaseContext> options, IDateTimeProvider dateTimeProvider)
-      : base(options)
+    protected BaseContext(DbContextOptions options) : base(options)
     {
-        _dateTimeProvider = dateTimeProvider;
+        _dateTimeProvider = new DateTimeProvider();
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
