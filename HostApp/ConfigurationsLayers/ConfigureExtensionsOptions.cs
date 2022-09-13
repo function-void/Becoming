@@ -6,6 +6,10 @@ using System.Reflection;
 using HostApp.Configurations.Model;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Becoming.Core.Common.Infrastructure.Routing;
+using System.Security.AccessControl;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Becoming.Core.Common.Presentation;
+using System.Linq;
 
 namespace HostApp.ConfigurationsLayers;
 
@@ -13,12 +17,12 @@ public static class ConfigureExtensionsOptions
 {
     public static IServiceCollection AddPresentationControllers(this IServiceCollection services)
     {
-        // TODO: add a reflection with the apicontroller to get list presentation assembly
-        var presentationAssemblyList = new List<Assembly>
-        {
-            typeof(Becoming.Core.Blog.Presentation.AssemblyReference).Assembly,
-            typeof(Becoming.Core.TaskManager.Presentation.AssemblyReference).Assembly,
-        };
+        var presentationAssemblyList = Assembly
+            .GetExecutingAssembly().GetReferencedAssemblies()
+            .Select(x => Assembly.Load(x))
+            .Where(x => x.DefinedTypes.Where(x => !x.IsAbstract)
+                .Any(x => x.BaseType == typeof(ApiController)))
+            .ToList();
 
         services.AddControllers().ConfigureApplicationPartManager(apm =>
         {
@@ -41,7 +45,10 @@ public static class ConfigureExtensionsOptions
     {
         using var scope = services.BuildServiceProvider().CreateScope();
         var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
-        var providerNames = configuration.GetSection("DatabaseProviders").GetChildren().Select(x => x.Value).ToList();
+        var providersDic = configuration
+            .GetSection("DatabaseProviders")
+            .GetChildren()
+            .ToDictionary(x => x.Key, x => x.Value);
 
         services.AddSharedServicesInfrastructure();
 
