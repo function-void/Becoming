@@ -1,8 +1,8 @@
-﻿using Calabonga.AspNetCore.AppDefinitions;
+﻿using HostApp.Configurations;
 using HostApp.Configurations.Model;
 using HostApp.Configurations.Setup;
-using HostApp.Configurations;
 using Microsoft.Extensions.Options;
+using Calabonga.AspNetCore.AppDefinitions;
 
 namespace HostApp.Definitions.Common;
 
@@ -29,6 +29,7 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.ConfigureOptions<ConfigureJsonOptions>();
         services.ConfigureOptions<ConfigureJwtBearerOptions>();
         services.ConfigureOptions<ConfigureSwaggerOptions>();
+        services.ConfigureOptions<ConfigureSwaggerUIOptions>();
         #endregion
 
         #region register model options
