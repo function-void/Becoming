@@ -18,7 +18,8 @@ public abstract class BaseArchitectureTests
         Assembly domainAssembly,
         Assembly applicationAssembly,
         Assembly infrastructureAssembly,
-        Assembly presentationAssembly)
+        Assembly presentationAssembly
+        )
     {
         _domainAssembly = domainAssembly;
         _applicationAssembly = applicationAssembly;

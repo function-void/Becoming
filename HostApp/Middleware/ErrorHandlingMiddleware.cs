@@ -6,7 +6,7 @@ using System.Net;
 
 namespace HostApp.Middleware;
 
-public class ErrorHandlingMiddleware
+public sealed class ErrorHandlingMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ErrorHandlingMiddleware> _logger;
