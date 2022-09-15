@@ -25,15 +25,15 @@ public class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
 
     public void Configure(ApiVersioningOptions options)
     {
-        options.AssumeDefaultVersionWhenUnspecified = true;
-        options.DefaultApiVersion = new ApiVersion(1, 0);
-        options.ReportApiVersions = true;
+        options.AssumeDefaultVersionWhenUnspecified = _settings.AssumeDefaultVersionWhenUnspecified;
+        options.DefaultApiVersion = new ApiVersion(_settings.DefaultApiVersion.majorVersion, _settings.DefaultApiVersion.minorVersion);
+        options.ReportApiVersions = _settings.ReportApiVersions;
         options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader());
 
         _logger.LogInformation($"{nameof(ConfigureApiVersioningOptions)} is configured:");
-        _logger.LogInformation($"AssumeDefaultVersionWhenUnspecified: {true}");
+        _logger.LogInformation($"AssumeDefaultVersionWhenUnspecified: {_settings.AssumeDefaultVersionWhenUnspecified}");
         _logger.LogInformation($"DefaultApiVersion: {options.DefaultApiVersion}");
-        _logger.LogInformation($"ReportApiVersions: {true}");
+        _logger.LogInformation($"ReportApiVersions: {_settings.ReportApiVersions}");
         _logger.LogInformation($"ApiVersionReader: {options.ApiVersionReader}");
         _logger.LogInformation(Environment.NewLine);
     }
