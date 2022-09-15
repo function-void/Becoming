@@ -31,9 +31,9 @@ public class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
         options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader());
 
         _logger.LogInformation($"{nameof(ConfigureApiVersioningOptions)} is configured:");
-        _logger.LogInformation($"AssumeDefaultVersionWhenUnspecified: {_settings.AssumeDefaultVersionWhenUnspecified}");
+        _logger.LogInformation($"AssumeDefaultVersionWhenUnspecified: {options.AssumeDefaultVersionWhenUnspecified}");
         _logger.LogInformation($"DefaultApiVersion: {options.DefaultApiVersion}");
-        _logger.LogInformation($"ReportApiVersions: {_settings.ReportApiVersions}");
+        _logger.LogInformation($"ReportApiVersions: {options.ReportApiVersions}");
         _logger.LogInformation($"ApiVersionReader: {options.ApiVersionReader}");
         _logger.LogInformation(Environment.NewLine);
     }

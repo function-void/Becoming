@@ -24,7 +24,7 @@ public sealed class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBeha
         options.SuppressModelStateInvalidFilter = true;
 
         _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
-        _logger.LogInformation($"SuppressModelStateInvalidFilter: {true}");
+        _logger.LogInformation($"SuppressModelStateInvalidFilter: {options.SuppressModelStateInvalidFilter}");
         _logger.LogInformation(Environment.NewLine);
     }
 }

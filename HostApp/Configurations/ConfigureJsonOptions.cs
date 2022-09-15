@@ -24,7 +24,7 @@ public sealed class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
         options.SerializerOptions.IncludeFields = true;
 
         _logger.LogInformation($"{nameof(ConfigureJsonOptions)} is configured:");
-        _logger.LogInformation($"IncludeFields: {true}");
+        _logger.LogInformation($"IncludeFields: {options.SerializerOptions.IncludeFields}");
         _logger.LogInformation(Environment.NewLine);
     }
 }

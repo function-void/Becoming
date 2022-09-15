@@ -39,13 +39,13 @@ public sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearer
         };
 
         _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
-        _logger.LogInformation($"SaveToken: {_settings.SaveToken}");
-        _logger.LogInformation($"ValidateIssuer: {_settings.ValidateIssuer}");
-        _logger.LogInformation($"ValidateAudience: {_settings.ValidateAudience}");
-        _logger.LogInformation($"ValidateLifetime: {_settings.ValidateLifetime}");
-        _logger.LogInformation($"ValidateIssuerSigningKey: {_settings.ValidateIssuerSigningKey}");
-        _logger.LogInformation($"ValidIssuer: {_settings.Issuer}");
-        _logger.LogInformation($"ValidAudience: {_settings.Audience}");
+        _logger.LogInformation($"SaveToken: {options.SaveToken}");
+        _logger.LogInformation($"ValidateIssuer: {options.TokenValidationParameters.ValidateIssuer}");
+        _logger.LogInformation($"ValidateAudience: {options.TokenValidationParameters.ValidateAudience}");
+        _logger.LogInformation($"ValidateLifetime: {options.TokenValidationParameters.ValidateLifetime}");
+        _logger.LogInformation($"ValidateIssuerSigningKey: {options.TokenValidationParameters.ValidateIssuerSigningKey}");
+        _logger.LogInformation($"ValidIssuer: {options.TokenValidationParameters.ValidIssuer}");
+        _logger.LogInformation($"ValidAudience: {options.TokenValidationParameters.ValidAudience}");
         _logger.LogInformation($"SecretKey: {_settings.SecretKey}");
         _logger.LogInformation(Environment.NewLine);
     }
