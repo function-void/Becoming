@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Primitives.Models;
-using Becoming.Core.Common.Seedwork.Models;
+﻿using Becoming.Core.Common.Seedwork.Models;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 

@@ -1,17 +1,19 @@
-﻿using Becoming.Core.Common.Abstractions.Contracts;
-using Becoming.Core.Common.Infrastructure.Shared;
+﻿using Becoming.Core.Common.Infrastructure.Shared;
 using Becoming.Core.Common.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Becoming.Core.Common.Seedwork.Interfaces;
 
 namespace Becoming.Core.Common.Infrastructure.Repositories;
 
-public abstract class BaseRepository<Model> : IBaseRepository<Model> where Model : BaseModel, new()
+public abstract class BaseRepository<Context, Model> : IBaseRepository<Model>
+    where Context : BaseContext
+    where Model : BaseModel, new()
 {
-    protected DbContext _context;
+    protected Context _context;
     protected DbSet<Model> _dbSet;
 
-    protected BaseRepository(BaseContext context)
+    protected BaseRepository(Context context)
     {
         _context = context;
         _dbSet = context.Set<Model>();
@@ -23,33 +25,25 @@ public abstract class BaseRepository<Model> : IBaseRepository<Model> where Model
         return await _context.SaveChangesAsync(token);
     }
 
+    public void Delete(Model model) => _dbSet.Remove(model);
+
     public virtual async Task<int> CreateAsync(Model newDataModel, CancellationToken token = default)
     {
-        await _dbSet.AddAsync(newDataModel);
+        await CreateAsync(newDataModel);
         return await _context.SaveChangesAsync(token);
     }
 
-    public virtual async Task<int> SimpleUpdate(Model changedDataModel, CancellationToken token = default)
+    public async Task CreateAsync(Model newDataModel) => await _dbSet.AddAsync(newDataModel);
+
+    public virtual async Task<int> SimpleUpdateAsync(Model changedDataModel, CancellationToken token = default)
     {
-        _dbSet.Update(changedDataModel);
+        SimpleUpdate(changedDataModel);
         return await _context.SaveChangesAsync(token);
     }
 
-    public abstract Task<int> UseOriginalUpdate(Model changedModel, Model? orinalModel = null);
+    public void SimpleUpdate(Model changedDataModel) => _dbSet.Update(changedDataModel);
 
-    public virtual async Task RequiredRelationUpdate(Model model, Guid targetId, IDbContextTransaction? transaction = default, CancellationToken token = default)
-    {
-        using var newTransaction = transaction ?? await _context.Database.BeginTransactionAsync(token);
-
-        throw new NotImplementedException();
-    }
-
-    public virtual async Task RequiredRelationUpdate(Model model, Guid targetId, Guid[] spares, IDbContextTransaction? transaction = default, CancellationToken token = default)
-    {
-        using var newTransaction = transaction ?? await _context.Database.BeginTransactionAsync(token);
-
-        throw new NotImplementedException();
-    }
+    public abstract Task<int> UseOriginalUpdateAsync(Model changedDataModel, Model? orinalModel = null, CancellationToken token = default);
 
     public virtual async Task<Model?> GetAsync(Guid id) => await _dbSet.FindAsync(id);
 

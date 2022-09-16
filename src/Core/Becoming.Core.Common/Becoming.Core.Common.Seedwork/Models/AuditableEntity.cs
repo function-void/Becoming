@@ -1,12 +1,8 @@
-﻿using Becoming.Core.Common.Seedwork.Models;
-
-namespace Becoming.Core.Common.Primitives.Models;
+﻿namespace Becoming.Core.Common.Seedwork.Models;
 
 public abstract class AuditableEntity : Entity
 {
-    protected AuditableEntity(Guid id) : base(id)
-    {
-    }
+    protected AuditableEntity(Guid id) : base(id) { }
 
     public DateTime CreatedAt { get; private set; }
     public DateTime? LastModifiedAt { get; private set; }

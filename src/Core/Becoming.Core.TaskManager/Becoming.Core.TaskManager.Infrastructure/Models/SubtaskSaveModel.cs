@@ -1,7 +1,9 @@
 ﻿
+using Becoming.Core.Common.Infrastructure.Shared;
+
 namespace Becoming.Core.TaskManager.Infrastructure.Models;
 
-public sealed class SubtaskSaveModel
+public sealed class SubtaskSaveModel : BaseModel
 {
     public string? Description { get; set; }
     public SummaryTaskSaveModel SummaryTask { get; set; } = null!;

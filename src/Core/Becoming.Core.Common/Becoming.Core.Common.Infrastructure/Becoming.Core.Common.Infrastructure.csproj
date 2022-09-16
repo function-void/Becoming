@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Becoming.Core.Common.Abstractions\Becoming.Core.Common.Abstractions.csproj" />
 		<ProjectReference Include="..\Becoming.Core.Common.Infrastructure.Services\Becoming.Core.Common.Infrastructure.Services.csproj" />
+		<ProjectReference Include="..\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
 	</ItemGroup>
 
 </Project>

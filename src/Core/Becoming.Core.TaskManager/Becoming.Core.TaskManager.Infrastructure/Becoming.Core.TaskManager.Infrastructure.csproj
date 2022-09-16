@@ -24,4 +24,8 @@
 	  <ProjectReference Include="..\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Configurations\" />
+	</ItemGroup>
+
 </Project>

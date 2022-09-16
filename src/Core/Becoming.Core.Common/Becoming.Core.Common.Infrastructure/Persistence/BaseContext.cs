@@ -1,5 +1,4 @@
-﻿
-using Becoming.Core.Common.Abstractions.Contracts;
+﻿using Becoming.Core.Common.Abstractions.Contracts;
 using Becoming.Core.Common.Infrastructure.Services.Services;
 using Becoming.Core.Common.Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +14,7 @@ public abstract class BaseContext : DbContext
         _dateTimeProvider = new DateTimeProvider();
     }
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         foreach (var entry in ChangeTracker.Entries<AuditableModel>())
         {
@@ -31,6 +30,6 @@ public abstract class BaseContext : DbContext
             }
         }
 
-        return base.SaveChangesAsync(cancellationToken);
+        return await base.SaveChangesAsync(cancellationToken);
     }
 }

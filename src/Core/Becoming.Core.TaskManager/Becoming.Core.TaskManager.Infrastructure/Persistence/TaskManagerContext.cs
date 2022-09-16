@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Abstractions.Contracts;
-using Becoming.Core.Common.Infrastructure.Persistence;
+﻿using Becoming.Core.Common.Infrastructure.Persistence;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -14,5 +13,10 @@ public abstract class TaskManagerContext : BaseContext
     {
         builder.HasDefaultSchema(DbConstants.TaskManagerSchemaName);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
+    {
+        return await base.SaveChangesAsync(cancellationToken);
     }
 }

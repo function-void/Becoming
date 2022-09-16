@@ -1,7 +1,9 @@
 ﻿
+using Becoming.Core.Common.Infrastructure.Shared;
+
 namespace Becoming.Core.TaskManager.Infrastructure.Models;
 
-public sealed class SummaryTaskSaveModel
+public sealed class SummaryTaskSaveModel : BaseModel
 {
     public Guid? GroupId { get; set; }
     public string Title { get; set; } = null!;

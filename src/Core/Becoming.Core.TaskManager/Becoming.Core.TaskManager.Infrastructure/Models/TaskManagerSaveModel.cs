@@ -1,7 +1,9 @@
 ﻿
+using Becoming.Core.Common.Infrastructure.Shared;
+
 namespace Becoming.Core.TaskManager.Infrastructure.Models;
 
-public sealed class TaskManagerSaveModel
+public sealed class TaskManagerSaveModel : BaseModel
 {
     public CategoryModel? Category { get; set; }
     public string Title { get; set; } = null!;
