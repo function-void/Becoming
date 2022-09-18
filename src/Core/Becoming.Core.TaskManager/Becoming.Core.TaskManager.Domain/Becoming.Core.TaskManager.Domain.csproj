@@ -10,8 +10,4 @@
     <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Errors\" />
-  </ItemGroup>
-
 </Project>

@@ -1,10 +1,10 @@
 ﻿using Becoming.Core.Common.Abstractions.CQRS;
-using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Domain.Repositories;
+using MediatR;
 
 namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 
-public sealed record class CreateTaskManagerCommand(string Title, string Category) : ICommand<Guid>;
+public sealed record class CreateTaskManagerCommand(CreateTaskManagerRequest Dto) : ICommand<Guid>;
 
 public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManagerCommand, Guid>
 {
@@ -17,13 +17,9 @@ public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTask
         _repository = repository;
     }
 
-    public Task<Guid> Handle(CreateTaskManagerCommand request, CancellationToken cancellationToken)
+    public Task<Guid> Handle(CreateTaskManagerCommand command, CancellationToken cancellationToken)
     {
-        var taskManager = new TaskManagerAggregate(
-            Guid.NewGuid(),
-            request.Title,
-            new Category(request.Category)
-            );
+        var taskManager = command.Dto.ToDomainModel();
 
         _repository.EmbodyAsync(taskManager, cancellationToken);
 

@@ -29,7 +29,7 @@ public sealed class TaskManagerController : ApiController
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Create([FromBody] CreateTaskManagerRequest request, CancellationToken token)
     {
-        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request.Title, request.Category), token);
+        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request), token);
         return CreatedAtAction(nameof(Get), new { taskManagerId }, taskManagerId);
     }
     #endregion

@@ -10,4 +10,8 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
+  </ItemGroup>
+
 </Project>
