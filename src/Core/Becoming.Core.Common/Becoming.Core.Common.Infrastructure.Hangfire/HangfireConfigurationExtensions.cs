@@ -27,21 +27,20 @@ public static class HangfireConfigurationExtensions
                 configuration.UseMemoryStorage();
                 configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
             });
+
+            return services;
         }
-        else
+
+        string hfDbConnection = (modelOptions.ProviderName == "PostgreSql")
+            ? configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName)
+            : configuration.GetConnectionString(DbConstants.SqlConnectionSectionName);
+
+        services.AddHangfire(configuration =>
         {
-            string hfDbConnection = string.Empty;
-
-            if (modelOptions.ProviderName == "PostgreSql")
-                hfDbConnection = configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName);
-
-            services.AddHangfire(configuration =>
-            {
-                configuration.UseMediatR();
-                configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
-                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
-            }).AddHangfireServer();
-        }
+            configuration.UseMediatR();
+            configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
+            configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
+        }).AddHangfireServer();
 
         return services;
     }
@@ -52,8 +51,6 @@ public static class HangfireConfigurationExtensions
         {
             TypeNameHandling = TypeNameHandling.All
         };
-
         configuration.UseSerializerSettings(jsonSettings);
     }
-
 }
