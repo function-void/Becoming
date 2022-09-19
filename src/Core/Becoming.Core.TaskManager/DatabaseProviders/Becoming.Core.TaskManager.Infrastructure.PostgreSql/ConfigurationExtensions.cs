@@ -17,28 +17,25 @@ public static class ConfigurationExtensions
         dynamic modelOptions
         )
     {
-        services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(
-            (serviceProvider, options) =>
+        services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(options =>
+        {
+            if (environment.IsDevelopment())
             {
-                options.UseNpgsql(
-                    connectionString: configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName),
-                    npgsqlOptionsAction: options =>
-                    {
-                        options.EnableRetryOnFailure(
-                            maxRetryCount: modelOptions.MaxRetryCount,
-                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                            errorCodesToAdd: null
-                            );
-
-                        options.CommandTimeout(modelOptions.CommandTimeout);
-                    });
-
-                if (environment.IsDevelopment())
+                options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
+                options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
+            }
+            options.UseNpgsql(
+                connectionString: configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName),
+                npgsqlOptionsAction: options =>
                 {
-                    options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
-                    options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
-                }
-            }, ServiceLifetime.Scoped);
+                    options.CommandTimeout(modelOptions.CommandTimeout);
+                    options.EnableRetryOnFailure(
+                        maxRetryCount: modelOptions.MaxRetryCount,
+                        maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
+                        errorCodesToAdd: null
+                        );
+                });
+        }, ServiceLifetime.Scoped, ServiceLifetime.Singleton);
 
         services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
         services.AddServicesInfrastructure(configuration);

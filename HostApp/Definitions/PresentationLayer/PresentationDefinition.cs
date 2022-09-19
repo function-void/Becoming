@@ -12,7 +12,7 @@ public sealed class PresentationDefinition : AppDefinition
 
     public override int OrderIndex => 2;
 
-    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
     {
         var presentationAssemblyList = DependencyContext.Default.RuntimeLibraries
             .Where(x => x.Name.Contains(PresentationLayerName))

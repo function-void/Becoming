@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Calabonga.AspNetCore.AppDefinitions" Version="1.0.0" />
+    <PackageReference Include="Calabonga.AspNetCore.AppDefinitions" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
@@ -25,6 +25,7 @@
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Application\Becoming.Core.Blog.Application.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Infrastructure\Becoming.Core.Blog.Infrastructure.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Blog\Becoming.Core.Blog.Presentation\Becoming.Core.Blog.Presentation.csproj" />
+    <ProjectReference Include="..\src\Core\Becoming.Core.Common\Becoming.Core.Common.Infrastructure.Hangfire\Becoming.Core.Common.Infrastructure.Hangfire.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Common\Becoming.Core.Common.Infrastructure.Services\Becoming.Core.Common.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />

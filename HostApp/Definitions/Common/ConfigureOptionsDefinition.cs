@@ -10,12 +10,13 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
 {
     public override int OrderIndex => base.OrderIndex;
 
-    public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
     {
         #region setup
         services.ConfigureOptions<DatabaseOptionsSetup>();
-        services.ConfigureOptions<JwtModelOptionsSetup>();
-        services.ConfigureOptions<ApiVersioningModelOptionsSetup>();
+        services.ConfigureOptions<JwtOptionsSetup>();
+        services.ConfigureOptions<ApiVersioningOptionsSetup>();
+        services.ConfigureOptions<HangfireOptionsSetup>();
         #endregion
 
         #region configure options
@@ -36,6 +37,7 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
+        services.AddSingleton(x => x.GetService<IOptions<HangfireModelOptions>>()!.Value);
         #endregion
     }
 }

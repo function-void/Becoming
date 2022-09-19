@@ -6,44 +6,58 @@ using Microsoft.Extensions.DependencyInjection;
 using Becoming.Core.Common.Infrastructure.Hangfire.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Hangfire.MemoryStorage;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 
 namespace Becoming.Core.Common.Infrastructure.Hangfire;
 
 public static class HangfireConfigurationExtensions
 {
-    public static IServiceCollection AddHangfireInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddHangfireInfrastructurePostgreSql(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment environment,
+        dynamic modelOptions
+        )
     {
-        var flag = (bool)configuration.GetValue(typeof(bool), "HangfireUseInMemory");
-        if (flag)
+        if (modelOptions.UseInMemory)
         {
             services.AddHangfire(configuration =>
             {
                 configuration.UseMediatR();
                 configuration.UseMemoryStorage();
-                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 5 });
+                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
             });
         }
         else
         {
-            var hfDbConnection = configuration.GetConnectionString("DbConstants.HangfireDbSettingsConnectionName");
-
+            var hfDbConnection = configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName);
             services.AddEntityFrameworkNpgsql().AddDbContext<HangfireDbContext>(options =>
             {
-                options.UseNpgsql(connectionString: hfDbConnection, npgsqlOptionsAction: options =>
+                if (environment.IsDevelopment())
                 {
-                    options.EnableRetryOnFailure(
-                        maxRetryCount: 5,
-                        maxRetryDelay: TimeSpan.FromSeconds(5),
-                        errorCodesToAdd: null
-                        );
-                });
-            }, ServiceLifetime.Scoped);
+                    options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
+                    options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
+                }
+                options.UseNpgsql(
+                    connectionString: hfDbConnection,
+                    npgsqlOptionsAction: options =>
+                    {
+                        options.CommandTimeout(modelOptions.CommandTimeout);
+                        options.EnableRetryOnFailure(
+                            maxRetryCount: modelOptions.MaxRetryCount,
+                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
+                            errorCodesToAdd: null
+                            );
+                    });
+            }, ServiceLifetime.Scoped, ServiceLifetime.Singleton);
 
             services.AddHangfire(configuration =>
             {
                 configuration.UseMediatR();
                 configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
-                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 5 });
+                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
             }).AddHangfireServer();
         }
 

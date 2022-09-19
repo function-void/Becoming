@@ -10,10 +10,10 @@ public sealed class GetTaskManagerQueryHandler : IQueryHandler<GetTaskManagerByI
     private readonly ITaskManagerRepository _repository;
 
     public GetTaskManagerQueryHandler(
-        //ITaskManagerRepository repository
+        ITaskManagerRepository repository
         )
     {
-        //_repository = repository;
+        _repository = repository;
     }
 
     public Task<TaskManagerResponse> Handle(GetTaskManagerByIdQuery request, CancellationToken cancellationToken)

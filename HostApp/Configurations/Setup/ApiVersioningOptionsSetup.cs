@@ -3,11 +3,11 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;
 
-public sealed class ApiVersioningModelOptionsSetup : IConfigureOptions<ApiVersioningModelOptions>
+public sealed class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningModelOptions>
 {
     private readonly IConfiguration _configuration;
 
-    public ApiVersioningModelOptionsSetup(IConfiguration configuration)
+    public ApiVersioningOptionsSetup(IConfiguration configuration)
     {
         _configuration = configuration;
     }
