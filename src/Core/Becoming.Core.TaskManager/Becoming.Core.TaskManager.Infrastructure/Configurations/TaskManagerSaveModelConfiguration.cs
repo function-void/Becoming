@@ -19,6 +19,12 @@ internal sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfigurati
 
         builder.HasMany(x => x.SummaryTasks).WithOne(x => x.TaskManager);
 
-        builder.OwnsOne(x => x.Category);
+        builder.OwnsOne(x => x.Category, buildAction =>
+        {
+            buildAction.ToTable(DbConstants.TaskManagerCategoryTableName);
+            buildAction.Property<long>("Id");
+            buildAction.WithOwner(x => x.TaskManager);
+            buildAction.Navigation(x => x.TaskManager).UsePropertyAccessMode(PropertyAccessMode.Property);
+        });
     }
 }
