@@ -3,18 +3,16 @@ using Newtonsoft.Json;
 using Hangfire.PostgreSql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Becoming.Core.Common.Infrastructure.Hangfire.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 
 namespace Becoming.Core.Common.Infrastructure.Hangfire;
 
 public static class HangfireConfigurationExtensions
 {
-    public static IServiceCollection AddHangfireInfrastructurePostgreSql(
+    public static IServiceCollection AddHangfireInfrastructure(
         this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
@@ -32,26 +30,10 @@ public static class HangfireConfigurationExtensions
         }
         else
         {
-            var hfDbConnection = configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName);
-            services.AddEntityFrameworkNpgsql().AddDbContext<HangfireDbContext>(options =>
-            {
-                if (environment.IsDevelopment())
-                {
-                    options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
-                    options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
-                }
-                options.UseNpgsql(
-                    connectionString: hfDbConnection,
-                    npgsqlOptionsAction: options =>
-                    {
-                        options.CommandTimeout(modelOptions.CommandTimeout);
-                        options.EnableRetryOnFailure(
-                            maxRetryCount: modelOptions.MaxRetryCount,
-                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                            errorCodesToAdd: null
-                            );
-                    });
-            }, ServiceLifetime.Scoped, ServiceLifetime.Singleton);
+            string hfDbConnection = string.Empty;
+
+            if (modelOptions.ProviderName == "PostgreSql")
+                hfDbConnection = configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName);
 
             services.AddHangfire(configuration =>
             {
