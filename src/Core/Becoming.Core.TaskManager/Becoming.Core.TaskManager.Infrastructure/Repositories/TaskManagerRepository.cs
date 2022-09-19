@@ -12,9 +12,23 @@ public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, T
     public TaskManagerRepository(TaskManagerContext context) : base(context) { }
 
     #region commands
-    public Task<Guid> EmbodyAsync(TaskManagerAggregate aggr, CancellationToken cancellationToken = default)
+    public async Task<Guid> EmbodyAsync(TaskManagerAggregate aggr, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var model = new TaskManagerSaveModel()
+        {
+            Id = aggr.Id,
+            IsActive = true,
+            IsArchive = false,
+            Title = aggr.Title,
+            Category = new CategoryModel()
+            {
+                Name = aggr.Category.Name
+            }
+        };
+
+        _ = await CreateAsync(model, cancellationToken);
+
+        return model.Id;
     }
 
     public async Task RequiredRelationUpdate(TaskManagerAggregate model, Guid targetId, IDbContextTransaction? transaction = default, CancellationToken token = default)

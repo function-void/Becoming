@@ -7,13 +7,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
@@ -22,10 +22,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Infrastructure\Becoming.Core.Common.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Becoming.Core.TaskManager.Application\Becoming.Core.TaskManager.Application.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Configurations\" />
 	</ItemGroup>
 
 </Project>

@@ -39,7 +39,7 @@ public static class ConfigurationExtensions
                     options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
                 }
             }, ServiceLifetime.Scoped);
-  
+
         services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
         services.AddServicesInfrastructure(configuration);
 

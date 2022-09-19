@@ -17,7 +17,6 @@ public sealed class InfrastructureDefinition : AppDefinition
 
         var providersDic = configuration.GetSection("DatabaseProviders").GetChildren().ToDictionary(x => x.Key, x => x.Value);
 
-
         services.AddSharedServicesInfrastructure();
 
         switch (databaseModelOptions.ProviderName)

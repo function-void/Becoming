@@ -1,7 +1,6 @@
 ﻿using Becoming.Core.Common.Infrastructure.Shared;
 using Becoming.Core.Common.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Becoming.Core.Common.Seedwork.Interfaces;
 
 namespace Becoming.Core.Common.Infrastructure.Repositories;
