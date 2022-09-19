@@ -27,7 +27,7 @@ public sealed class InfrastructureDefinition : AppDefinition
             case "PostgreSql":
                 {
                     services.AddTaskManagerInfrastructurePostgreSql(configuration, environment, databaseModelOptions);
-                    services.AddHangfireInfrastructurePostgreSql(configuration, environment, hangfireModelOptions);
+                    services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions);
                     break;
                 }
             case "MicrosoftSQLServer":
