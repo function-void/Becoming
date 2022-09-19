@@ -14,7 +14,6 @@ internal sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfigurati
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id);
         builder.Property(x => x.Title).HasMaxLength(256).IsRequired();
-        builder.Property(x => x.Category);
         builder.Property(x => x.IsActive).HasDefaultValue(true).IsRequired();
         builder.Property(x => x.IsArchive).HasDefaultValue(false).IsRequired();
 
