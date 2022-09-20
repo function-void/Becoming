@@ -7,10 +7,10 @@ public sealed record class CreateTaskManagerCommand(CreateTaskManagerRequest Dto
 
 public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManagerCommand, Guid>
 {
-    private readonly ITaskManagerRepository _repository;
+    private readonly ICommandTaskManagerRepository _repository;
 
     public CreateTaskManagerCommandHandler(
-        ITaskManagerRepository repository
+        ICommandTaskManagerRepository repository
         )
     {
         _repository = repository;

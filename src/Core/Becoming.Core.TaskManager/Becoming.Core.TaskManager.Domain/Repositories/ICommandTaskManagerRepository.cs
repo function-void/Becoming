@@ -2,7 +2,7 @@
 
 namespace Becoming.Core.TaskManager.Domain.Repositories;
 
-public interface ITaskManagerRepository
+public interface ICommandTaskManagerRepository
 {
     Task<Guid> EmbodyAsync(TaskManagerAggregate aggr, CancellationToken cancellationToken = default);
 

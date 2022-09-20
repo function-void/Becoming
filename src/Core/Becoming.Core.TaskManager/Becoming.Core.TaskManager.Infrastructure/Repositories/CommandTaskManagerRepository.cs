@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Repositories;
 
-public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, TaskManagerSaveModel>, ITaskManagerRepository
+public sealed class CommandTaskManagerRepository : BaseRepository<TaskManagerContext, TaskManagerSaveModel>, ICommandTaskManagerRepository
 {
-    public TaskManagerRepository(TaskManagerContext context) : base(context) { }
+    public CommandTaskManagerRepository(TaskManagerContext context) : base(context) { }
 
-    #region commands
+    #region write
     public async Task<Guid> EmbodyAsync(TaskManagerAggregate aggr, CancellationToken cancellationToken = default)
     {
         var model = new TaskManagerSaveModel()
@@ -49,5 +49,8 @@ public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, T
     {
         throw new NotImplementedException();
     }
+    #endregion
+
+    #region read
     #endregion
 }

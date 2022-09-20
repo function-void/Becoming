@@ -21,13 +21,13 @@ public sealed class InfrastructureDefinition : AppDefinition
         var providersDic = configuration.GetSection("DatabaseProviders").GetChildren().ToDictionary(x => x.Key, x => x.Value);
 
         services.AddSharedServicesInfrastructure();
+        services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions);
 
         switch (databaseModelOptions.ProviderName)
         {
             case "PostgreSql":
                 {
                     services.AddTaskManagerInfrastructurePostgreSql(configuration, environment, databaseModelOptions);
-                    services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions);
                     break;
                 }
             case "MicrosoftSQLServer":
