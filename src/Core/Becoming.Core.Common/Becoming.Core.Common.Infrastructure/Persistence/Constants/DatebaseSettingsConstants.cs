@@ -1,7 +1,12 @@
 ﻿namespace Becoming.Core.Common.Infrastructure.Persistence.Constants;
 
-public static class DbConstants
+public static class DatebaseSettingConstants
 {
+    #region
+    public const string PostgreSqlDatabaseProvider = "PostgreSql";
+    public const string MSSqlDatabaseProvider = "MicrosoftSQLServer";
+    #endregion
+
     #region task manager
     public const string TaskManagerSchemaName = "tasks";
     public const string TaskManagerTableName = "task_manager";

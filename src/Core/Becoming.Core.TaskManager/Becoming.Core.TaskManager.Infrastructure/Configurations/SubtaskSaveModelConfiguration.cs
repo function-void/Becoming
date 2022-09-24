@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Configurations;
 
-internal sealed class SubtaskSaveModelConfiguration : IEntityTypeConfiguration<SubtaskSaveModel>
+sealed class SubtaskSaveModelConfiguration : IEntityTypeConfiguration<SubtaskSaveModel>
 {
     public void Configure(EntityTypeBuilder<SubtaskSaveModel> builder)
     {
-        builder.ToTable(DbConstants.SubtaskTableName);
+        builder.ToTable(DatebaseSettingConstants.SubtaskTableName);
 
         builder.HasKey(x => x.Id);
 

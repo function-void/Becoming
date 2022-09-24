@@ -5,7 +5,7 @@ namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 
 public sealed record class CreateTaskManagerCommand(CreateTaskManagerRequest Dto) : ICommand<Guid>;
 
-public sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManagerCommand, Guid>
+sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManagerCommand, Guid>
 {
     private readonly ICommandTaskManagerRepository _repository;
 

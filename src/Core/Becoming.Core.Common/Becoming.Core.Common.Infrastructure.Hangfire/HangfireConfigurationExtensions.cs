@@ -31,9 +31,12 @@ public static class HangfireConfigurationExtensions
             return services;
         }
 
-        string hfDbConnection = (modelOptions.ProviderName == "PostgreSql")
-            ? configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName)
-            : configuration.GetConnectionString(DbConstants.SqlConnectionSectionName);
+        string hfDbConnection = modelOptions.ProviderName switch
+        {
+            DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
+            DatebaseSettingConstants.MSSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.SqlConnectionSectionName),
+            _ => throw new NotImplementedException(),
+        };
 
         services.AddHangfire(configuration =>
         {

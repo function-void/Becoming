@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Configurations;
 
-internal sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfiguration<TaskManagerSaveModel>
+sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfiguration<TaskManagerSaveModel>
 {
     public void Configure(EntityTypeBuilder<TaskManagerSaveModel> builder)
     {
-        builder.ToTable(DbConstants.TaskManagerTableName);
+        builder.ToTable(DatebaseSettingConstants.TaskManagerTableName);
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id);
@@ -21,7 +21,7 @@ internal sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfigurati
 
         builder.OwnsOne(x => x.Category, buildAction =>
         {
-            buildAction.ToTable(DbConstants.TaskManagerCategoryTableName);
+            buildAction.ToTable(DatebaseSettingConstants.TaskManagerCategoryTableName);
             buildAction.WithOwner(x => x.TaskManager);
             buildAction.Navigation(x => x.TaskManager).UsePropertyAccessMode(PropertyAccessMode.Property);
         });

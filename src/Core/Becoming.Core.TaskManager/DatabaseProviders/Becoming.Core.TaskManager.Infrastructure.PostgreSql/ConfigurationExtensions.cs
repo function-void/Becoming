@@ -25,7 +25,7 @@ public static class ConfigurationExtensions
                 options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
             }
             options.UseNpgsql(
-                connectionString: configuration.GetConnectionString(DbConstants.PostgreSqlConnectionSectionName),
+                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);

@@ -16,7 +16,7 @@ public sealed class CreateTaskManagerRequest : IDtoObject<TaskManagerAggregate>
     }
 };
 
-public sealed class CreateTaskManagerRequestValidator : AbstractValidator<CreateTaskManagerRequest>
+sealed class CreateTaskManagerRequestValidator : AbstractValidator<CreateTaskManagerRequest>
 {
     public CreateTaskManagerRequestValidator()
     {

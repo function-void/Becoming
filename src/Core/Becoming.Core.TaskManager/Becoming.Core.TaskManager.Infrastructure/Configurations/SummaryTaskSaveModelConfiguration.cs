@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Configurations;
 
-internal sealed class SummaryTaskSaveModelConfiguration : IEntityTypeConfiguration<SummaryTaskSaveModel>
+sealed class SummaryTaskSaveModelConfiguration : IEntityTypeConfiguration<SummaryTaskSaveModel>
 {
     public void Configure(EntityTypeBuilder<SummaryTaskSaveModel> builder)
     {
-        builder.ToTable(DbConstants.SummaryTaskTableName);
+        builder.ToTable(DatebaseSettingConstants.SummaryTaskTableName);
 
         builder.HasKey(x => x.Id);
 

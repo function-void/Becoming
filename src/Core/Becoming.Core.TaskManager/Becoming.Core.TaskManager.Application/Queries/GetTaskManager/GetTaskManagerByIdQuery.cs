@@ -5,7 +5,7 @@ namespace Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
 
 public sealed record class GetTaskManagerByIdQuery(Guid Id) : IQuery<TaskManagerResponse>;
 
-public sealed class GetTaskManagerQueryHandler : IQueryHandler<GetTaskManagerByIdQuery, TaskManagerResponse>
+sealed class GetTaskManagerQueryHandler : IQueryHandler<GetTaskManagerByIdQuery, TaskManagerResponse>
 {
     private readonly ICommandTaskManagerRepository _repository;
 

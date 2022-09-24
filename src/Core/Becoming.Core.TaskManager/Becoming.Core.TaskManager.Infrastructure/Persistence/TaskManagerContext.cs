@@ -16,7 +16,7 @@ public abstract class TaskManagerContext : BaseContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.HasDefaultSchema(DbConstants.TaskManagerSchemaName);
+        builder.HasDefaultSchema(DatebaseSettingConstants.TaskManagerSchemaName);
 
         builder.ApplyConfiguration(new TaskManagerSaveModelConfiguration());
         builder.ApplyConfiguration(new SummaryTaskSaveModelConfiguration());
