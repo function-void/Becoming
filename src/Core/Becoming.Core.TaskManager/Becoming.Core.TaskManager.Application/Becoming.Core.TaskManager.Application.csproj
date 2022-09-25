@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+
 </Project>
