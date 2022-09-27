@@ -7,11 +7,11 @@ namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
 public sealed record class CreateTaskManagerRequest : IDtoObject<TaskManagerAggregate>
 {
     public string Title { get; set; } = null!;
-    public string Category { get; set; } = null!;
+    public string CategoryText { get; set; } = null!;
 
     public TaskManagerAggregate ToDomainModel()
     {
-        var taskManager = new TaskManagerAggregate(Guid.NewGuid(), Title, new Category(Category));
+        var taskManager = new TaskManagerAggregate(Guid.NewGuid(), Title, Category.Create(CategoryText));
         return taskManager;
     }
 };
@@ -24,7 +24,7 @@ sealed class CreateTaskManagerRequestValidator : AbstractValidator<CreateTaskMan
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.Category)
+        RuleFor(x => x.CategoryText)
             .NotEmpty()
             .NotNull();
     }

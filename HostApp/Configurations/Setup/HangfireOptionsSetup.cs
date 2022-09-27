@@ -14,6 +14,6 @@ public class HangfireOptionsSetup : IConfigureOptions<HangfireModelOptions>
 
     public void Configure(HangfireModelOptions options)
     {
-        _configuration.GetSection(JwtModelOptions.SectionName).Bind(options);
+        _configuration.GetSection(HangfireModelOptions.SectionName).Bind(options);
     }
 }
