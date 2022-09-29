@@ -16,9 +16,9 @@ public sealed class InfrastructureDefinition : AppDefinition
         using var scope = services.BuildServiceProvider().CreateScope();
         var configuration = builder.Configuration;
 
+        var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
         var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
         var hangfireModelOptions = scope.ServiceProvider.GetRequiredService<HangfireModelOptions>();
-        var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
 
         services.AddSharedServicesInfrastructure();
         services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions);

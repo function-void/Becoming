@@ -4,7 +4,6 @@ using Calabonga.AspNetCore.AppDefinitions;
 // TODO: add validation for IConfigureNamedOptions with IValidateOptions
 // TODO: add hangfire
 
-
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddDefinitions(builder, typeof(Program));

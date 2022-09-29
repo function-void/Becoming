@@ -14,6 +14,9 @@ public sealed class CommonDefinition : AppDefinition
         services.AddAuthentication().AddJwtBearer();
         #endregion
 
+        services.AddHealthChecks();
+        services.AddMiniProfiler(options => options.RouteBasePath = "/profiler").AddEntityFramework();
+
         #region api
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -27,6 +30,8 @@ public sealed class CommonDefinition : AppDefinition
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.UseMiniProfiler();
+        app.MapHealthChecks("/health");
         app.UseHangfireDashboard();
         app.UseForwardedHeaders();
         app.UseMiddleware<ErrorHandlingMiddleware>();
