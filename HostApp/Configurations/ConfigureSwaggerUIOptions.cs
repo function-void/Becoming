@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace HostApp.Configurations;
 
-public sealed class ConfigureSwaggerUIOptions : IConfigureNamedOptions<SwaggerUIOptions>
+sealed class ConfigureSwaggerUIOptions : IConfigureNamedOptions<SwaggerUIOptions>
 {
     private readonly ILogger<ConfigureSwaggerUIOptions> _logger;
     private readonly IApiVersionDescriptionProvider _provider;

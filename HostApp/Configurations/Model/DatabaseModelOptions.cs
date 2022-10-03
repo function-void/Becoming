@@ -1,5 +1,6 @@
 ﻿namespace HostApp.Configurations.Model;
 
+// TODO: relocate on infrastructure layer
 public sealed class DatabaseModelOptions
 {
     public const string SectionName = nameof(DatabaseModelOptions);

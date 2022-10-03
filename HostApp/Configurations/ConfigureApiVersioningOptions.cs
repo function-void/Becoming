@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersioningOptions>
+sealed class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersioningOptions>
 {
     private readonly ILogger<ConfigureApiVersioningOptions> _logger;
     private readonly ApiVersioningModelOptions _settings;

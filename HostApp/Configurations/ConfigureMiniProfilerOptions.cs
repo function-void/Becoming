@@ -3,7 +3,7 @@ using StackExchange.Profiling;
 
 namespace HostApp.Configurations;
 
-public sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerOptions>
+sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerOptions>
 {
     private readonly ILogger<ConfigureMiniProfilerOptions> _logger;
 

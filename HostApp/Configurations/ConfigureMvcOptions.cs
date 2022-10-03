@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
 
-public sealed class ConfigureMvcOptions : IConfigureNamedOptions<MvcOptions>
+sealed class ConfigureMvcOptions : IConfigureNamedOptions<MvcOptions>
 {
     private readonly ILogger<ConfigureMvcOptions> _logger;
 

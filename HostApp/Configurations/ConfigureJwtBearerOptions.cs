@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HostApp.Configurations;
 
-public sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
+sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
 {
     private readonly ILogger<ConfigureJwtBearerOptions> _logger;
     private readonly JwtModelOptions _settings;
