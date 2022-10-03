@@ -1,7 +1,9 @@
-﻿namespace Becoming.Core.Common.Primitives.Exceptions;
+﻿using Becoming.Core.Common.Seedwork.Models;
+
+namespace Becoming.Core.Common.Primitives.Exceptions;
 
 [Serializable]
-public sealed class BadRequestException : ApplicationException
+public sealed class BadRequestException : DomainException
 {
     public BadRequestException() : base() { }
     public BadRequestException(string message) : base(message) { }

@@ -37,6 +37,9 @@ public sealed class ErrorHandlingMiddleware
     }
 
     // TODO: add exception for options pattern when used option validation
+    // TODO: add filters layers which catching domain exceptions and insert error in database
+    // TODO: add exception title
+    // TODO: add a mechanism for distributing exceptions to BadRequestException or EntityNotFoundException
     private async Task HandleExceptionAsync(HttpContext context, Exception error)
     {
         HttpResponse response = context.Response;
