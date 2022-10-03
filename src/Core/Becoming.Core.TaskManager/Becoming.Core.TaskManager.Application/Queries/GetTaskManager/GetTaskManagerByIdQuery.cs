@@ -16,8 +16,8 @@ sealed class GetTaskManagerQueryHandler : IQueryHandler<GetTaskManagerByIdQuery,
         _repository = repository;
     }
 
-    public Task<TaskManagerResponse> Handle(GetTaskManagerByIdQuery request, CancellationToken cancellationToken)
+    public Task<TaskManagerResponse> Handle(GetTaskManagerByIdQuery query, CancellationToken cancellationToken)
     {
-        return Task.FromResult(new TaskManagerResponse(request.Id, "Title") { CategoryName = "CategoryName"});
+        return Task.FromResult(new TaskManagerResponse(query.Id, "Title") { CategoryName = "CategoryName" });
     }
 }
