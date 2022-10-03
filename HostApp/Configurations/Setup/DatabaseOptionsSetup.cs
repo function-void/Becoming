@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;
 
-public sealed class DatabaseOptionsSetup : IConfigureOptions<DatabaseModelOptions>
+sealed class DatabaseOptionsSetup : IConfigureOptions<DatabaseModelOptions>
 {
     private readonly IConfiguration _configuration;
 

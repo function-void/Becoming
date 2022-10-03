@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;
 
-public sealed class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningModelOptions>
+sealed class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningModelOptions>
 {
     private readonly IConfiguration _configuration;
 

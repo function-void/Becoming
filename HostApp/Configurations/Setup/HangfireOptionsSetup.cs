@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;
 
-public class HangfireOptionsSetup : IConfigureOptions<HangfireModelOptions>
+sealed class HangfireOptionsSetup : IConfigureOptions<HangfireModelOptions>
 {
     private readonly IConfiguration _configuration;
 

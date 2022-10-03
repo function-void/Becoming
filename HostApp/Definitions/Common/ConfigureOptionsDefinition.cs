@@ -31,6 +31,7 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.ConfigureOptions<ConfigureJwtBearerOptions>();
         services.ConfigureOptions<ConfigureSwaggerOptions>();
         services.ConfigureOptions<ConfigureSwaggerUIOptions>();
+        services.ConfigureOptions<ConfigureMiniProfilerOptions>();
         #endregion
 
         #region register model options

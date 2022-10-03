@@ -14,8 +14,10 @@ public sealed class CommonDefinition : AppDefinition
         services.AddAuthentication().AddJwtBearer();
         #endregion
 
+        #region healthy
         services.AddHealthChecks();
-        services.AddMiniProfiler(options => options.RouteBasePath = "/profiler").AddEntityFramework();
+        services.AddMiniProfiler().AddEntityFramework();
+        #endregion
 
         #region api
         services.AddEndpointsApiExplorer();
