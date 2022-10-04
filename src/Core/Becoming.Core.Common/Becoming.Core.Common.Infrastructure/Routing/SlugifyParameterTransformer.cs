@@ -9,7 +9,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
     {
         return value is null
             ? null
-            : Regex.Replace(input: value!.ToString(),
+            : Regex.Replace(input: value.ToString() ?? String.Empty,
                 "([a-z])([A-Z])",
                 "$1-$2",
                 RegexOptions.CultureInvariant)

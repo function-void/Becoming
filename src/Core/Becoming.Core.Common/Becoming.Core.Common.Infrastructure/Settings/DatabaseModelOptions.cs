@@ -1,6 +1,5 @@
-﻿namespace HostApp.Configurations.Model;
+﻿namespace Becoming.Core.Common.Infrastructure.Settings;
 
-// TODO: relocate on infrastructure layer
 public sealed class DatabaseModelOptions
 {
     public const string SectionName = nameof(DatabaseModelOptions);

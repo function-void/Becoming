@@ -3,6 +3,7 @@ using HostApp.Configurations.Model;
 using HostApp.Configurations.Setup;
 using Microsoft.Extensions.Options;
 using Calabonga.AspNetCore.AppDefinitions;
+using Becoming.Core.Common.Infrastructure.Settings;
 
 namespace HostApp.Definitions.Common;
 

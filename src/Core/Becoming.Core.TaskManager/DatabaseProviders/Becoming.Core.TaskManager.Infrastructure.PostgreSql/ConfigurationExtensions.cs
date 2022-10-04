@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ public static class ConfigurationExtensions
         this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
-        dynamic modelOptions
+        DatabaseModelOptions modelOptions
         )
     {
         services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(options =>

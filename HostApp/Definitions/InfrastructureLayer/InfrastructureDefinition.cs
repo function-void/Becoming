@@ -4,6 +4,7 @@ using Becoming.Core.Common.Infrastructure.Services;
 using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Becoming.Core.Common.Infrastructure.Hangfire;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+using Becoming.Core.Common.Infrastructure.Settings;
 
 namespace HostApp.Definitions.InfrastructureLayer;
 
