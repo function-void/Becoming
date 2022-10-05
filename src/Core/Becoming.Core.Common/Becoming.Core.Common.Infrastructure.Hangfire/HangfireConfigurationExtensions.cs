@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Hosting;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+using Becoming.Core.Common.Infrastructure.Settings;
 
 namespace Becoming.Core.Common.Infrastructure.Hangfire;
 
@@ -16,7 +17,8 @@ public static class HangfireConfigurationExtensions
         this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
-        dynamic modelOptions
+        HangfireModelOptions modelOptions,
+        ProviderModelOptions provider
         )
     {
         if (modelOptions.UseInMemory)
@@ -31,7 +33,7 @@ public static class HangfireConfigurationExtensions
             return services;
         }
 
-        string hfDbConnection = modelOptions.ProviderName switch
+        string hfDbConnection = provider.Name switch
         {
             DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
             DatebaseSettingConstants.MSSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.SqlConnectionSectionName),

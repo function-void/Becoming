@@ -1,10 +1,9 @@
-﻿namespace HostApp.Configurations.Model;
+﻿namespace Becoming.Core.Common.Infrastructure.Settings;
 
 public class HangfireModelOptions
 {
     public const string SectionName = nameof(HangfireModelOptions);
 
-    public string ProviderName { get; set; } = null!;
     public bool UseInMemory { get; set; }
     public int MaxRetryCount { get; set; }
 }

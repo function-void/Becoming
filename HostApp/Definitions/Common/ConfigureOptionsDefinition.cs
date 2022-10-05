@@ -18,6 +18,7 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<ApiVersioningOptionsSetup>();
         services.ConfigureOptions<HangfireOptionsSetup>();
+        services.ConfigureOptions<ProviderOptionsSetup>();
         #endregion
 
         #region configure options
@@ -40,6 +41,7 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<HangfireModelOptions>>()!.Value);
+        services.AddSingleton(x => x.GetService<IOptions<ProviderModelOptions>>()!.Value);
         #endregion
     }
 }

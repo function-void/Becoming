@@ -1,5 +1,4 @@
-﻿using HostApp.Configurations.Model;
-using Calabonga.AspNetCore.AppDefinitions;
+﻿using Calabonga.AspNetCore.AppDefinitions;
 using Becoming.Core.Common.Infrastructure.Services;
 using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Becoming.Core.Common.Infrastructure.Hangfire;
@@ -19,12 +18,13 @@ public sealed class InfrastructureDefinition : AppDefinition
 
         var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
         var databaseModelOptions = scope.ServiceProvider.GetRequiredService<DatabaseModelOptions>();
+        var providerModelOptions = scope.ServiceProvider.GetRequiredService<ProviderModelOptions>();
         var hangfireModelOptions = scope.ServiceProvider.GetRequiredService<HangfireModelOptions>();
 
         services.AddSharedServicesInfrastructure();
-        services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions);
+        services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions, providerModelOptions);
 
-        switch (databaseModelOptions.ProviderName)
+        switch (providerModelOptions.Name)
         {
             case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
                 {
