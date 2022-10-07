@@ -7,10 +7,10 @@ public sealed record class GetTaskManagerByIdQuery(Guid Id) : IQuery<TaskManager
 
 sealed class GetTaskManagerQueryHandler : IQueryHandler<GetTaskManagerByIdQuery, TaskManagerResponse>
 {
-    private readonly ICommandTaskManagerRepository _repository;
+    private readonly ITaskManagerRepository _repository;
 
     public GetTaskManagerQueryHandler(
-        ICommandTaskManagerRepository repository
+        ITaskManagerRepository repository
         )
     {
         _repository = repository;

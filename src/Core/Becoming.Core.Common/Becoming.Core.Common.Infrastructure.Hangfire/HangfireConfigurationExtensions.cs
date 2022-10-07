@@ -29,7 +29,6 @@ public static class HangfireConfigurationExtensions
                 configuration.UseMemoryStorage();
                 configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
             });
-
             return services;
         }
 
@@ -37,7 +36,7 @@ public static class HangfireConfigurationExtensions
         {
             DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
             DatebaseSettingConstants.MSSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.SqlConnectionSectionName),
-            _ => throw new NotImplementedException(),
+            _ => throw new NotImplementedException(nameof(DatebaseSettingConstants)),
         };
 
         services.AddHangfire(configuration =>

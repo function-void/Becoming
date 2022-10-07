@@ -9,7 +9,7 @@ public static class ConfigurationExtensions
 {
     public static IServiceCollection AddServicesInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<ICommandTaskManagerRepository, CommandTaskManagerRepository>();
+        services.AddScoped<ITaskManagerRepository, TaskManagerRepository>();
         services.AddScoped<IQueryTaskManagerRepository, QueryTaskManagerRepository>();
 
         return services;

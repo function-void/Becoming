@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Repositories;
 
-public sealed class CommandTaskManagerRepository : BaseRepository<TaskManagerContext, TaskManagerSaveModel>, ICommandTaskManagerRepository
+public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, TaskManagerSaveModel>, ITaskManagerRepository
 {
-    public CommandTaskManagerRepository(TaskManagerContext context) : base(context) { }
+    public TaskManagerRepository(TaskManagerContext context) : base(context) { }
 
     #region write
     public async Task<Guid> EmbodyAsync(TaskManagerAggregate aggr, CancellationToken cancellationToken = default)
@@ -31,14 +31,14 @@ public sealed class CommandTaskManagerRepository : BaseRepository<TaskManagerCon
         return model.Id;
     }
 
-    public async Task RequiredRelationUpdate(TaskManagerAggregate model, Guid targetId, IDbContextTransaction? transaction = default, CancellationToken token = default)
+    public override async Task RequiredRelationUpdateAsync(TaskManagerSaveModel model, Guid targetId, IDbContextTransaction? transaction = default, CancellationToken token = default)
     {
         using var newTransaction = transaction ?? await _context.Database.BeginTransactionAsync(token);
 
         throw new NotImplementedException();
     }
 
-    public async Task RequiredRelationUpdate(TaskManagerAggregate model, Guid targetId, Guid[] spares, IDbContextTransaction? transaction = default, CancellationToken token = default)
+    public override async Task RequiredRelationUpdateAsync(TaskManagerSaveModel model, Guid targetId, Guid[] spares, IDbContextTransaction? transaction = default, CancellationToken token = default)
     {
         using var newTransaction = transaction ?? await _context.Database.BeginTransactionAsync(token);
 
