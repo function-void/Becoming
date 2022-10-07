@@ -28,9 +28,10 @@ sealed class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
     {
         options.AddPolicy(_settings.Policy, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-        var dasd = options.DefaultPolicyName;
         _logger.LogInformation("{nameof(ConfigureCorsOptions)} is configured:",
             nameof(ConfigureCorsOptions));
+        _logger.LogInformation("Policy Name: {_settings.Policy}",
+           _settings.Policy);
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

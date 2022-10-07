@@ -9,7 +9,7 @@ namespace HostApp.Definitions.InfrastructureLayer;
 
 public sealed class InfrastructureDefinition : AppDefinition
 {
-    public override int OrderIndex => 4;
+    public override int OrderIndex => 5;
 
     public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
     {

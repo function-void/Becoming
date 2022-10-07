@@ -24,7 +24,6 @@ public sealed class CommonDefinition : AppDefinition
         services.AddSwaggerGen();
         services.AddApiVersioning();
         services.AddVersionedApiExplorer();
-        services.AddCors();
         #endregion
     }
 
@@ -37,7 +36,6 @@ public sealed class CommonDefinition : AppDefinition
         app.UseHangfireDashboard();
         app.UseForwardedHeaders();
         app.UseMiddleware<ErrorHandlingMiddleware>();
-        app.UseCors("Becoming_Cors_Policy");
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();

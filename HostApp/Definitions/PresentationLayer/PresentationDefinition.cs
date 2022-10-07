@@ -10,7 +10,7 @@ public sealed class PresentationDefinition : AppDefinition
 {
     public const string PresentationLayerName = "Presentation";
 
-    public override int OrderIndex => 2;
+    public override int OrderIndex => 3;
 
     public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
     {
