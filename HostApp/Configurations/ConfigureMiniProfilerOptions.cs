@@ -14,8 +14,10 @@ sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerO
 
     public void Configure(string name, MiniProfilerOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(MiniProfilerOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(MiniProfilerOptions)} {name} started!",
+            nameof(MiniProfilerOptions), name);
+
         Configure(options);
     }
 
@@ -23,8 +25,11 @@ sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerO
     {
         options.RouteBasePath = "/profiler";
 
-        _logger.LogInformation($"{nameof(MiniProfilerOptions)} is configured:");
-        _logger.LogInformation($"RouteBasePath: {options.RouteBasePath}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(MiniProfilerOptions)} is configured:",
+            nameof(MiniProfilerOptions));
+        _logger.LogInformation("RouteBasePath: {options.RouteBasePath}",
+            options.RouteBasePath);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

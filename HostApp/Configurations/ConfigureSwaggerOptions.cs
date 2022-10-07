@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using HostApp.Configurations.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HostApp.Configurations;
 
@@ -10,17 +12,24 @@ sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
 {
     private readonly ILogger<ConfigureSwaggerOptions> _logger;
     private readonly IApiVersionDescriptionProvider _provider;
+    private readonly SwaggerModelOptions _settings;
 
-    public ConfigureSwaggerOptions(ILogger<ConfigureSwaggerOptions> logger, IApiVersionDescriptionProvider provider)
+    public ConfigureSwaggerOptions(
+        ILogger<ConfigureSwaggerOptions> logger,
+        IApiVersionDescriptionProvider provider,
+        SwaggerModelOptions settings)
     {
         _logger = logger;
         _provider = provider;
+        _settings = settings;
     }
 
     public void Configure(string name, SwaggerGenOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureSwaggerOptions)} {name} started!",
+            nameof(ConfigureSwaggerOptions), name);
+
         Configure(options);
     }
 
@@ -31,14 +40,14 @@ sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
             options.SwaggerDoc(description.GroupName, CreateVersionInfo(description));
         }
 
-        options.AddSecurityDefinition("Bearer_Auth", new OpenApiSecurityScheme()
+        options.AddSecurityDefinition(_settings.SchemeReferemceId, new OpenApiSecurityScheme()
         {
-            Description = "Jwt Bearer Authorization",
-            Name = "Authorization",
+            Name = _settings.SecuritySchemeName,
+            Description = _settings.SchemeDescription,
             In = ParameterLocation.Header,
-            Type = SecuritySchemeType.Http, //ApiKey
+            Type = SecuritySchemeType.Http, // ApiKey
             Scheme = JwtBearerDefaults.AuthenticationScheme,
-            BearerFormat = "JWT"
+            BearerFormat = _settings.BearerFormat
         });
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
@@ -48,24 +57,33 @@ sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer_Auth",
+                        Id = _settings.SchemeReferemceId,
                     },
                 }, Array.Empty<string>()
             }
         });
 
-        _logger.LogInformation($"{nameof(ConfigureSwaggerOptions)} is configured!");
-        _logger.LogInformation($"Description: {"Jwt Bearer Authorization"}");
-        _logger.LogInformation($"Name: {"Authorization"}");
-        _logger.LogInformation($"In: {ParameterLocation.Header}");
-        _logger.LogInformation($"Type: {SecuritySchemeType.Http}");
-        _logger.LogInformation($"Scheme: {JwtBearerDefaults.AuthenticationScheme}");
-        _logger.LogInformation($"BearerFormat: {"JWT"}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureSwaggerOptions)} is configured!",
+            nameof(ConfigureSwaggerOptions));
+        _logger.LogInformation("Name: {_settings.SecuritySchemeName}",
+            _settings.SecuritySchemeName);
+        _logger.LogInformation("Description: {_settings.Description}",
+            _settings.SchemeDescription);
+        _logger.LogInformation("OpenApi SecurityScheme ReferenceId: {_settings.SchemeReferemceId}",
+            _settings.SchemeReferemceId);
+        _logger.LogInformation("In: {ParameterLocation.Header}",
+            ParameterLocation.Header);
+        _logger.LogInformation("Type: {SecuritySchemeType.Http}",
+            SecuritySchemeType.Http);
+        _logger.LogInformation("Scheme: {JwtBearerDefaults.AuthenticationScheme}",
+            JwtBearerDefaults.AuthenticationScheme);
+        _logger.LogInformation("BearerFormat: {_settings.BearerFormat}",
+            _settings.BearerFormat);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 
     private OpenApiInfo CreateVersionInfo(ApiVersionDescription desc)
     {
-        return new OpenApiInfo() { Title = "Becoming - .NET Core (.NET 6) Web API", Version = desc.ApiVersion.ToString() };
+        return new OpenApiInfo() { Title = _settings.SwaggerTitle, Version = desc.ApiVersion.ToString() };
     }
 }

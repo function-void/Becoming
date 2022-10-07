@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using StackExchange.Profiling;
 
 namespace HostApp.Configurations;
 
@@ -14,8 +15,10 @@ sealed class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOpt
 
     public void Configure(string name, ApiBehaviorOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureSwaggerOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureSwaggerOptions)} {name} started!",
+            nameof(ConfigureSwaggerOptions), name);
+
         Configure(options);
     }
 
@@ -23,8 +26,10 @@ sealed class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOpt
     {
         options.SuppressModelStateInvalidFilter = true;
 
-        _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
-        _logger.LogInformation($"SuppressModelStateInvalidFilter: {options.SuppressModelStateInvalidFilter}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureJwtBearerOptions)} is configured:",
+            nameof(ConfigureJwtBearerOptions));
+        _logger.LogInformation("Suppress Model State Invalid Filter: {options.SuppressModelStateInvalidFilter}",
+            options.SuppressModelStateInvalidFilter);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

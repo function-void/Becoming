@@ -14,8 +14,10 @@ sealed class ConfigureApiExplorerOptions : IConfigureNamedOptions<ApiExplorerOpt
 
     public void Configure(string name, ApiExplorerOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureApiExplorerOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureApiExplorerOptions)} {name} started!",
+            nameof(ConfigureSwaggerOptions), name);
+
         Configure(options);
     }
 
@@ -24,9 +26,12 @@ sealed class ConfigureApiExplorerOptions : IConfigureNamedOptions<ApiExplorerOpt
         options.GroupNameFormat = "'v'VVV";
         options.SubstituteApiVersionInUrl = true;
 
-        _logger.LogInformation($"{nameof(ConfigureApiExplorerOptions)} is configured:");
-        _logger.LogInformation($"GroupNameFormat: {"'v'VVV"}");
-        _logger.LogInformation($"SubstituteApiVersionInUrl: {true}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureApiExplorerOptions)} is configured:",
+            nameof(ConfigureApiExplorerOptions));
+        _logger.LogInformation("Group Name Format: {options.GroupNameFormat}",
+            options.GroupNameFormat);
+        _logger.LogInformation("Substitute Api Version In Url: {options.SubstituteApiVersionInUrl}",
+            options.SubstituteApiVersionInUrl);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

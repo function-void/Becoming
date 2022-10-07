@@ -14,8 +14,10 @@ sealed class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
 
     public void Configure(string name, JsonOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureJsonOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureJsonOptions)} {name} started!",
+            nameof(ConfigureJsonOptions), name);
+
         Configure(options);
     }
 
@@ -23,8 +25,10 @@ sealed class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
     {
         options.SerializerOptions.IncludeFields = true;
 
-        _logger.LogInformation($"{nameof(ConfigureJsonOptions)} is configured:");
-        _logger.LogInformation($"IncludeFields: {options.SerializerOptions.IncludeFields}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureJsonOptions)} is configured:",
+            nameof(ConfigureJsonOptions));
+        _logger.LogInformation("Include Fields: {options.SerializerOptions.IncludeFields}",
+            options.SerializerOptions.IncludeFields);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

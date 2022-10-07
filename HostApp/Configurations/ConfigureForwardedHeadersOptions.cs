@@ -14,8 +14,10 @@ sealed class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<Forwarded
 
     public void Configure(string name, ForwardedHeadersOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureForwardedHeadersOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureForwardedHeadersOptions)} {name} started!",
+            nameof(ConfigureForwardedHeadersOptions), name);
+
         Configure(options);
     }
 
@@ -23,8 +25,10 @@ sealed class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<Forwarded
     {
         options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 
-        _logger.LogInformation($"{nameof(ForwardedHeadersOptions)} is configured:");
-        _logger.LogInformation($"ForwardedHeaders: {ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ForwardedHeadersOptions)} is configured:",
+            nameof(ForwardedHeadersOptions));
+        _logger.LogInformation("Forwarded Headers: {options.ForwardedHeaders}",
+            options.ForwardedHeaders);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

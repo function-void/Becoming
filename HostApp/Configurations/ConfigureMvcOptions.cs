@@ -16,8 +16,10 @@ sealed class ConfigureMvcOptions : IConfigureNamedOptions<MvcOptions>
 
     public void Configure(string name, MvcOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureMvcOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureMvcOptions)} {name} started!",
+            nameof(ConfigureMvcOptions), name);
+
         Configure(options);
     }
 
@@ -25,8 +27,10 @@ sealed class ConfigureMvcOptions : IConfigureNamedOptions<MvcOptions>
     {
         options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
 
-        _logger.LogInformation($"{nameof(ConfigureMvcOptions)} is configured:");
-        _logger.LogInformation($"RouteTokenTransformerConvention: {"SlugifyParameterTransformer"}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureMvcOptions)} is configured:",
+            nameof(ConfigureMvcOptions));
+        _logger.LogInformation("Route Token Transformer Convention: {nameof(SlugifyParameterTransformer)}",
+            nameof(SlugifyParameterTransformer));
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

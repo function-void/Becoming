@@ -15,8 +15,10 @@ sealed class ConfigureAuthenticationOptions : IConfigureNamedOptions<Authenticat
 
     public void Configure(string name, AuthenticationOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureAuthenticationOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureAuthenticationOptions)} {name} started!",
+            nameof(ConfigureAuthenticationOptions), name);
+
         Configure(options);
     }
 
@@ -26,10 +28,14 @@ sealed class ConfigureAuthenticationOptions : IConfigureNamedOptions<Authenticat
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
-        _logger.LogInformation($"{nameof(ConfigureAuthenticationOptions)} is configured:");
-        _logger.LogInformation($"DefaultAuthenticateScheme: {options.DefaultAuthenticateScheme}");
-        _logger.LogInformation($"DefaultChallengeScheme: {options.DefaultAuthenticateScheme}");
-        _logger.LogInformation($"DefaultScheme: {options.DefaultAuthenticateScheme}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureAuthenticationOptions)} is configured:",
+            nameof(ConfigureAuthenticationOptions));
+        _logger.LogInformation("Default Authenticate Scheme: {options.DefaultAuthenticateScheme}",
+            options.DefaultAuthenticateScheme);
+        _logger.LogInformation("Default Challenge Scheme: {options.DefaultAuthenticateScheme}",
+            options.DefaultAuthenticateScheme);
+        _logger.LogInformation("Default Scheme: {options.DefaultAuthenticateScheme}",
+            options.DefaultAuthenticateScheme);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

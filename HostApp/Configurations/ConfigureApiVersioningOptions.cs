@@ -18,8 +18,10 @@ sealed class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
 
     public void Configure(string name, ApiVersioningOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureApiVersioningOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureApiVersioningOptions)} {name} started!",
+            nameof(ConfigureApiVersioningOptions), name);
+
         Configure(options);
     }
 
@@ -30,11 +32,16 @@ sealed class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
         options.ReportApiVersions = _settings.ReportApiVersions;
         options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader());
 
-        _logger.LogInformation($"{nameof(ConfigureApiVersioningOptions)} is configured:");
-        _logger.LogInformation($"AssumeDefaultVersionWhenUnspecified: {options.AssumeDefaultVersionWhenUnspecified}");
-        _logger.LogInformation($"DefaultApiVersion: {options.DefaultApiVersion}");
-        _logger.LogInformation($"ReportApiVersions: {options.ReportApiVersions}");
-        _logger.LogInformation($"ApiVersionReader: {options.ApiVersionReader}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureApiVersioningOptions)} is configured:",
+            nameof(ConfigureApiVersioningOptions));
+        _logger.LogInformation("Assume Default Version When Unspecified: {options.AssumeDefaultVersionWhenUnspecified}",
+            options.AssumeDefaultVersionWhenUnspecified);
+        _logger.LogInformation("Default Api Version: {options.DefaultApiVersion}",
+            options.DefaultApiVersion);
+        _logger.LogInformation("Report Api Versions: {options.ReportApiVersions}",
+            options.ReportApiVersions);
+        _logger.LogInformation("Api Version Reader: {options.ApiVersionReader}",
+            options.ApiVersionReader);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

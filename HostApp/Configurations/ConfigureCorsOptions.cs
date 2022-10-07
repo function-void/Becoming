@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+﻿using HostApp.Configurations.Model;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations;
@@ -6,24 +7,30 @@ namespace HostApp.Configurations;
 sealed class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
 {
     private readonly ILogger<ConfigureCorsOptions> _logger;
+    private readonly CorsModelOptions _settings;
 
-    public ConfigureCorsOptions(ILogger<ConfigureCorsOptions> logger)
+    public ConfigureCorsOptions(ILogger<ConfigureCorsOptions> logger, CorsModelOptions settings)
     {
         _logger = logger;
+        _settings = settings;
     }
 
     public void Configure(string name, CorsOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureCorsOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureCorsOptions)} {name} started!",
+            nameof(ConfigureCorsOptions), name);
+
         Configure(options);
     }
 
     public void Configure(CorsOptions options)
     {
-        options.AddPolicy("CORS_Policy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        options.AddPolicy(_settings.Policy, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-        _logger.LogInformation($"{nameof(ConfigureCorsOptions)} is configured:");
-        _logger.LogInformation(Environment.NewLine);
+        var dasd = options.DefaultPolicyName;
+        _logger.LogInformation("{nameof(ConfigureCorsOptions)} is configured:",
+            nameof(ConfigureCorsOptions));
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

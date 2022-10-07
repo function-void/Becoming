@@ -19,6 +19,8 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.ConfigureOptions<ApiVersioningOptionsSetup>();
         services.ConfigureOptions<HangfireOptionsSetup>();
         services.ConfigureOptions<ProviderOptionsSetup>();
+        services.ConfigureOptions<CorsOptionsSetup>();
+        services.ConfigureOptions<SwaggerOptionsSetup>();
         #endregion
 
         #region configure options
@@ -42,6 +44,8 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
         services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<HangfireModelOptions>>()!.Value);
         services.AddSingleton(x => x.GetService<IOptions<ProviderModelOptions>>()!.Value);
+        services.AddSingleton(x => x.GetService<IOptions<CorsModelOptions>>()!.Value);
+        services.AddSingleton(x => x.GetService<IOptions<SwaggerModelOptions>>()!.Value);
         #endregion
     }
 }

@@ -19,9 +19,11 @@ sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
 
     public void Configure(string name, JwtBearerOptions options)
     {
-        _logger.LogInformation(Environment.NewLine);
-        _logger.LogInformation(message: $"{nameof(ConfigureJwtBearerOptions)} {name} started!");
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
+        _logger.LogInformation(message: "{nameof(ConfigureJwtBearerOptions)} {name} started!",
+            nameof(ConfigureJwtBearerOptions), name);
         Configure(options);
+
     }
 
     public void Configure(JwtBearerOptions options)
@@ -38,15 +40,24 @@ sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.SecretKey))
         };
 
-        _logger.LogInformation($"{nameof(ConfigureJwtBearerOptions)} is configured:");
-        _logger.LogInformation($"SaveToken: {options.SaveToken}");
-        _logger.LogInformation($"ValidateIssuer: {options.TokenValidationParameters.ValidateIssuer}");
-        _logger.LogInformation($"ValidateAudience: {options.TokenValidationParameters.ValidateAudience}");
-        _logger.LogInformation($"ValidateLifetime: {options.TokenValidationParameters.ValidateLifetime}");
-        _logger.LogInformation($"ValidateIssuerSigningKey: {options.TokenValidationParameters.ValidateIssuerSigningKey}");
-        _logger.LogInformation($"ValidIssuer: {options.TokenValidationParameters.ValidIssuer}");
-        _logger.LogInformation($"ValidAudience: {options.TokenValidationParameters.ValidAudience}");
-        _logger.LogInformation($"SecretKey: {_settings.SecretKey}");
-        _logger.LogInformation(Environment.NewLine);
+        _logger.LogInformation("{nameof(ConfigureJwtBearerOptions)} is configured:",
+            nameof(ConfigureJwtBearerOptions));
+        _logger.LogInformation("Save Token: {options.SaveToken}",
+            options.SaveToken);
+        _logger.LogInformation("Validate Issuer: {options.TokenValidationParameters.ValidateIssuer}"
+            , options.TokenValidationParameters.ValidateIssuer);
+        _logger.LogInformation("Validate Audience: {options.TokenValidationParameters.ValidateAudience}",
+            options.TokenValidationParameters.ValidateAudience);
+        _logger.LogInformation("Validate Lifetime: {options.TokenValidationParameters.ValidateLifetime}",
+            options.TokenValidationParameters.ValidateLifetime);
+        _logger.LogInformation("Validate Issuer Signing Key: {options.TokenValidationParameters.ValidateIssuerSigningKey}",
+            options.TokenValidationParameters.ValidateIssuerSigningKey);
+        _logger.LogInformation("Valid Issuer: {options.TokenValidationParameters.ValidIssuer}",
+            options.TokenValidationParameters.ValidIssuer);
+        _logger.LogInformation("Valid Audience: {options.TokenValidationParameters.ValidAudience}",
+            options.TokenValidationParameters.ValidAudience);
+        _logger.LogInformation("Secret Key: {_settings.SecretKey}",
+            _settings.SecretKey);
+        _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
     }
 }

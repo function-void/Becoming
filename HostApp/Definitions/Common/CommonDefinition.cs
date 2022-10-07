@@ -37,7 +37,7 @@ public sealed class CommonDefinition : AppDefinition
         app.UseHangfireDashboard();
         app.UseForwardedHeaders();
         app.UseMiddleware<ErrorHandlingMiddleware>();
-        app.UseCors("CORS_Policy");
+        app.UseCors("Becoming_Cors_Policy");
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
