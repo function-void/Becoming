@@ -7,7 +7,7 @@
 public interface IBaseRepository<Model> where Model : class
 {
     /// <summary>
-    /// This method with save changes of the inheritor "BaseContext" class
+    /// This method with save changes of the inheritor <see cref="BaseContext" /> class
     /// </summary>
     /// <param name="id"></param>
     /// <param name="token"></param>
@@ -22,7 +22,7 @@ public interface IBaseRepository<Model> where Model : class
     void Delete(Model model);
 
     /// <summary>
-    /// This method with save changes of the inheritor "BaseContext" class
+    /// This method with save changes of the inheritor <see cref="BaseContext" /> class
     /// </summary>
     /// <param name="model"></param>
     /// <param name="token"></param>
@@ -37,7 +37,7 @@ public interface IBaseRepository<Model> where Model : class
     Task CreateAsync(Model model);
 
     /// <summary>
-    /// This method with save changes of the inheritor "BaseContext" class
+    /// This method with save changes of the inheritor <see cref="BaseContext" /> class
     /// </summary>
     /// <param name="changedDataModel"></param>
     /// <param name="token">A <see cref="CancellationToken" /> to observe while waiting for the task to complete.</param>
