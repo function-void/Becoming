@@ -34,8 +34,10 @@ public sealed class CommonDefinition : AppDefinition
         app.UseMiniProfiler();
         app.MapHealthChecks("/health");
         app.UseHangfireDashboard();
+
         app.UseForwardedHeaders();
         app.UseMiddleware<ErrorHandlingMiddleware>();
+        app.UseHsts();
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();

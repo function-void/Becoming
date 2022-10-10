@@ -21,17 +21,6 @@ public static class HangfireConfigurationExtensions
         ProviderModelOptions provider
         )
     {
-        if (modelOptions.UseInMemory)
-        {
-            services.AddHangfire(configuration =>
-            {
-                configuration.UseMediatR();
-                configuration.UseMemoryStorage();
-                configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
-            });
-            return services;
-        }
-
         string hfDbConnection = provider.Name switch
         {
             DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
@@ -42,8 +31,12 @@ public static class HangfireConfigurationExtensions
         services.AddHangfire(configuration =>
         {
             configuration.UseMediatR();
-            configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
             configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
+
+            if (modelOptions.UseInMemory)
+                configuration.UseMemoryStorage();
+            else
+                configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
         }).AddHangfireServer();
 
         return services;

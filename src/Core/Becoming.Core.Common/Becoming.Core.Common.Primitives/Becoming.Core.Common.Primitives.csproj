@@ -12,7 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Becoming.Core.Common.Abstractions\Becoming.Core.Common.Abstractions.csproj" />
     <ProjectReference Include="..\Becoming.Core.Common.Seedwork\Becoming.Core.Common.Seedwork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

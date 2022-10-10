@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Abstractions.CQRS;
+using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
 using Becoming.Core.TaskManager.Domain.Repositories;
 
 namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;

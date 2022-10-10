@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Primitives.Models;
+﻿namespace Becoming.Core.Common.Abstractions.Interfaces;
 
 public interface ISpecification<in T>
 {
