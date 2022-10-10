@@ -15,6 +15,6 @@ public static class DatebaseSettingConstants
     public const string TaskManagerCategoryTableName = "task_manager_category";
     #endregion
 
-    public const string SqlConnectionSectionName = "SqlConnectionStrings";
-    public const string PostgreSqlConnectionSectionName = "PostgreSqlConnectionStrings";
+    public const string MSSqlConnectionSectionName = "MicrosoftSqlConnectionString";
+    public const string PostgreSqlConnectionSectionName = "PostgreSqlConnectionString";
 }
