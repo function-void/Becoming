@@ -4,7 +4,7 @@ public static class DatebaseSettingConstants
 {
     #region
     public const string PostgreSqlDatabaseProvider = "PostgreSql";
-    public const string MSSqlDatabaseProvider = "MicrosoftSQLServer";
+    public const string SqlServerDatabaseProvider = "SqlServer";
     #endregion
 
     #region task manager
@@ -15,6 +15,6 @@ public static class DatebaseSettingConstants
     public const string TaskManagerCategoryTableName = "task_manager_category";
     #endregion
 
-    public const string MSSqlConnectionSectionName = "MicrosoftSqlConnectionString";
+    public const string SqlServerConnectionSectionName = "SqlServerConnectionString";
     public const string PostgreSqlConnectionSectionName = "PostgreSqlConnectionString";
 }

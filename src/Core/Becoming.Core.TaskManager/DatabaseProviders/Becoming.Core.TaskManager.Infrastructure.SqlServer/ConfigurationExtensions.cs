@@ -8,26 +8,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
+namespace Becoming.Core.TaskManager.Infrastructure.SqlServer;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructurePostgreSql(this IServiceCollection services,
+    public static IServiceCollection AddTaskManagerInfrastructureSqlServer(this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
     {
-        services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(options =>
+        services.AddDbContext<TaskManagerSqlServerContext>(options =>
         {
-            options.UseNpgsql(
-                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
-                npgsqlOptionsAction: options =>
+            options.UseSqlServer(
+                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName),
+                sqlServerOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);
                     options.EnableRetryOnFailure(
                         maxRetryCount: modelOptions.MaxRetryCount,
                         maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                        errorCodesToAdd: null);
+                        errorNumbersToAdd: new List<int> { 4060 });
                 });
 
             if (environment.IsDevelopment())
@@ -38,18 +38,18 @@ public static class ConfigurationExtensions
 
         }, optionsLifetime: ServiceLifetime.Singleton);
 
-        services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
+        services.AddScoped<TaskManagerContext, TaskManagerSqlServerContext>();
         services.AddServicesInfrastructure(configuration);
 
         return services;
     }
 
-    public static IApplicationBuilder UseTaskManagerInfrastructurePostgreSql(this IApplicationBuilder app,
+    public static IApplicationBuilder UseTaskManagerInfrastructureSqlServer(this IApplicationBuilder app,
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-        using var context = serviceScope.ServiceProvider.GetService<TaskManagerPostgreSqlContext>();
+        using var context = serviceScope.ServiceProvider.GetService<TaskManagerSqlServerContext>();
         context?.Database.Migrate();
 
         return app;

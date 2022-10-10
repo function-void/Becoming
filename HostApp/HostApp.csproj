@@ -34,6 +34,7 @@
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Infrastructure\Becoming.Core.TaskManager.Infrastructure.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\Becoming.Core.TaskManager.Presentation\Becoming.Core.TaskManager.Presentation.csproj" />
     <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\DatabaseProviders\Becoming.Core.TaskManager.Infrastructure.PostgreSql\Becoming.Core.TaskManager.Infrastructure.PostgreSql.csproj" />
+    <ProjectReference Include="..\src\Core\Becoming.Core.TaskManager\DatabaseProviders\Becoming.Core.TaskManager.Infrastructure.SqlServer\Becoming.Core.TaskManager.Infrastructure.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

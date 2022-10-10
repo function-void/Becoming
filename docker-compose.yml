@@ -23,12 +23,12 @@ services:
       - becoming
 
   postgresql:
-    image: postgres-15rc2-alpine
+    image: postgres:15rc2-alpine
     container_name: becoming-postgresql
     restart: always
-    build:
-      context: ./database-providers/postgresql
-      dockerfile: DockerFile
+    # build:
+    #   context: ./database-providers/postgresql
+    #   dockerfile: DockerFile
     ports:
       - 5436:5432
     environment:

@@ -1,6 +1,5 @@
-﻿using Becoming.Core.Common.Abstractions.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 
 namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 

@@ -4,6 +4,7 @@ using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Becoming.Core.Common.Infrastructure.Hangfire;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 using Becoming.Core.Common.Infrastructure.Settings;
+using Becoming.Core.TaskManager.Infrastructure.SqlServer;
 
 namespace HostApp.Definitions.InfrastructureLayer;
 
@@ -31,8 +32,31 @@ public sealed class InfrastructureDefinition : AppDefinition
                     services.AddTaskManagerInfrastructurePostgreSql(configuration, environment, databaseModelOptions);
                     break;
                 }
-            case DatebaseSettingConstants.MSSqlDatabaseProvider:
+            case DatebaseSettingConstants.SqlServerDatabaseProvider:
                 {
+                    services.AddTaskManagerInfrastructureSqlServer(configuration, environment, databaseModelOptions);
+                    break;
+                }
+        }
+    }
+
+    public override void ConfigureApplication(WebApplication app)
+    {
+        var configuration = app.Configuration;
+        var environment = app.Environment;
+
+        var providerModelOptions = app.Services.GetRequiredService<ProviderModelOptions>();
+
+        switch (providerModelOptions.Name)
+        {
+            case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
+                {
+                    app.UseTaskManagerInfrastructurePostgreSql(configuration, environment);
+                    break;
+                }
+            case DatebaseSettingConstants.SqlServerDatabaseProvider:
+                {
+                    app.UseTaskManagerInfrastructureSqlServer(configuration, environment);
                     break;
                 }
         }

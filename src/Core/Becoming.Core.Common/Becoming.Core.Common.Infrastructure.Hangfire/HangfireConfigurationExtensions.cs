@@ -24,7 +24,7 @@ public static class HangfireConfigurationExtensions
         string hfDbConnection = provider.Name switch
         {
             DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
-            DatebaseSettingConstants.MSSqlDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.MSSqlConnectionSectionName),
+            DatebaseSettingConstants.SqlServerDatabaseProvider => configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName),
             _ => throw new NotImplementedException(nameof(DatebaseSettingConstants)),
         };
 
