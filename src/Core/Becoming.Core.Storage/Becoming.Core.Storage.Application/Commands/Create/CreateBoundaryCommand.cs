@@ -1,6 +1,6 @@
 ﻿using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
 
-namespace Becoming.Core.Storage.Application.Commands.CreateBoundary;
+namespace Becoming.Core.Storage.Application.Commands.Create;
 
 public sealed record class CreateBoundaryCommand(string Name, string Category) : ICommand<Guid>;
 

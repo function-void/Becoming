@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Becoming.Core.Storage.Application.Commands.CreateBoundary;
+namespace Becoming.Core.Storage.Application.Commands.Create;
 
 public sealed record class CreateTaskManagerRequest(string Name, string Category);
 

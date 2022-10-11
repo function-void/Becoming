@@ -1,7 +1,7 @@
 ﻿using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
 using Becoming.Core.TaskManager.Domain.Repositories;
 
-namespace Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
+namespace Becoming.Core.TaskManager.Application.Queries.Get;
 
 public sealed record class GetTaskManagerByIdQuery(Guid Id) : IQuery<TaskManagerResponse>;
 

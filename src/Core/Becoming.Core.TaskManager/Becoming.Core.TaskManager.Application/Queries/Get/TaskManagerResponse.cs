@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
+﻿namespace Becoming.Core.TaskManager.Application.Queries.Get;
 
 public sealed record class TaskManagerResponse(Guid TaskManagerId, string Title)
 {

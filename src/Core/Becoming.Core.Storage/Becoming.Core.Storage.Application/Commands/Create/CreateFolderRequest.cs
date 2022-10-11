@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Becoming.Core.Storage.Application.Commands.CreateFolder;
+namespace Becoming.Core.Storage.Application.Commands.Create;
 
 public sealed record class CreateFolderRequest(string Name, Guid BoundaryId);
 

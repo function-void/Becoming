@@ -2,7 +2,7 @@
 using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
 using Becoming.Core.TaskManager.Domain.Repositories;
 
-namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
+namespace Becoming.Core.TaskManager.Application.Commands.Create;
 
 public sealed record class CreateTaskManagerCommand(CreateTaskManagerRequest Dto)
     : CommandWithDto<CreateTaskManagerRequest, Guid>(Dto);

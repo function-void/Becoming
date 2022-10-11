@@ -19,7 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Delete\" />
+    <Folder Include="Commands\UpdateRange\" />
+    <Folder Include="Commands\Update\" />
     <Folder Include="Events\" />
+    <Folder Include="Queries\GetRange\" />
+    <Folder Include="Queries\Get\ById\" />
   </ItemGroup>
 
 </Project>

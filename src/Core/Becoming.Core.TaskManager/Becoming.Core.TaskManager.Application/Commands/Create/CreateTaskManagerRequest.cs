@@ -2,7 +2,7 @@
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.Common.Abstractions.Interfaces;
 
-namespace Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
+namespace Becoming.Core.TaskManager.Application.Commands.Create;
 
 public sealed record class CreateTaskManagerRequest : IDtoObject<TaskManagerAggregate>
 {
