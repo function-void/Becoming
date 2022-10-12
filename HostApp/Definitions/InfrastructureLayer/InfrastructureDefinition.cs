@@ -29,12 +29,12 @@ public sealed class InfrastructureDefinition : AppDefinition
         {
             case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
                 {
-                    services.AddTaskManagerInfrastructurePostgreSql(configuration, environment, databaseModelOptions);
+                    services.AddTaskManagerPostgreSqlInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
             case DatebaseSettingConstants.SqlServerDatabaseProvider:
                 {
-                    services.AddTaskManagerInfrastructureSqlServer(configuration, environment, databaseModelOptions);
+                    services.AddTaskManagerSqlServerInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
         }
@@ -51,12 +51,12 @@ public sealed class InfrastructureDefinition : AppDefinition
         {
             case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
                 {
-                    app.UseTaskManagerInfrastructurePostgreSql(configuration, environment);
+                    app.UseTaskManagerPostgreSqlInfrastructure(configuration, environment);
                     break;
                 }
             case DatebaseSettingConstants.SqlServerDatabaseProvider:
                 {
-                    app.UseTaskManagerInfrastructureSqlServer(configuration, environment);
+                    app.UseTaskManagerSqlServerInfrastructure(configuration, environment);
                     break;
                 }
         }

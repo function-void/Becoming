@@ -12,7 +12,7 @@ namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructurePostgreSql(this IServiceCollection services,
+    public static IServiceCollection AddTaskManagerPostgreSqlInfrastructure(this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
@@ -44,7 +44,7 @@ public static class ConfigurationExtensions
         return services;
     }
 
-    public static IApplicationBuilder UseTaskManagerInfrastructurePostgreSql(this IApplicationBuilder app,
+    public static IApplicationBuilder UseTaskManagerPostgreSqlInfrastructure(this IApplicationBuilder app,
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {

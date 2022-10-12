@@ -12,7 +12,7 @@ namespace Becoming.Core.TaskManager.Infrastructure.SqlServer;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerInfrastructureSqlServer(this IServiceCollection services,
+    public static IServiceCollection AddTaskManagerSqlServerInfrastructure(this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
@@ -44,7 +44,7 @@ public static class ConfigurationExtensions
         return services;
     }
 
-    public static IApplicationBuilder UseTaskManagerInfrastructureSqlServer(this IApplicationBuilder app,
+    public static IApplicationBuilder UseTaskManagerSqlServerInfrastructure(this IApplicationBuilder app,
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {
