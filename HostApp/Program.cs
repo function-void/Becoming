@@ -14,6 +14,7 @@ using Calabonga.AspNetCore.AppDefinitions;
 // TODO: aggregate 1 -> aggregate 2; aggregate 2 -> aggregate 1 child 1 -> aggregate 1
 // TODO: add event table
 // TODO: add in query repository context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+// TODO: storage: add features in storage which have functional by security data storage
 
 var builder = WebApplication.CreateBuilder(args);
 {

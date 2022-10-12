@@ -24,6 +24,7 @@ sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerO
     public void Configure(MiniProfilerOptions options)
     {
         options.RouteBasePath = "/profiler";
+        options.ColorScheme = ColorScheme.Dark;
 
         _logger.LogInformation("{nameof(MiniProfilerOptions)} is configured:",
             nameof(MiniProfilerOptions));
