@@ -1,7 +1,7 @@
-﻿using System.Linq.Expressions;
-using Becoming.Core.Common.Abstractions.Interfaces;
+﻿using Becoming.Core.Common.Seedwork.Interfaces;
+using System.Linq.Expressions;
 
-namespace Becoming.Core.Common.Primitives.Models;
+namespace Becoming.Core.Common.Seedwork.Models;
 
 public abstract class ExpressionSpecification<T> : ISpecification<T>
 {
