@@ -12,6 +12,8 @@ public sealed class TaskManagerAggregate : AggregateRoot
     {
         Title = title;
         Category = category;
+
+        //Add event
     }
     #endregion
 

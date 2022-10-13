@@ -5,7 +5,7 @@ namespace Becoming.Core.TaskManager.Domain.Models;
 public sealed class Subtask : Entity
 {
     #region ctor
-    internal protected Subtask(
+    public Subtask(
         Guid id,
         Guid summaryTaskId,
         string? description,
