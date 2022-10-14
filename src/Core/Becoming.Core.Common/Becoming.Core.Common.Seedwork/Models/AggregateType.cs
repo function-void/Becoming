@@ -3,4 +3,5 @@
 public enum AggregateType
 {
     NoDefinition = 0,
+    TaskManager = 1,
 }

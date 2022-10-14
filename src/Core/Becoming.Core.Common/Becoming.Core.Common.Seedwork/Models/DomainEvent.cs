@@ -24,4 +24,6 @@ public abstract class DomainEvent : IDomainEvent
 
     public override string ToString()
         => $"Event with {EventId} ID is created by an aggregate {AggregateId}-{Type} - {CreatedAt:MM/dd/yyyy HH:mm:ss}";
+
+    public virtual string GetMessage() => this.ToString();
 }

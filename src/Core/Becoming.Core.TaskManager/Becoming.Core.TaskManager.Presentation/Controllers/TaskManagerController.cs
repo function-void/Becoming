@@ -3,9 +3,9 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Becoming.Core.Common.Presentation;
-using Becoming.Core.TaskManager.Application.Commands.CreateTaskManager;
-using Becoming.Core.TaskManager.Application.Queries.GetTaskManager;
 using Microsoft.AspNetCore.Authorization;
+using Becoming.Core.TaskManager.Application.Commands.Create;
+using Becoming.Core.TaskManager.Application.Queries.Get;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 

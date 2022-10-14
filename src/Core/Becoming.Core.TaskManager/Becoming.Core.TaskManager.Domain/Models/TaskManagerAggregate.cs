@@ -1,4 +1,6 @@
 ﻿using Becoming.Core.Common.Seedwork.Models;
+using Becoming.Core.TaskManager.Domain.Events;
+using Becoming.Core.TaskManager.Domain.Exceptions;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
@@ -13,7 +15,10 @@ public sealed class TaskManagerAggregate : AggregateRoot
         Title = title;
         Category = category;
 
-        //Add event
+        base.PublishDomainEvent(new AddTaskManagerEvent(
+            eventId: Guid.NewGuid(),
+            aggregateId: id,
+            createAt: DateTime.UtcNow));
     }
     #endregion
 
@@ -23,4 +28,11 @@ public sealed class TaskManagerAggregate : AggregateRoot
     public IReadOnlyCollection<SummaryTask> SummaryTasks => _summaryTasks.AsReadOnly();
     public IReadOnlyCollection<Subtask> Subtasks => _subtasks.AsReadOnly();
     #endregion
+
+    public void CreateSubtask(Guid summartTaskId)
+    {
+        if (Guid.Empty == summartTaskId && _summaryTasks.Any(x => x.Id != summartTaskId))
+            throw new TaskManagerDomainException();
+
+    }
 }
