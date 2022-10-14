@@ -109,7 +109,7 @@ public sealed class Article : Entity
 
 public sealed class Comment : Entity
 {
-    internal Comment(
+    public Comment(
       Guid id,
       string text,
       string createdBy) : base(id)
