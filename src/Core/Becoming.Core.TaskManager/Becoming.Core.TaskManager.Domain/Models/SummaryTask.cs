@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Seedwork.Models;
+using Becoming.Core.TaskManager.Domain.Exceptions;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
@@ -8,15 +9,14 @@ public sealed class SummaryTask : AuditableEntity
     public SummaryTask(
         Guid id,
         string title,
-        string? description,
         DateTime startDate,
-        bool isComplete,
-        bool onlyDate = false
-        ) : base(id)
+        string? description = default,
+        bool isComplete = default,
+        bool onlyDate = default) : base(id)
     {
         Title = title;
-        OnlyDate = onlyDate;
         Description = description;
+        OnlyDate = onlyDate;
         IsComplete = isComplete;
         StartDate = startDate;
     }
@@ -31,4 +31,16 @@ public sealed class SummaryTask : AuditableEntity
     public DateTime? EndDate { get; private set; }
     #endregion
 
+    public void Complete(DateTime? endDate = default)
+    {
+        if (endDate is null || endDate!.Value == default)
+            endDate = GetEndDateWhenCompletedIfNotSpecified();
+
+        if (endDate.HasValue && endDate >= StartDate)
+            throw new TaskManagerDomainException();
+
+        IsComplete = true;
+    }
+
+    private static DateTime GetEndDateWhenCompletedIfNotSpecified() => DateTime.UtcNow;
 }
