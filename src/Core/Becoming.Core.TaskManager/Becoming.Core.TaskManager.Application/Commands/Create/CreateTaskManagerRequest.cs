@@ -11,7 +11,7 @@ public sealed record class CreateTaskManagerRequest : IDtoObject<TaskManagerAggr
 
     public TaskManagerAggregate ToDomainModel()
     {
-        var taskManager = new TaskManagerAggregate(Guid.NewGuid(), Title, Category.Create(CategoryText));
+        var taskManager = new TaskManagerAggregate(Title, Category.Create(CategoryText));
         return taskManager;
     }
 };
