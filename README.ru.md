@@ -1,6 +1,6 @@
 # Becoming
     Архитектура - модульный монолит (ASP NET Core 6 Web Api). 
-    Поддержка баз данных : PostgreSQL, MsSSQL. 
+    Поддержка баз данных: PostgreSQL, MSSQL. 
     CQRS, DDD, Options pattern, MediatR, Hangfire, Clean Architecture
 
 ### Расположение
