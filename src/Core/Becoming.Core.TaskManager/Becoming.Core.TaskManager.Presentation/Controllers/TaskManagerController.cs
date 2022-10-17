@@ -6,6 +6,7 @@ using Becoming.Core.Common.Presentation;
 using Microsoft.AspNetCore.Authorization;
 using Becoming.Core.TaskManager.Application.Commands.Create;
 using Becoming.Core.TaskManager.Application.Queries.Get;
+using Becoming.Core.TaskManager.Application.Commands.Update;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 
@@ -15,10 +16,7 @@ public sealed class TaskManagerController : ApiController
     #region ctor
     public ISender Sender { get; }
 
-    public TaskManagerController(ISender sender)
-    {
-        Sender = sender;
-    }
+    public TaskManagerController(ISender sender) => Sender = sender;
     #endregion
 
     #region commands
@@ -31,6 +29,22 @@ public sealed class TaskManagerController : ApiController
     {
         var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request), token);
         return CreatedAtAction(nameof(Get), new { taskManagerId }, taskManagerId);
+    }
+
+    [HttpPatch("{taskManagerId:guid}/{summaryTaskId:guid}")]
+    [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Update(
+        Guid taskManagerId,
+        Guid summaryTaskId,
+        [FromBody] UpdateSummaryTaskRequest request,
+        CancellationToken token)
+    {
+        await Sender.Send(new UpdateSummaryTaskCommand(taskManagerId, summaryTaskId, request), token);
+        return NoContent();
     }
     #endregion
 

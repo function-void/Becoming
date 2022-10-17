@@ -1,6 +1,7 @@
 ﻿using Becoming.Core.Common.Seedwork.Models;
 using Becoming.Core.TaskManager.Domain.Events;
 using Becoming.Core.TaskManager.Domain.Exceptions;
+using System.Threading.Tasks;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
@@ -21,6 +22,23 @@ public sealed class TaskManagerAggregate : AggregateRoot
             aggregateId: this.Id,
             createAt: DateTime.UtcNow));
     }
+
+    public TaskManagerAggregate(
+        Guid id,
+        string title,
+        Category category,
+        List<SummaryTask> summaryTasks,
+        List<Subtask> subtasks,
+        bool isFinalize = default
+        )
+        : base(id)
+    {
+        Title = title;
+        Category = category;
+        IsFinalize = isFinalize;
+        _summaryTasks = summaryTasks ?? throw new TaskManagerDomainException();
+        _subtasks = subtasks ?? throw new TaskManagerDomainException();
+    }
     #endregion
 
     #region property
@@ -31,24 +49,21 @@ public sealed class TaskManagerAggregate : AggregateRoot
     public IReadOnlyCollection<Subtask> Subtasks => _subtasks.AsReadOnly();
     #endregion
 
-    public void CreateSubtask(Guid summartTaskId, Content content)
+    public void CreateSubtask(Guid summaryTaskId, Content content)
     {
-        if (_summaryTasks.Any(x => x.Id != summartTaskId)) throw new TaskManagerDomainException();
+        if (_summaryTasks.Any(x => x.Id != summaryTaskId)) throw new TaskManagerDomainException();
 
         _subtasks.Add(new Subtask(
             id: Guid.NewGuid(),
-            summaryTaskId: summartTaskId,
+            summaryTaskId: summaryTaskId,
             title: content.Title,
             description: content.Description
             ));
     }
 
-    public void CreateSummaryTask(Guid id, Content content, DateTime startDate, bool onlyDate = false)
+    public void CreateSummaryTask(Content content, DateTime startDate, bool onlyDate = false)
     {
-        if (_summaryTasks.Any(x => x.Id == id)) throw new TaskManagerDomainException();
-
         _summaryTasks.Add(new SummaryTask(
-            id: id,
             startDate: startDate,
             onlyDate: onlyDate,
             title: content.Title ?? string.Empty,
@@ -66,8 +81,26 @@ public sealed class TaskManagerAggregate : AggregateRoot
         _summaryTasks.ForEach(x => x.Complete());
     }
 
-    public void PerformTask(object task)
+    public void PerformSummaryTask(Guid taskId, DateTime? endDate = default)
     {
+        var summaryTask = _summaryTasks.Find(x => x.Id != taskId);
 
+        if (summaryTask is null) throw new TaskManagerDomainException();
+
+        summaryTask.Complete(endDate);
+
+        _subtasks.Where(x => x.SummaryTaskId == summaryTask.Id)
+            .ToList()
+            .ForEach(x => x.Complete());
+    }
+
+    public void UpdateSummaryTask(SummaryTask task)
+    {
+        var summaryTask = _summaryTasks.Find(x => x.Id != task.Id);
+
+        if (summaryTask is null) throw new TaskManagerDomainException();
+
+        _summaryTasks.Remove(summaryTask);
+        _summaryTasks.Add(task);
     }
 }

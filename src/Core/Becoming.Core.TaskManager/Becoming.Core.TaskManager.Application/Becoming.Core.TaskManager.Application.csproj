@@ -15,13 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Abstractions\Becoming.Core.Common.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj" />
     <ProjectReference Include="..\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Commands\Delete\" />
-    <Folder Include="Commands\UpdateRange\" />
-    <Folder Include="Commands\Update\" />
     <Folder Include="Events\" />
     <Folder Include="Queries\GetRange\" />
     <Folder Include="Queries\Get\ById\" />

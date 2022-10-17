@@ -3,22 +3,36 @@ using Becoming.Core.TaskManager.Domain.Exceptions;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
-public sealed class SummaryTask : AuditableEntity
+public sealed class SummaryTask : Entity
 {
     #region ctor
     public SummaryTask(
-        Guid id,
         string title,
         DateTime startDate,
         string? description = default,
-        bool isComplete = default,
-        bool onlyDate = default) : base(id)
+        bool onlyDate = default) : base(Guid.NewGuid())
     {
         Title = title;
         Description = description;
         OnlyDate = onlyDate;
-        IsComplete = isComplete;
         StartDate = startDate;
+    }
+
+    public SummaryTask(
+       Guid id,
+       string title,
+       DateTime startDate,
+       DateTime? endDate,
+       string? description,
+       bool onlyDate,
+       bool isComplete) : base(id)
+    {
+        Title = title;
+        Description = description;
+        StartDate = startDate;
+        EndDate = endDate;
+        OnlyDate = onlyDate;
+        IsComplete = isComplete;
     }
     #endregion
 
