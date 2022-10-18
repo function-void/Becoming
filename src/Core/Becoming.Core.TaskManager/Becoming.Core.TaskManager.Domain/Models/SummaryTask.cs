@@ -1,5 +1,6 @@
 ﻿using Becoming.Core.Common.Seedwork.Models;
 using Becoming.Core.TaskManager.Domain.Exceptions;
+using Becoming.Core.TaskManager.Domain.Exceptions.Errors;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
@@ -7,28 +8,24 @@ public sealed class SummaryTask : Entity
 {
     #region ctor
     public SummaryTask(
-        string title,
+        Content content,
         DateTime startDate,
-        string? description = default,
         bool onlyDate = default) : base(Guid.NewGuid())
     {
-        Title = title;
-        Description = description;
+        Content = content;
         OnlyDate = onlyDate;
         StartDate = startDate;
     }
 
     public SummaryTask(
        Guid id,
-       string title,
+       Content content,
        DateTime startDate,
        DateTime? endDate,
-       string? description,
        bool onlyDate,
        bool isComplete) : base(id)
     {
-        Title = title;
-        Description = description;
+        Content = content;
         StartDate = startDate;
         EndDate = endDate;
         OnlyDate = onlyDate;
@@ -37,8 +34,7 @@ public sealed class SummaryTask : Entity
     #endregion
 
     #region property
-    public string Title { get; private set; }
-    public string? Description { get; private set; }
+    public Content Content { get; private set; }
     public bool IsComplete { get; private set; }
     public bool OnlyDate { get; private set; }
     public DateTime StartDate { get; private set; }
@@ -51,7 +47,7 @@ public sealed class SummaryTask : Entity
             endDate = GetEndDateWhenCompletedIfNotSpecified();
 
         if (endDate.HasValue && endDate >= StartDate)
-            throw new TaskManagerDomainException();
+            throw new TaskManagerDomainException(DomainExceptionMessages.DeadlinesNotValid);
 
         IsComplete = true;
     }

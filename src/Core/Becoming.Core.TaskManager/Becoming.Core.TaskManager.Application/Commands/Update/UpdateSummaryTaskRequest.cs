@@ -1,14 +1,15 @@
-﻿using Becoming.Core.Common.Abstractions.Interfaces;
+﻿using FluentValidation;
+using Becoming.Core.Common.Abstractions.Interfaces;
 using Becoming.Core.TaskManager.Domain.Models;
-using FluentValidation;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Update;
 
 public sealed record class UpdateSummaryTaskRequest : IDtoObject<SummaryTask>
 {
     public Guid Id { get; set; }
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; }
     public string? Description { get; set; }
+    public Guid? StorageId { get; set; }
     public bool OnlyDate { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
@@ -17,8 +18,7 @@ public sealed record class UpdateSummaryTaskRequest : IDtoObject<SummaryTask>
     {
         return new SummaryTask(
             id: Id,
-            title: Title,
-            description: Description,
+            Content.Create(Title ?? string.Empty, Description ?? string.Empty, StorageId),
             startDate: StartDate,
             onlyDate: OnlyDate,
             endDate: EndDate,

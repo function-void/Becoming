@@ -1,7 +1,6 @@
 ﻿using Becoming.Core.Common.Seedwork.Models;
 using Becoming.Core.TaskManager.Domain.Events;
 using Becoming.Core.TaskManager.Domain.Exceptions;
-using System.Threading.Tasks;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 
@@ -56,8 +55,7 @@ public sealed class TaskManagerAggregate : AggregateRoot
         _subtasks.Add(new Subtask(
             id: Guid.NewGuid(),
             summaryTaskId: summaryTaskId,
-            title: content.Title,
-            description: content.Description
+            content: content
             ));
     }
 
@@ -66,8 +64,7 @@ public sealed class TaskManagerAggregate : AggregateRoot
         _summaryTasks.Add(new SummaryTask(
             startDate: startDate,
             onlyDate: onlyDate,
-            title: content.Title ?? string.Empty,
-            description: content.Description ?? string.Empty
+            content: content
             ));
     }
 

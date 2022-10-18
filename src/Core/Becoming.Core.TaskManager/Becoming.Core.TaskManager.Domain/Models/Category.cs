@@ -18,7 +18,7 @@ public sealed class Category : ValueObject
     public static Category Create(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) throw new CategoryDomainException(DomainExceptionMessages.CategoryIsEmpty);
-        if (name.Length > MaxLength) throw new CategoryDomainException(DomainExceptionMessages.CategoryIsMaxLength);
+        if (name.Length > MaxLength) throw new CategoryDomainException(DomainExceptionMessages.CategoryLengthIncorrect);
 
         return new Category(name);
     }

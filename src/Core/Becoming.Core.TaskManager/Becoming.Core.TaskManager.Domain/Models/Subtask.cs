@@ -9,21 +9,18 @@ public sealed class Subtask : Entity
     internal Subtask(
         Guid id,
         Guid summaryTaskId,
-        string? title = default,
-        string? description = default,
+        Content content,
         bool isComplete = default) : base(id)
     {
-        Title = title;
+        Content = content;
         SummaryTaskId = summaryTaskId;
-        Description = description;
         IsComplete = isComplete;
     }
     #endregion
 
     #region property
-    public string? Title { get; private set; }
+    public Content Content { get; private set; }
     public Guid SummaryTaskId { get; private set; }
-    public string? Description { get; private set; }
     public bool IsComplete { get; private set; }
     #endregion
 
