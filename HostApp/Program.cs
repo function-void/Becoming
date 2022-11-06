@@ -15,6 +15,7 @@ using Calabonga.AspNetCore.AppDefinitions;
 // TODO: add event table
 // TODO: add in query repository context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 // TODO: storage: add features in storage which have functional by security data storage
+// TODO: add json converte base model to parent in  database and contoller
 
 var builder = WebApplication.CreateBuilder(args);
 {

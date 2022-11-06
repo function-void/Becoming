@@ -39,6 +39,7 @@ public sealed class CommonDefinition : AppDefinition
         app.UseMiddleware<ErrorHandlingMiddleware>();
         app.UseHsts();
         app.UseHttpsRedirection();
+        //app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
     }

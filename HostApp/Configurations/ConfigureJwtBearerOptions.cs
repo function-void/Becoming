@@ -37,6 +37,7 @@ sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             ValidateIssuerSigningKey = _settings.ValidateIssuerSigningKey,
             ValidIssuer = _settings.Issuer,
             ValidAudience = _settings.Audience,
+            ClockSkew = TimeSpan.Zero,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.SecretKey))
         };
 
