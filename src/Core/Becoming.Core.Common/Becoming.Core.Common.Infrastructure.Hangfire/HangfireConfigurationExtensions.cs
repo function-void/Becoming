@@ -29,19 +29,19 @@ public static class HangfireConfigurationExtensions
 
             if (modelOptions.UseInMemory)
                 conf.UseMemoryStorage();
-
-            switch (provider.Name)
-            {
-                case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
-                    var postgreSqlConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName);
-                    conf.UsePostgreSqlStorage(postgreSqlConnectionString, new PostgreSqlStorageOptions());
-                    break;
-                case DatebaseSettingConstants.SqlServerDatabaseProvider:
-                    var sqlServcerConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName);
-                    conf.UseSqlServerStorage(sqlServcerConnectionString, new SqlServerStorageOptions());
-                    break;
-                default: throw new NotImplementedException(nameof(DatebaseSettingConstants));
-            }
+            else
+                switch (provider.Name)
+                {
+                    case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
+                        var postgreSqlConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName);
+                        conf.UsePostgreSqlStorage(postgreSqlConnectionString, new PostgreSqlStorageOptions());
+                        break;
+                    case DatebaseSettingConstants.SqlServerDatabaseProvider:
+                        var sqlServcerConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName);
+                        conf.UseSqlServerStorage(sqlServcerConnectionString, new SqlServerStorageOptions());
+                        break;
+                    default: throw new NotImplementedException(nameof(DatebaseSettingConstants));
+                }
         }).AddHangfireServer();
 
         return services;
