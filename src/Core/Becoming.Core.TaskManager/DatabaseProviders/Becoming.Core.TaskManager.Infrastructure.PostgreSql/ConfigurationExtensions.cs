@@ -20,7 +20,7 @@ public static class ConfigurationExtensions
         services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(options =>
         {
             options.UseNpgsql(
-                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
+                connectionString: configuration!.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);

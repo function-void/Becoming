@@ -15,7 +15,7 @@ public sealed class PresentationArchitectureTests
     public void Controllers_Should_Be_Inheritanced_By_With_ApiController()
     {
         // Arrange
-        List<Assembly> presentationAssemblyList = DependencyContext.Default.RuntimeLibraries
+        List<Assembly> presentationAssemblyList = DependencyContext.Default!.RuntimeLibraries
             .Where(x => x.Name.Contains(BUILDS_NAME))
             .Select(x => Assembly.Load(x.Name))
             .Where(assembly => assembly.DefinedTypes.Where(t => !t.IsAbstract)

@@ -15,7 +15,7 @@ sealed class ProviderOptionsSetup : IConfigureOptions<ProviderModelOptions>
     public void Configure(ProviderModelOptions options)
     {
         string? value = _configuration[ProviderModelOptions.SectionName];
-        options.Name = value;
+        options.Name = value ?? throw new Exception();
 
         _configuration.GetSection(ProviderModelOptions.SectionName).Bind(options);
     }
