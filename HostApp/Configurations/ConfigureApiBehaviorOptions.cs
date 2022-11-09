@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using StackExchange.Profiling;
 
 namespace HostApp.Configurations;
 
@@ -13,7 +12,7 @@ sealed class ConfigureApiBehaviorOptions : IConfigureNamedOptions<ApiBehaviorOpt
         _logger = logger;
     }
 
-    public void Configure(string name, ApiBehaviorOptions options)
+    public void Configure(string? name, ApiBehaviorOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureSwaggerOptions)} {name} started!",

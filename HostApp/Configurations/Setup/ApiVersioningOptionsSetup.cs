@@ -19,8 +19,8 @@ sealed class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningModelOpt
 
         options.DefaultApiVersion = new()
         {
-            majorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MajorVersionSectionName).Value),
-            minorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MinorVersionSectionName).Value)
+            majorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MajorVersionSectionName)!.Value),
+            minorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MinorVersionSectionName)!.Value)
         };
 
         _configuration.GetSection(ApiVersioningModelOptions.SectionName).Bind(options);

@@ -16,7 +16,7 @@ sealed class ConfigureApiVersioningOptions : IConfigureNamedOptions<ApiVersionin
         _settings = settings;
     }
 
-    public void Configure(string name, ApiVersioningOptions options)
+    public void Configure(string? name, ApiVersioningOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureApiVersioningOptions)} {name} started!",

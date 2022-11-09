@@ -1,8 +1,10 @@
 ﻿using Becoming.Core.Common.Infrastructure.Repositories;
+using Becoming.Core.Common.Primitives.Exceptions;
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Domain.Repositories;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Repositories;
@@ -26,9 +28,14 @@ public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, T
             }
         };
 
-        _ = await CreateAsync(model, cancellationToken);
+        await base.CreateAsync(model, cancellationToken);
 
         return model.Id;
+    }
+
+    public Task UpdateAsync(TaskManagerAggregate aggr)
+    {
+        throw new NotImplementedException();
     }
 
     public override async Task RequiredRelationUpdateAsync(TaskManagerSaveModel model, Guid targetId, IDbContextTransaction? transaction = default, CancellationToken token = default)
@@ -52,5 +59,13 @@ public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, T
     #endregion
 
     #region read
+    public async Task<TaskManagerAggregate> GetByIdAsync(Guid taskManagerId)
+    {
+        var model = await _dbSet
+            .Include(x => x.SummaryTasks).ThenInclude(x => x.Subtasks)
+            .FirstOrDefaultAsync(x => x.Id == taskManagerId);
+
+        return null;
+    }
     #endregion
 }

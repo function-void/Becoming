@@ -15,7 +15,7 @@ sealed class ConfigureSwaggerUIOptions : IConfigureNamedOptions<SwaggerUIOptions
         _provider = provider;
     }
 
-    public void Configure(string name, SwaggerUIOptions options)
+    public void Configure(string? name, SwaggerUIOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureSwaggerUIOptions)} {name} started!",
@@ -30,7 +30,7 @@ sealed class ConfigureSwaggerUIOptions : IConfigureNamedOptions<SwaggerUIOptions
         {
             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName);
         }
-        
+
         _logger.LogInformation("{nameof(ConfigureSwaggerUIOptions)} is configured!",
             nameof(ConfigureSwaggerUIOptions));
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);

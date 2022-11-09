@@ -14,7 +14,7 @@ public sealed class PresentationDefinition : AppDefinition
 
     public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
     {
-        var presentationAssemblyList = DependencyContext.Default.RuntimeLibraries
+        var presentationAssemblyList = DependencyContext.Default!.RuntimeLibraries
             .Where(x => x.Name.Contains(PresentationLayerName))
             .Select(x => Assembly.Load(x.Name))
             .Where(assembly => assembly.DefinedTypes.Where(t => !t.IsAbstract)

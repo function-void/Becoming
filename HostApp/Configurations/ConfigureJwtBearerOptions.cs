@@ -17,7 +17,7 @@ sealed class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
         _settings = settings;
     }
 
-    public void Configure(string name, JwtBearerOptions options)
+    public void Configure(string? name, JwtBearerOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureJwtBearerOptions)} {name} started!",

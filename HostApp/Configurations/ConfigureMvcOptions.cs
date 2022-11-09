@@ -14,7 +14,7 @@ sealed class ConfigureMvcOptions : IConfigureNamedOptions<MvcOptions>
         _logger = logger;
     }
 
-    public void Configure(string name, MvcOptions options)
+    public void Configure(string? name, MvcOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureMvcOptions)} {name} started!",

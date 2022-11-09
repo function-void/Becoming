@@ -12,7 +12,7 @@ sealed class ConfigureJsonOptions : IConfigureNamedOptions<JsonOptions>
         _logger = logger;
     }
 
-    public void Configure(string name, JsonOptions options)
+    public void Configure(string? name, JsonOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureJsonOptions)} {name} started!",

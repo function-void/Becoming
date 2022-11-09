@@ -15,7 +15,7 @@ sealed class ConfigureCorsOptions : IConfigureNamedOptions<CorsOptions>
         _settings = settings;
     }
 
-    public void Configure(string name, CorsOptions options)
+    public void Configure(string? name, CorsOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureCorsOptions)} {name} started!",

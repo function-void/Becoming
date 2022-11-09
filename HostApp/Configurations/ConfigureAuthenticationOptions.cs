@@ -13,7 +13,7 @@ sealed class ConfigureAuthenticationOptions : IConfigureNamedOptions<Authenticat
         _logger = logger;
     }
 
-    public void Configure(string name, AuthenticationOptions options)
+    public void Configure(string? name, AuthenticationOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureAuthenticationOptions)} {name} started!",

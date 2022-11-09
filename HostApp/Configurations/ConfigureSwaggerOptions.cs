@@ -24,7 +24,7 @@ sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
         _settings = settings;
     }
 
-    public void Configure(string name, SwaggerGenOptions options)
+    public void Configure(string? name, SwaggerGenOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureSwaggerOptions)} {name} started!",

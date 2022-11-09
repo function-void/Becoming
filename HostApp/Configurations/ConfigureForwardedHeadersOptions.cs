@@ -12,7 +12,7 @@ sealed class ConfigureForwardedHeadersOptions : IConfigureNamedOptions<Forwarded
         _logger = logger;
     }
 
-    public void Configure(string name, ForwardedHeadersOptions options)
+    public void Configure(string? name, ForwardedHeadersOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureForwardedHeadersOptions)} {name} started!",

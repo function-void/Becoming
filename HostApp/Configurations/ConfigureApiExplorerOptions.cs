@@ -12,7 +12,7 @@ sealed class ConfigureApiExplorerOptions : IConfigureNamedOptions<ApiExplorerOpt
         _logger = logger;
     }
 
-    public void Configure(string name, ApiExplorerOptions options)
+    public void Configure(string? name, ApiExplorerOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(ConfigureApiExplorerOptions)} {name} started!",

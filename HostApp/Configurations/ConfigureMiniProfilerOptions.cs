@@ -12,7 +12,7 @@ sealed class ConfigureMiniProfilerOptions : IConfigureNamedOptions<MiniProfilerO
         _logger = logger;
     }
 
-    public void Configure(string name, MiniProfilerOptions options)
+    public void Configure(string? name, MiniProfilerOptions options)
     {
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
         _logger.LogInformation(message: "{nameof(MiniProfilerOptions)} {name} started!",
