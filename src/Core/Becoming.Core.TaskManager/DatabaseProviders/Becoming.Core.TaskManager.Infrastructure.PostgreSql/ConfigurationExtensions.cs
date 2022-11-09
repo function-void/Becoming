@@ -17,10 +17,10 @@ public static class ConfigurationExtensions
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
     {
-        services.AddEntityFrameworkNpgsql().AddDbContext<TaskManagerPostgreSqlContext>(options =>
+        services.AddDbContext<TaskManagerPostgreSqlContext>(options =>
         {
             options.UseNpgsql(
-                connectionString: configuration!.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
+                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);

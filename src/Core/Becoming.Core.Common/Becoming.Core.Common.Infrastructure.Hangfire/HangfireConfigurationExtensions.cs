@@ -8,6 +8,7 @@ using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Hosting;
 using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 using Becoming.Core.Common.Infrastructure.Settings;
+using Hangfire.SqlServer;
 
 namespace Becoming.Core.Common.Infrastructure.Hangfire;
 
@@ -21,22 +22,26 @@ public static class HangfireConfigurationExtensions
         ProviderModelOptions provider
         )
     {
-        string hfDbConnection = provider.Name switch
+        services.AddHangfire(conf =>
         {
-            DatebaseSettingConstants.PostgreSqlDatabaseProvider => configuration!.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
-            DatebaseSettingConstants.SqlServerDatabaseProvider => configuration!.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName),
-            _ => throw new NotImplementedException(nameof(DatebaseSettingConstants)),
-        };
-
-        services.AddHangfire(configuration =>
-        {
-            configuration.UseMediatR();
-            configuration.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
+            conf.UseMediatR();
+            conf.UseFilter(new AutomaticRetryAttribute { Attempts = modelOptions.MaxRetryCount });
 
             if (modelOptions.UseInMemory)
-                configuration.UseMemoryStorage();
-            else
-                configuration.UsePostgreSqlStorage(hfDbConnection, new PostgreSqlStorageOptions());
+                conf.UseMemoryStorage();
+
+            switch (provider.Name)
+            {
+                case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
+                    var postgreSqlConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName);
+                    conf.UsePostgreSqlStorage(postgreSqlConnectionString, new PostgreSqlStorageOptions());
+                    break;
+                case DatebaseSettingConstants.SqlServerDatabaseProvider:
+                    var sqlServcerConnectionString = configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName);
+                    conf.UseSqlServerStorage(sqlServcerConnectionString, new SqlServerStorageOptions());
+                    break;
+                default: throw new NotImplementedException(nameof(DatebaseSettingConstants));
+            }
         }).AddHangfireServer();
 
         return services;

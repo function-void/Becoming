@@ -4,7 +4,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using HostApp.Configurations.Model;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HostApp.Configurations;
 
