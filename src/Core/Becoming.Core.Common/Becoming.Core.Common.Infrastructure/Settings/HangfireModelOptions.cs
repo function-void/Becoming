@@ -4,6 +4,6 @@ public class HangfireModelOptions
 {
     public const string SectionName = nameof(HangfireModelOptions);
 
-    public bool UseInMemory { get; set; }
-    public int MaxRetryCount { get; set; }
+    required public bool UseInMemory { get; set; }
+    required public int MaxRetryCount { get; set; }
 }

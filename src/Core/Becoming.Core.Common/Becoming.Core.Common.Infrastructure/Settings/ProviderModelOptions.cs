@@ -4,5 +4,5 @@ public class ProviderModelOptions
 {
     public const string SectionName = nameof(ProviderModelOptions);
 
-    public string Name { get; set; } = null!;
+    required public string Name { get; set; }
 }
