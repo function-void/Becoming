@@ -31,6 +31,7 @@ sealed class ConfigureSwaggerUIOptions : IConfigureNamedOptions<SwaggerUIOptions
             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName);
         }
 
+        options.DisplayRequestDuration();
         _logger.LogInformation("{nameof(ConfigureSwaggerUIOptions)} is configured!",
             nameof(ConfigureSwaggerUIOptions));
         _logger.LogInformation("{Environment.NewLine}", Environment.NewLine);
