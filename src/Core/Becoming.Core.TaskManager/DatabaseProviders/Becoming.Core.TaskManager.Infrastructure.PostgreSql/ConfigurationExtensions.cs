@@ -17,7 +17,7 @@ public static class ConfigurationExtensions
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
     {
-        services.AddDbContext<TaskManagerPostgreSqlContext>(options =>
+        services.AddDbContextPool<TaskManagerPostgreSqlContext>(options =>
         {
             options.UseNpgsql(
                 connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
@@ -35,8 +35,7 @@ public static class ConfigurationExtensions
                 options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
                 options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
             }
-
-        }, optionsLifetime: ServiceLifetime.Singleton);
+        });
 
         services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
         services.AddServicesInfrastructure(configuration);

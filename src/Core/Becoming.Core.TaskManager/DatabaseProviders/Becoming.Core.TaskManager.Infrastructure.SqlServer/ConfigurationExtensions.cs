@@ -17,7 +17,7 @@ public static class ConfigurationExtensions
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
     {
-        services.AddDbContext<TaskManagerSqlServerContext>(options =>
+        services.AddDbContextPool<TaskManagerSqlServerContext>(options =>
         {
             options.UseSqlServer(
                 connectionString: configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName),
@@ -36,7 +36,7 @@ public static class ConfigurationExtensions
                 options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
             }
 
-        }, optionsLifetime: ServiceLifetime.Singleton);
+        });
 
         services.AddScoped<TaskManagerContext, TaskManagerSqlServerContext>();
         services.AddServicesInfrastructure(configuration);
