@@ -1,11 +1,9 @@
-﻿using Becoming.Core.Common.Abstractions.CQRS;
-using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
+﻿using Becoming.Core.Common.Application.Concept;
 using Becoming.Core.TaskManager.Domain.Repositories;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Create;
 
-public sealed record class CreateTaskManagerCommand(CreateTaskManagerRequest Dto)
-    : CommandWithDto<CreateTaskManagerRequest, Guid>(Dto);
+public sealed class CreateTaskManagerCommand : CommandWithDto<CreateTaskManagerRequest, Guid> { }
 
 sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManagerCommand, Guid>
 {

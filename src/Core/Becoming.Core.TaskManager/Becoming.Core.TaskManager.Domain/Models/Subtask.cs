@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Seedwork.Models;
-using Becoming.Core.TaskManager.Domain.Exceptions;
+﻿using Becoming.Core.Common.Domain.Seedwork;
 
 namespace Becoming.Core.TaskManager.Domain.Models;
 

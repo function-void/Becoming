@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Becoming.Core.TaskManager.Domain.Models;
-using Becoming.Core.Common.Abstractions.Interfaces;
+using Becoming.Core.Common.Application.Concept;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Create;
 

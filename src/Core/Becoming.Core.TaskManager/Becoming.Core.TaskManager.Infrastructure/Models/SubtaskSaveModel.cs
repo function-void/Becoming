@@ -1,5 +1,4 @@
-﻿
-using Becoming.Core.Common.Infrastructure.Shared;
+﻿using Becoming.Core.Common.Infrastructure.DataAccess.Model;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Models;
 

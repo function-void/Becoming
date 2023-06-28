@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Becoming.Core.Common.Presentation;
+using Becoming.Core.Common.Presentation.Tools;
 using Calabonga.AspNetCore.AppDefinitions;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyModel;

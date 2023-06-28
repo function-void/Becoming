@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ sealed class SummaryTaskSaveModelConfiguration : IEntityTypeConfiguration<Summar
 {
     public void Configure(EntityTypeBuilder<SummaryTaskSaveModel> builder)
     {
-        builder.ToTable(DatebaseSettingConstants.SummaryTaskTableName);
+        builder.ToTable(Scheme.SummaryTaskTableName);
 
         builder.HasKey(x => x.Id);
 

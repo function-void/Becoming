@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Seedwork.Models;
+﻿using Becoming.Core.Common.Domain.Seedwork;
 using System.Runtime.Serialization;
 
 namespace Becoming.Core.TaskManager.Domain.Exceptions;

@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Seedwork.Models;
+﻿using Becoming.Core.Common.Domain.Seedwork;
 using Becoming.Core.TaskManager.Domain.Events;
 using Becoming.Core.TaskManager.Domain.Exceptions;
 

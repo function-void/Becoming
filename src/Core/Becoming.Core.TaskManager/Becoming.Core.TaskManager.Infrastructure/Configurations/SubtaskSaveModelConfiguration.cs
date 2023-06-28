@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ sealed class SubtaskSaveModelConfiguration : IEntityTypeConfiguration<SubtaskSav
 {
     public void Configure(EntityTypeBuilder<SubtaskSaveModel> builder)
     {
-        builder.ToTable(DatebaseSettingConstants.SubtaskTableName);
+        builder.ToTable(Scheme.SubtaskTableName);
 
         builder.HasKey(x => x.Id);
 

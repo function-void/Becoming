@@ -10,7 +10,7 @@ public static class ConfigurationExtensions
 {
     public static IServiceCollection AddTaskManagerApplication(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         return services;

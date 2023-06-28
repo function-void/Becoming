@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
+﻿using Becoming.Core.Common.Application.Concept;
 using Becoming.Core.TaskManager.Domain.Repositories;
 
 namespace Becoming.Core.TaskManager.Application.Queries.Get;

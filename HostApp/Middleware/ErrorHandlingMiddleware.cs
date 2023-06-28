@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Primitives.Exceptions;
+﻿using Becoming.Core.Common.Application.Concept.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;

@@ -11,12 +11,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MediatR" Version="11.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Presentation\Becoming.Core.Common.Presentation.csproj" />
+		<ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Presentation\Becoming.Core.Common.Presentation.Tools\Becoming.Core.Common.Presentation.Tools.csproj" />
 		<ProjectReference Include="..\Becoming.Core.Blog.Application\Becoming.Core.Blog.Application.csproj" />
 	</ItemGroup>
 

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Concept\Becoming.Core.Common.Application.Concept.csproj" />
     <ProjectReference Include="..\Becoming.Core.Blog.Domain\Becoming.Core.Blog.Domain.csproj" />
   </ItemGroup>
 

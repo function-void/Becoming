@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
+﻿using Becoming.Core.Common.Application.Concept;
 
 namespace Becoming.Core.Storage.Application.Commands.Create;
 

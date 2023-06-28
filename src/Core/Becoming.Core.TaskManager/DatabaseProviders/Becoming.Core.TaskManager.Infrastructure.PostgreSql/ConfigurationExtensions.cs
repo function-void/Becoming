@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
-using Becoming.Core.Common.Infrastructure.Settings;
+﻿using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +19,7 @@ public static class ConfigurationExtensions
         services.AddDbContextPool<TaskManagerPostgreSqlContext>(options =>
         {
             options.UseNpgsql(
-                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.PostgreSqlConnectionSectionName),
+                connectionString: configuration.GetConnectionString(SetupProvider.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);

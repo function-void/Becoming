@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Becoming.Core.Common.Abstractions.CQRS.Interfaces;
-using Becoming.Core.Common.Primitives.Exceptions;
 using Becoming.Core.TaskManager.Domain.Repositories;
+using Becoming.Core.Common.Application.Concept;
+using Becoming.Core.Common.Application.Concept.Exceptions;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Update;
 

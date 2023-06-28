@@ -1,10 +1,9 @@
 ﻿using Calabonga.AspNetCore.AppDefinitions;
 using Becoming.Core.Common.Infrastructure.Services;
 using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
-using Becoming.Core.Common.Infrastructure.Hangfire;
-using Becoming.Core.Common.Infrastructure.Persistence.Constants;
 using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.SqlServer;
+using Becoming.Core.Common.Infrastructure.Hangfire;
 
 namespace HostApp.Definitions.InfrastructureLayer;
 
@@ -27,12 +26,12 @@ public sealed class InfrastructureDefinition : AppDefinition
 
         switch (providerModelOptions.Name)
         {
-            case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
+            case SetupProvider.PostgreSqlDatabaseProvider:
                 {
                     services.AddTaskManagerPostgreSqlInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
-            case DatebaseSettingConstants.SqlServerDatabaseProvider:
+            case SetupProvider.SqlServerDatabaseProvider:
                 {
                     services.AddTaskManagerSqlServerInfrastructure(configuration, environment, databaseModelOptions);
                     break;
@@ -49,12 +48,12 @@ public sealed class InfrastructureDefinition : AppDefinition
 
         switch (providerModelOptions.Name)
         {
-            case DatebaseSettingConstants.PostgreSqlDatabaseProvider:
+            case SetupProvider.PostgreSqlDatabaseProvider:
                 {
                     app.UseTaskManagerPostgreSqlInfrastructure(configuration, environment);
                     break;
                 }
-            case DatebaseSettingConstants.SqlServerDatabaseProvider:
+            case SetupProvider.SqlServerDatabaseProvider:
                 {
                     app.UseTaskManagerSqlServerInfrastructure(configuration, environment);
                     break;

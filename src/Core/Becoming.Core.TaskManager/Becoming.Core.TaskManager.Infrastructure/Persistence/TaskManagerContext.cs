@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence;
-using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
 using Becoming.Core.TaskManager.Infrastructure.Configurations;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,7 @@ public abstract class TaskManagerContext : BaseContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.HasDefaultSchema(DatebaseSettingConstants.TaskManagerSchemaName);
+        builder.HasDefaultSchema(Scheme.TaskManagerSchemaName);
 
         builder.ApplyConfiguration(new TaskManagerSaveModelConfiguration());
         builder.ApplyConfiguration(new SummaryTaskSaveModelConfiguration());

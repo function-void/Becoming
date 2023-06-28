@@ -1,5 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
-using Becoming.Core.Common.Infrastructure.Settings;
+﻿using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +19,7 @@ public static class ConfigurationExtensions
         services.AddDbContextPool<TaskManagerSqlServerContext>(options =>
         {
             options.UseSqlServer(
-                connectionString: configuration.GetConnectionString(DatebaseSettingConstants.SqlServerConnectionSectionName),
+                connectionString: configuration.GetConnectionString(SetupProvider.SqlServerConnectionSectionName),
                 sqlServerOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);
@@ -35,7 +34,6 @@ public static class ConfigurationExtensions
                 options.EnableDetailedErrors(modelOptions.EnableDetailedErrors);
                 options.EnableSensitiveDataLogging(modelOptions.EnableSensitiveDataLogging);
             }
-
         });
 
         services.AddScoped<TaskManagerContext, TaskManagerSqlServerContext>();

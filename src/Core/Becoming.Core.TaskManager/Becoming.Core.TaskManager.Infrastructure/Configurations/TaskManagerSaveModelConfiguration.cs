@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Persistence.Constants;
+﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfiguration<TaskMa
 {
     public void Configure(EntityTypeBuilder<TaskManagerSaveModel> builder)
     {
-        builder.ToTable(DatebaseSettingConstants.TaskManagerTableName);
+        builder.ToTable(Scheme.TaskManagerTableName);
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id);
@@ -22,7 +22,7 @@ sealed class TaskManagerSaveModelConfiguration : IEntityTypeConfiguration<TaskMa
 
         builder.OwnsOne(x => x.Category, buildAction =>
         {
-            buildAction.ToTable(DatebaseSettingConstants.TaskManagerCategoryTableName);
+            buildAction.ToTable(Scheme.TaskManagerCategoryTableName);
             buildAction.WithOwner(x => x.TaskManager);
             buildAction.Navigation(x => x.TaskManager).UsePropertyAccessMode(PropertyAccessMode.Property);
             buildAction.Property(x => x.Name).HasMaxLength(Category.MaxLength);

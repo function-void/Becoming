@@ -19,8 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Abstractions\Becoming.Core.Common.Abstractions.csproj" />
-	  <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Primitives\Becoming.Core.Common.Primitives.csproj" />
+	  <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Concept\Becoming.Core.Common.Application.Concept.csproj" />
 	</ItemGroup>
 
 </Project>

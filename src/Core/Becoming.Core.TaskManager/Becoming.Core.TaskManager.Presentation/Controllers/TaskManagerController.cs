@@ -2,7 +2,7 @@
 using System.Net.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Becoming.Core.Common.Presentation;
+using Becoming.Core.Common.Presentation.Tools;
 using Microsoft.AspNetCore.Authorization;
 using Becoming.Core.TaskManager.Application.Commands.Create;
 using Becoming.Core.TaskManager.Application.Queries.Get;
@@ -10,7 +10,7 @@ using Becoming.Core.TaskManager.Application.Commands.Update;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 
-[ApiVersion(ApiConfigureSettings.API_ACTRUAL_VERSION)]
+[ApiVersion(ApiConfigureSettings.API_ACTUAL_VERSION)]
 public sealed class TaskManagerController : ApiController
 {
     #region ctor
@@ -27,7 +27,7 @@ public sealed class TaskManagerController : ApiController
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Create([FromBody] CreateTaskManagerRequest request, CancellationToken token)
     {
-        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand(request), token);
+        var taskManagerId = await Sender.Send(new CreateTaskManagerCommand() { Dto = request }, token);
         return CreatedAtAction(nameof(Get), new { taskManagerId }, taskManagerId);
     }
 
