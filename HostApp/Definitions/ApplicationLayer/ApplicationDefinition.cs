@@ -7,8 +7,8 @@ public sealed class ApplicationDefinition : AppDefinition
 {
     public override int OrderIndex => 4;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
-        services.AddTaskManagerApplication(builder.Configuration);
+        builder.Services.AddTaskManagerApplication(builder.Configuration);
     }
 }

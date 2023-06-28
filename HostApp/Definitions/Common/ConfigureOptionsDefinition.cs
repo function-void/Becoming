@@ -11,41 +11,41 @@ public sealed class ConfigureOptionsDefinition : AppDefinition
 {
     public override int OrderIndex => base.OrderIndex;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
         #region setup
-        services.ConfigureOptions<DatabaseOptionsSetup>();
-        services.ConfigureOptions<JwtOptionsSetup>();
-        services.ConfigureOptions<ApiVersioningOptionsSetup>();
-        services.ConfigureOptions<HangfireOptionsSetup>();
-        services.ConfigureOptions<ProviderOptionsSetup>();
-        services.ConfigureOptions<CorsOptionsSetup>();
-        services.ConfigureOptions<SwaggerOptionsSetup>();
+        builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
+        builder.Services.ConfigureOptions<JwtOptionsSetup>();
+        builder.Services.ConfigureOptions<ApiVersioningOptionsSetup>();
+        builder.Services.ConfigureOptions<HangfireOptionsSetup>();
+        builder.Services.ConfigureOptions<ProviderOptionsSetup>();
+        builder.Services.ConfigureOptions<CorsOptionsSetup>();
+        builder.Services.ConfigureOptions<SwaggerOptionsSetup>();
         #endregion
 
         #region configure options
-        services.ConfigureOptions<ConfigureApiBehaviorOptions>();
-        services.ConfigureOptions<ConfigureApiExplorerOptions>();
-        services.ConfigureOptions<ConfigureApiVersioningOptions>();
-        services.ConfigureOptions<ConfigureAuthenticationOptions>();
-        services.ConfigureOptions<ConfigureCorsOptions>();
-        services.ConfigureOptions<ConfigureMvcOptions>();
-        services.ConfigureOptions<ConfigureForwardedHeadersOptions>();
-        services.ConfigureOptions<ConfigureJsonOptions>();
-        services.ConfigureOptions<ConfigureJwtBearerOptions>();
-        services.ConfigureOptions<ConfigureSwaggerOptions>();
-        services.ConfigureOptions<ConfigureSwaggerUIOptions>();
-        services.ConfigureOptions<ConfigureMiniProfilerOptions>();
+        builder.Services.ConfigureOptions<ConfigureApiBehaviorOptions>();
+        builder.Services.ConfigureOptions<ConfigureApiExplorerOptions>();
+        builder.Services.ConfigureOptions<ConfigureApiVersioningOptions>();
+        builder.Services.ConfigureOptions<ConfigureAuthenticationOptions>();
+        builder.Services.ConfigureOptions<ConfigureCorsOptions>();
+        builder.Services.ConfigureOptions<ConfigureMvcOptions>();
+        builder.Services.ConfigureOptions<ConfigureForwardedHeadersOptions>();
+        builder.Services.ConfigureOptions<ConfigureJsonOptions>();
+        builder.Services.ConfigureOptions<ConfigureJwtBearerOptions>();
+        builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+        builder.Services.ConfigureOptions<ConfigureSwaggerUIOptions>();
+        builder.Services.ConfigureOptions<ConfigureMiniProfilerOptions>();
         #endregion
 
         #region register model options
-        services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<HangfireModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<ProviderModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<CorsModelOptions>>()!.Value);
-        services.AddSingleton(x => x.GetService<IOptions<SwaggerModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<JwtModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<DatabaseModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<ApiVersioningModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<HangfireModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<ProviderModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<CorsModelOptions>>()!.Value);
+        builder.Services.AddSingleton(x => x.GetService<IOptions<SwaggerModelOptions>>()!.Value);
         #endregion
     }
 }

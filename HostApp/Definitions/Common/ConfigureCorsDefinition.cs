@@ -7,9 +7,9 @@ public sealed class ConfigureCorsDefinition : AppDefinition
 {
     public override int OrderIndex => 2;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
-        services.AddCors();
+        builder.Services.AddCors();
     }
 
     public override void ConfigureApplication(WebApplication app)

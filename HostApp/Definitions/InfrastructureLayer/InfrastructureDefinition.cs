@@ -11,9 +11,9 @@ public sealed class InfrastructureDefinition : AppDefinition
 {
     public override int OrderIndex => 5;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
-        using var scope = services.BuildServiceProvider().CreateScope();
+        using var scope = builder.Services.BuildServiceProvider().CreateScope();
         var configuration = builder.Configuration;
 
         var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
@@ -21,19 +21,19 @@ public sealed class InfrastructureDefinition : AppDefinition
         var providerModelOptions = scope.ServiceProvider.GetRequiredService<ProviderModelOptions>();
         var hangfireModelOptions = scope.ServiceProvider.GetRequiredService<HangfireModelOptions>();
 
-        services.AddSharedServicesInfrastructure();
-        services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions, providerModelOptions);
+        builder.Services.AddSharedServicesInfrastructure();
+        builder.Services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions, providerModelOptions);
 
         switch (providerModelOptions.Name)
         {
             case SetupProvider.PostgreSqlDatabaseProvider:
                 {
-                    services.AddTaskManagerPostgreSqlInfrastructure(configuration, environment, databaseModelOptions);
+                    builder.Services.AddTaskManagerPostgreSqlInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
             case SetupProvider.SqlServerDatabaseProvider:
                 {
-                    services.AddTaskManagerSqlServerInfrastructure(configuration, environment, databaseModelOptions);
+                    builder.Services.AddTaskManagerSqlServerInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
         }

@@ -8,22 +8,22 @@ public sealed class CommonDefinition : AppDefinition
 {
     public override int OrderIndex => 1;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
         #region authentication
-        services.AddAuthentication().AddJwtBearer();
+        builder.Services.AddAuthentication().AddJwtBearer();
         #endregion
 
         #region healthy
-        services.AddHealthChecks();
-        services.AddMiniProfiler().AddEntityFramework();
+        builder.Services.AddHealthChecks();
+        builder.Services.AddMiniProfiler().AddEntityFramework();
         #endregion
 
         #region api
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-        services.AddApiVersioning();
-        services.AddVersionedApiExplorer();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddApiVersioning();
+        builder.Services.AddVersionedApiExplorer();
         #endregion
     }
 

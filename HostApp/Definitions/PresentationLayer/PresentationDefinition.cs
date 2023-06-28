@@ -12,7 +12,7 @@ public sealed class PresentationDefinition : AppDefinition
 
     public override int OrderIndex => 3;
 
-    public override void ConfigureServices(IServiceCollection services, WebApplicationBuilder builder)
+    public override void ConfigureServices(WebApplicationBuilder builder)
     {
         var presentationAssemblyList = DependencyContext.Default!.RuntimeLibraries
             .Where(x => x.Name.Contains(PresentationLayerName))
@@ -21,7 +21,7 @@ public sealed class PresentationDefinition : AppDefinition
                 .Any(t => t.BaseType == typeof(ApiController) && t.IsSubclassOf(typeof(ApiController))))
             .ToList();
 
-        services.AddControllers().ConfigureApplicationPartManager(apm =>
+        builder.Services.AddControllers().ConfigureApplicationPartManager(apm =>
         {
             foreach (var assembly in presentationAssemblyList)
             {
