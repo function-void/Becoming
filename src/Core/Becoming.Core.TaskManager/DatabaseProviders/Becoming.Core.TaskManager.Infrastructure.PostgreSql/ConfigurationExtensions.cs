@@ -47,9 +47,8 @@ public static class ConfigurationExtensions
         IWebHostEnvironment environment)
     {
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-        using var context = serviceScope.ServiceProvider.GetService<TaskManagerPostgreSqlContext>();
-        context?.Database.Migrate();
-
+        using var context = serviceScope.ServiceProvider.GetRequiredService<TaskManagerPostgreSqlContext>();
+        if (context!.Database.GetPendingMigrations().Any()) context.Database.Migrate();
         return app;
     }
 }
