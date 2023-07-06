@@ -8,5 +8,6 @@ public interface IDomainEvent
     DateTime CreatedAt { get; init; }
     //TODO: change on guid enumeration
     AggregateType Type { get; init; }
+    string Message { get; }
     string GetMessage();
 }

@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Infrastructure.Settings;
+using Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,14 +20,14 @@ public static class ConfigurationExtensions
         services.AddDbContextPool<TaskManagerPostgreSqlContext>(options =>
         {
             options.UseNpgsql(
-                connectionString: configuration.GetConnectionString(SetupProvider.PostgreSqlConnectionSectionName),
+                connectionString: configuration.GetConnectionString(DatabaseSetupProvider.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
-                    options.CommandTimeout(modelOptions.CommandTimeout);
-                    options.EnableRetryOnFailure(
-                        maxRetryCount: modelOptions.MaxRetryCount,
-                        maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                        errorCodesToAdd: null);
+                    //options.CommandTimeout(modelOptions.CommandTimeout);
+                    //options.EnableRetryOnFailure(
+                    //    maxRetryCount: modelOptions.MaxRetryCount,
+                    //    maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
+                    //    errorCodesToAdd: null);
                 });
 
             if (environment.IsDevelopment())

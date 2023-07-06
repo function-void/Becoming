@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Infrastructure.Settings;
+﻿namespace Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 public class ProviderModelOptions
 {
     public const string SectionName = nameof(ProviderModelOptions);

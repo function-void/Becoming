@@ -17,6 +17,12 @@ using Calabonga.AspNetCore.AppDefinitions;
 // TODO: storage: add features in storage which have functional by security data storage
 // TODO: add json converte base model to parent in  database and contoller
 
+/*
+    PosgreSQL
+    SHOW max_prepared_transactions
+    ALTER SYSTEM SET max_prepared_transactions = 100
+ */
+
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.AddDefinitions(typeof(Program));

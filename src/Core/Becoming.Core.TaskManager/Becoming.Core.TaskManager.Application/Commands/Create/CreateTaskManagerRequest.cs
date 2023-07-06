@@ -1,19 +1,12 @@
 ﻿using FluentValidation;
-using Becoming.Core.TaskManager.Domain.Models;
-using Becoming.Core.Common.Application.Concept;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Create;
 
-public sealed record class CreateTaskManagerRequest : IDtoObject<TaskManagerAggregate>
+public sealed record class CreateTaskManagerRequest
 {
     public string Title { get; set; } = null!;
     public string CategoryText { get; set; } = null!;
-
-    public TaskManagerAggregate ToDomainModel()
-    {
-        return new TaskManagerAggregate(Title, Category.Create(CategoryText));
-    }
-};
+}
 
 sealed class CreateTaskManagerRequestValidator : AbstractValidator<CreateTaskManagerRequest>
 {

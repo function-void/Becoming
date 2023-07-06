@@ -4,7 +4,7 @@ using Becoming.Core.Common.Application.Concept;
 
 namespace Becoming.Core.TaskManager.Application.Commands.Update;
 
-public sealed record class UpdateSummaryTaskRequest : IDtoObject<SummaryTask>
+public sealed record class UpdateSummaryTaskRequest : IDataTransferObject<SummaryTask>
 {
     public Guid Id { get; set; }
     public string? Title { get; set; }

@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
+﻿using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Domain.Models;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;

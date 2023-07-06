@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
+using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.Configurations;
 using Becoming.Core.TaskManager.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace Becoming.Core.TaskManager.Infrastructure.Persistence;
 
 public abstract class TaskManagerContext : BaseContext
 {
-    protected TaskManagerContext(DbContextOptions options) : base(options) { }
+    protected TaskManagerContext(DbContextOptions options) : base(options){ }
 
     public DbSet<TaskManagerSaveModel> TaskManagers { get; set; } = null!;
     public DbSet<SummaryTaskSaveModel> SummaryTasks { get; set; } = null!;

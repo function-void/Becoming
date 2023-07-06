@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Presentation.Tools;
+﻿namespace Becoming.Core.Common.Presentation.Tools.ModelOptions;
 
 public sealed class CookieModelOptions
 {

@@ -1,6 +1,8 @@
 ﻿namespace Becoming.Core.Common.Infrastructure.DataAccess.Model;
 
-public abstract class BaseModel
+public abstract class BaseModel<T>
 {
-    public Guid Id { get; set; }
+    public T Id { get; set; } = default!;
 }
+
+public abstract class BaseModel : BaseModel<Guid> { }

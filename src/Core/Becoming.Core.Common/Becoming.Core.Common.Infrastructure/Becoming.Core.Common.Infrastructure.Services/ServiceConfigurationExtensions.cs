@@ -8,5 +8,6 @@ public static class ServiceConfigurationExtensions
     public static void AddSharedServicesInfrastructure(this IServiceCollection services)
     {
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        services.AddScoped<IDataTransferObjectProvider, DataTransferObjectProvider>();
     }
 }

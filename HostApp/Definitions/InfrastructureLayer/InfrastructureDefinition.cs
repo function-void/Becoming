@@ -4,6 +4,7 @@ using Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.TaskManager.Infrastructure.SqlServer;
 using Becoming.Core.Common.Infrastructure.Hangfire;
+using Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 
 namespace HostApp.Definitions.InfrastructureLayer;
 
@@ -22,16 +23,16 @@ public sealed class InfrastructureDefinition : AppDefinition
         var hangfireModelOptions = scope.ServiceProvider.GetRequiredService<HangfireModelOptions>();
 
         builder.Services.AddSharedServicesInfrastructure();
-        builder.Services.AddHangfireInfrastructure(configuration, environment, hangfireModelOptions, providerModelOptions);
+        builder.Services.AddEventStoreInfrastructure(configuration, hangfireModelOptions, providerModelOptions);
 
         switch (providerModelOptions.Name)
         {
-            case SetupProvider.PostgreSqlDatabaseProvider:
+            case DatabaseSetupProvider.PostgreSqlDatabaseProvider:
                 {
                     builder.Services.AddTaskManagerPostgreSqlInfrastructure(configuration, environment, databaseModelOptions);
                     break;
                 }
-            case SetupProvider.SqlServerDatabaseProvider:
+            case DatabaseSetupProvider.SqlServerDatabaseProvider:
                 {
                     builder.Services.AddTaskManagerSqlServerInfrastructure(configuration, environment, databaseModelOptions);
                     break;
@@ -48,12 +49,12 @@ public sealed class InfrastructureDefinition : AppDefinition
 
         switch (providerModelOptions.Name)
         {
-            case SetupProvider.PostgreSqlDatabaseProvider:
+            case DatabaseSetupProvider.PostgreSqlDatabaseProvider:
                 {
                     app.UseTaskManagerPostgreSqlInfrastructure(configuration, environment);
                     break;
                 }
-            case SetupProvider.SqlServerDatabaseProvider:
+            case DatabaseSetupProvider.SqlServerDatabaseProvider:
                 {
                     app.UseTaskManagerSqlServerInfrastructure(configuration, environment);
                     break;

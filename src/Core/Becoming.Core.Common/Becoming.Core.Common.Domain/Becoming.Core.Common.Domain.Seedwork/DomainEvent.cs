@@ -9,6 +9,7 @@ public abstract class DomainEvent : IDomainEvent
     public DateTime CreatedAt { get; init; }
     //TODO: change on guid enumeration
     public AggregateType Type { get; init; }
+    public string Message { get => GetMessage(); }
 
     protected DomainEvent(
         Guid eventId,
@@ -22,8 +23,6 @@ public abstract class DomainEvent : IDomainEvent
         CreatedAt = createAt;
     }
 
-    public override string ToString()
-        => $"Event with {EventId} Id is created by an aggregate {AggregateId}-{Type}-{CreatedAt:MM/dd/yyyy HH:mm:ss}";
-
-    public virtual string GetMessage() => this.ToString();
+    public virtual string GetMessage() =>
+        $"{EventId} - Event is created by an aggregate {AggregateId} - {Type} - {CreatedAt:MM/dd/yyyy HH:mm:ss}";
 }

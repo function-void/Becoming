@@ -1,4 +1,4 @@
-﻿using Becoming.Core.Common.Infrastructure.Settings;
+﻿using Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 using Microsoft.Extensions.Options;
 
 namespace HostApp.Configurations.Setup;

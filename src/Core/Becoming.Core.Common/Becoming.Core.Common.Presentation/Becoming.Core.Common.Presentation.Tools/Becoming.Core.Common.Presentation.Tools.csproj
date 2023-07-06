@@ -14,4 +14,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Services\Becoming.Core.Common.Application.Services.csproj" />
+	</ItemGroup>
+
 </Project>

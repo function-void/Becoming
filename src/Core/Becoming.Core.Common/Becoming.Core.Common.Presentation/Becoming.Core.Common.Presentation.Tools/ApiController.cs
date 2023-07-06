@@ -2,7 +2,7 @@
 
 namespace Becoming.Core.Common.Presentation.Tools;
 
-[Route(ApiConfigureSettings.API_DEFAULT_ROUTE)]
+[Route(ApiConfigurationProvider.API_DEFAULT_ROUTE)]
 [ApiController]
 public abstract class ApiController : ControllerBase
 {

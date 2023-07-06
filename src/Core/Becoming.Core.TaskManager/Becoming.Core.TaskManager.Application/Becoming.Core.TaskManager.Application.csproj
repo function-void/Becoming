@@ -15,12 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Concept\Becoming.Core.Common.Application.Concept.csproj" />
+    <ProjectReference Include="..\..\Becoming.Core.Common\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Services\Becoming.Core.Common.Application.Services.csproj" />
     <ProjectReference Include="..\Becoming.Core.TaskManager.Domain\Becoming.Core.TaskManager.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Commands\Delete\" />
-    <Folder Include="Events\" />
     <Folder Include="Queries\GetRange\" />
     <Folder Include="Queries\Get\ById\" />
   </ItemGroup>

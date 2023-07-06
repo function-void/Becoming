@@ -1,4 +1,5 @@
 ﻿using Becoming.Core.Common.Infrastructure.Settings;
+using Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,7 +20,7 @@ public static class ConfigurationExtensions
         services.AddDbContextPool<TaskManagerSqlServerContext>(options =>
         {
             options.UseSqlServer(
-                connectionString: configuration.GetConnectionString(SetupProvider.SqlServerConnectionSectionName),
+                connectionString: configuration.GetConnectionString(DatabaseSetupProvider.SqlServerConnectionSectionName),
                 sqlServerOptionsAction: options =>
                 {
                     options.CommandTimeout(modelOptions.CommandTimeout);

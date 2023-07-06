@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Becoming.Core.Blog.Presentation.Controllers;
 
-[ApiVersion(ApiConfigureSettings.API_ACTUAL_VERSION)]
+[ApiVersion(ApiConfigurationProvider.API_ACTUAL_VERSION)]
 public sealed class BlogController : ApiController
 {
 

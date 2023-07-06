@@ -1,5 +1,5 @@
 ﻿using Becoming.Core.Common.Application.Services;
-using Becoming.Core.Common.Infrastructure.DataAccess.Model;
+using Becoming.Core.Common.Infrastructure.DataAccess.Interceptors;
 using Becoming.Core.Common.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,22 +14,29 @@ public abstract class BaseContext : DbContext
         _dateTimeProvider = new DateTimeProvider();
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
-    {
-        foreach (var entry in ChangeTracker.Entries<AuditableModel>())
-        {
-            switch (entry.State)
-            {
-                case EntityState.Added:
-                    entry.Entity.CreatedAt = _dateTimeProvider.UtcNow;
-                    break;
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    base.OnConfiguring(optionsBuilder);
 
-                case EntityState.Modified:
-                    entry.Entity.LastModifiedAt = _dateTimeProvider.UtcNow;
-                    break;
-            }
-        }
+    //    optionsBuilder.AddInterceptors(new SoftAuditInterceptor(this._dateTimeProvider));
+    //}
 
-        return await base.SaveChangesAsync(cancellationToken);
-    }
+    //public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
+    //{
+    //    //foreach (var entry in ChangeTracker.Entries<AuditableModel>())
+    //    //{
+    //    //    switch (entry.State)
+    //    //    {
+    //    //        case EntityState.Added:
+    //    //            entry.Entity.CreatedAt = _dateTimeProvider.UtcNow;
+    //    //            break;
+
+    //    //        case EntityState.Modified:
+    //    //            entry.Entity.LastModifiedAt = _dateTimeProvider.UtcNow;
+    //    //            break;
+    //    //    }
+    //    //}
+
+    //    return await base.SaveChangesAsync(cancellationToken);
+    //}
 }

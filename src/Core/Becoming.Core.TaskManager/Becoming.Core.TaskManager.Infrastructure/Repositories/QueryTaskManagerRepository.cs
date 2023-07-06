@@ -1,4 +1,4 @@
-﻿using Becoming.Core.TaskManager.Domain.Repositories;
+﻿using Becoming.Core.TaskManager.Application;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Repositories;

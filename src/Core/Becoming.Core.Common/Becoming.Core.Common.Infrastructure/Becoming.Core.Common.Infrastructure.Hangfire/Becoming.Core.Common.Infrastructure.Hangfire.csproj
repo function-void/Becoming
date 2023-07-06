@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -13,12 +13,14 @@
 		<PackageReference Include="Hangfire.PostgreSql" Version="1.19.12" />
 		<PackageReference Include="Hangfire.SqlServer" Version="1.8.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Becoming.Core.Common.Application\Becoming.Core.Common.Application.Concept\Becoming.Core.Common.Application.Concept.csproj" />
 	  <ProjectReference Include="..\Becoming.Core.Common.Infrastructure.Settings\Becoming.Core.Common.Infrastructure.Settings.csproj" />
 	</ItemGroup>
 

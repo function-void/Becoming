@@ -1,4 +1,4 @@
-﻿namespace Becoming.Core.Common.Presentation.Tools;
+﻿namespace Becoming.Core.Common.Presentation.Tools.Attributes;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class GroupNameAttribute : Attribute

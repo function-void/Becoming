@@ -1,6 +1,7 @@
 ﻿using HostApp.Middleware;
 using Calabonga.AspNetCore.AppDefinitions;
 using Hangfire;
+using Becoming.Core.Common.Presentation.Tools.Attributes;
 
 namespace HostApp.Definitions.Common;
 
@@ -24,6 +25,12 @@ public sealed class CommonDefinition : AppDefinition
         builder.Services.AddSwaggerGen();
         builder.Services.AddApiVersioning();
         builder.Services.AddVersionedApiExplorer();
+
+        //builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options => {
+        //    options.JsonSerializerOptions.IncludeFields = true;
+        //});
+
+        builder.Services.AddScoped<DataTransferObjecFilterAttribute>();
         #endregion
     }
 
@@ -32,13 +39,19 @@ public sealed class CommonDefinition : AppDefinition
         app.UseSwagger();
         app.UseSwaggerUI();
         app.UseMiniProfiler();
+        app.UseHangfireDashboard("/event-store", new DashboardOptions
+        {
+            DashboardTitle = "Becoming EventStore",
+            DefaultRecordsPerPage = 40,
+            //DisplayNameFunc = ""
+        });
         app.MapHealthChecks("/health");
-        app.UseHangfireDashboard();
 
+        app.UseHttpsRedirection();
         app.UseForwardedHeaders();
         app.UseMiddleware<ErrorHandlingMiddleware>();
+        //app.UseMiddleware<DataTransferObjectMiddleware>();
         app.UseHsts();
-        app.UseHttpsRedirection();
         //app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
