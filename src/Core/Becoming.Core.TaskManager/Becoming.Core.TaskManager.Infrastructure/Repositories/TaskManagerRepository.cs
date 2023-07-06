@@ -29,17 +29,8 @@ public sealed class TaskManagerRepository : BaseRepository<TaskManagerContext, T
 
         await base.CreateAsync(model, cancellationToken);
 
-        //_context.Add(model);
-        //_context.SaveChanges();
-
         return model.Id;
     }
-
-    public IDbContextTransaction Get()
-    {
-        return _context.Database.BeginTransaction();
-    }
-
 
     public Task UpdateAsync(TaskManagerAggregate aggr)
     {

@@ -23,11 +23,14 @@ public static class ConfigurationExtensions
                 connectionString: configuration.GetConnectionString(DatabaseSetupProvider.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
-                    //options.CommandTimeout(modelOptions.CommandTimeout);
-                    //options.EnableRetryOnFailure(
-                    //    maxRetryCount: modelOptions.MaxRetryCount,
-                    //    maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                    //    errorCodesToAdd: null);
+                    if (modelOptions.MultipleQueriesWithinOneTransaction!)
+                    {
+                        options.CommandTimeout(modelOptions.CommandTimeout);
+                        options.EnableRetryOnFailure(
+                            maxRetryCount: modelOptions.MaxRetryCount,
+                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
+                            errorCodesToAdd: null);
+                    }
                 });
 
             if (environment.IsDevelopment())

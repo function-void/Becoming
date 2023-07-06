@@ -13,7 +13,6 @@ sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManager
     private readonly ITaskManagerFactory _factory;
     private readonly IProjector _projector;
 
-
     public CreateTaskManagerCommandHandler(
         ITaskManagerRepository repository,
         ITaskManagerFactory factory,
@@ -33,25 +32,16 @@ sealed class CreateTaskManagerCommandHandler : ICommandHandler<CreateTaskManager
             aggregateId: taskManager.Id,
             createAt: DateTime.UtcNow);
 
-        using (TransactionScope transaction = new(TransactionScopeOption.Required,
-            new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted },
-            TransactionScopeAsyncFlowOption.Enabled))
-        {
-            try
-            {
-                taskManager.PublishDomainEvent(newEvent);
-                taskManager.DispatchEvents(_projector);
+        using TransactionScope transaction = new(TransactionScopeOption.Required,
+               new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted },
+               TransactionScopeAsyncFlowOption.Enabled);
 
-                await _repository.EmbodyAsync(taskManager, cancellationToken);
+        taskManager.PublishDomainEvent(newEvent);
+        await _repository.EmbodyAsync(taskManager, cancellationToken);
 
-                throw new Exception();
+        taskManager.DispatchEvents(_projector);
 
-                transaction.Complete();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        transaction.Complete();
 
         return taskManager.Id;
     }

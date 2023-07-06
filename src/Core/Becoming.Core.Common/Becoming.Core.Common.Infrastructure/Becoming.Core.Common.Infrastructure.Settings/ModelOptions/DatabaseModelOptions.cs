@@ -3,7 +3,7 @@
 public sealed class DatabaseModelOptions
 {
     public const string SectionName = nameof(DatabaseModelOptions);
-
+    required public bool MultipleQueriesWithinOneTransaction { get; set; }
     required public int MaxRetryCount { get; set; }
     required public int MaxRetryDelay { get; set; }
     required public int CommandTimeout { get; set; }

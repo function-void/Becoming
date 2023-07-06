@@ -23,11 +23,14 @@ public static class ConfigurationExtensions
                 connectionString: configuration.GetConnectionString(DatabaseSetupProvider.SqlServerConnectionSectionName),
                 sqlServerOptionsAction: options =>
                 {
-                    options.CommandTimeout(modelOptions.CommandTimeout);
-                    options.EnableRetryOnFailure(
-                        maxRetryCount: modelOptions.MaxRetryCount,
-                        maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
-                        errorNumbersToAdd: new List<int> { 4060 });
+                    if (modelOptions.MultipleQueriesWithinOneTransaction!)
+                    {
+                        options.CommandTimeout(modelOptions.CommandTimeout);
+                        options.EnableRetryOnFailure(
+                            maxRetryCount: modelOptions.MaxRetryCount,
+                            maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
+                            errorNumbersToAdd: new List<int> { 4060 });
+                    }
                 });
 
             if (environment.IsDevelopment())
