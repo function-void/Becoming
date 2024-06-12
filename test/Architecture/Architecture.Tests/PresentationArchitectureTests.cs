@@ -12,7 +12,7 @@ public sealed class PresentationArchitectureTests
     private const string BUILDS_NAME = "Becoming";
 
     [Fact]
-    public void Controllers_Should_Be_Inheritanced_By_With_ApiController()
+    public void Controllers_Should_Be_Inheritance_By_With_ApiController()
     {
         // Arrange
         List<Assembly> presentationAssemblyList = DependencyContext.Default!.RuntimeLibraries
@@ -33,7 +33,7 @@ public sealed class PresentationArchitectureTests
     public void Endpoints_Which_Post_Should_Be_Async()
     {
         // Arrange
-        var presentationAssemblyList = DependencyContext.Default.RuntimeLibraries
+        var presentationAssemblyList = DependencyContext.Default!.RuntimeLibraries
             .Where(x => x.Name.Contains(BUILDS_NAME))
             .Select(x => Assembly.Load(x.Name))
             .Where(assembly => assembly.DefinedTypes.Where(t => !t.IsAbstract)

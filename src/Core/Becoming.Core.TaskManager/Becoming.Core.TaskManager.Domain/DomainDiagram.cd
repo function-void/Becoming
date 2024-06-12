@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Becoming.Core.TaskManager.Domain.Models.TaskManagerAggregate" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAAkIKAAAAAAAAgAAEIAAAAAAAAAAACAE=</HashCode>
+      <FileName>Models\TaskManagerAggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Becoming.Core.Common.Domain.Seedwork.AggregateRoot" Collapsed="true">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Becoming.Core.TaskManager.Domain.Models.SummaryTask">
+    <Position X="4" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAgAAAAICAAAAAACgAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\SummaryTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Becoming.Core.TaskManager.Domain.Models.Subtask">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAggAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Subtask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Becoming.Core.TaskManager.Domain.Models.Content">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAkAEAAIAAAAAAQAAAAAEAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Becoming.Core.TaskManager.Domain.Models.Category">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAQAAAAAAEAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Becoming.Core.Common.Domain.Seedwork.Entity">
+    <Position X="3.75" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Becoming.Core.Common.Domain.Seedwork.ValueObject">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Arial Nova Light" Size="10" />
+</ClassDiagram>

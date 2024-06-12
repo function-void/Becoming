@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Becoming.Core.Common.Infrastructure.DataAccess.Interceptors;
 
-public sealed class SoftAuditInterceptor : SaveChangesInterceptor
+public sealed class SoftAuditInterceptor(IDateTimeProvider dateTimeProvider) : SaveChangesInterceptor
 {
-    private readonly IDateTimeProvider _dateTimeProvider;
-
-    public SoftAuditInterceptor(IDateTimeProvider dateTimeProvider)
-    {
-        _dateTimeProvider = dateTimeProvider;
-    }
+    private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
@@ -23,14 +18,13 @@ public sealed class SoftAuditInterceptor : SaveChangesInterceptor
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.CreatedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     break;
-
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.LastModifiedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     break;
                 case EntityState.Deleted:
-                    entry.Entity.DeletedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.DeletedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     entry.Entity.IsDeleted = true;
                     entry.State = EntityState.Modified;
                     break;
@@ -49,13 +43,13 @@ public sealed class SoftAuditInterceptor : SaveChangesInterceptor
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.CreatedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     break;
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.LastModifiedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     break;
                 case EntityState.Deleted:
-                    entry.Entity.DeletedAt = _dateTimeProvider.UtcNow;
+                    entry.Entity.DeletedAt = _dateTimeProvider.TimeOffsetUtcNow;
                     entry.Entity.IsDeleted = true;
                     entry.State = EntityState.Modified;
                     break;

@@ -2,9 +2,10 @@
 
 public interface IDateTimeProvider
 {
-    DateTime UtcNow { get; }
-    DateTimeOffset TimeOffsetUtcNow { get; }
-
     DateTime Now { get; }
+    DateTime UtcNow { get; }
     DateTimeOffset TimeOffsetNow { get; }
+    DateTimeOffset TimeOffsetUtcNow { get; }
+    DateOnly DateOnly { get; }
+    TimeOnly TimeOnly { get; }
 }

@@ -1,4 +1,5 @@
-﻿using Becoming.Core.Common.Infrastructure.Settings;
+﻿using Becoming.Core.Common.Application.Concept;
+using Becoming.Core.Common.Infrastructure.Settings;
 using Becoming.Core.Common.Infrastructure.Settings.ModelOptions;
 using Becoming.Core.TaskManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +13,8 @@ namespace Becoming.Core.TaskManager.Infrastructure.PostgreSql;
 
 public static class ConfigurationExtensions
 {
-    public static IServiceCollection AddTaskManagerPostgreSqlInfrastructure(this IServiceCollection services,
+    public static IServiceCollection AddTaskManagerPostgreSqlInfrastructure(
+        this IServiceCollection services,
         IConfiguration configuration,
         IWebHostEnvironment environment,
         DatabaseModelOptions modelOptions)
@@ -23,14 +25,11 @@ public static class ConfigurationExtensions
                 connectionString: configuration.GetConnectionString(DatabaseSetupProvider.PostgreSqlConnectionSectionName),
                 npgsqlOptionsAction: options =>
                 {
-                    if (modelOptions.MultipleQueriesWithinOneTransaction!)
-                    {
-                        options.CommandTimeout(modelOptions.CommandTimeout);
-                        options.EnableRetryOnFailure(
+                    if (!modelOptions.MultipleQueriesWithinOneTransaction)
+                        options.CommandTimeout(modelOptions.CommandTimeout).EnableRetryOnFailure(
                             maxRetryCount: modelOptions.MaxRetryCount,
                             maxRetryDelay: TimeSpan.FromSeconds(modelOptions.MaxRetryDelay),
                             errorCodesToAdd: null);
-                    }
                 });
 
             if (environment.IsDevelopment())
@@ -41,8 +40,8 @@ public static class ConfigurationExtensions
         });
 
         services.AddScoped<TaskManagerContext, TaskManagerPostgreSqlContext>();
+        services.AddScoped<IUnitOfWork, TaskManagerPostgreSqlContext>();
         services.AddServicesInfrastructure(configuration);
-
         return services;
     }
 

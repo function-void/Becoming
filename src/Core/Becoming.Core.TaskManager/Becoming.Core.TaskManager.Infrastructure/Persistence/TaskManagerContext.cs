@@ -1,12 +1,12 @@
-﻿using Becoming.Core.Common.Infrastructure.DataAccess.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using Becoming.Core.Common.Application.Concept;
 using Becoming.Core.Common.Infrastructure.Settings;
-using Becoming.Core.TaskManager.Infrastructure.Configurations;
-using Becoming.Core.TaskManager.Infrastructure.Models;
-using Microsoft.EntityFrameworkCore;
+using Becoming.Core.TaskManager.Infrastructure.Persistence.Configurations;
+using Becoming.Core.TaskManager.Infrastructure.Persistence.Models;
 
 namespace Becoming.Core.TaskManager.Infrastructure.Persistence;
 
-public abstract class TaskManagerContext : BaseContext
+public abstract class TaskManagerContext : DbContext, IUnitOfWork
 {
     protected TaskManagerContext(DbContextOptions options) : base(options){ }
 
@@ -21,10 +21,5 @@ public abstract class TaskManagerContext : BaseContext
         builder.ApplyConfiguration(new TaskManagerSaveModelConfiguration());
         builder.ApplyConfiguration(new SummaryTaskSaveModelConfiguration());
         builder.ApplyConfiguration(new SubtaskSaveModelConfiguration());
-    }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
-    {
-        return await base.SaveChangesAsync(cancellationToken);
     }
 }

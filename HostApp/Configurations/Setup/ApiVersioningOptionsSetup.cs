@@ -15,12 +15,12 @@ sealed class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningModelOpt
     public void Configure(ApiVersioningModelOptions options)
     {
         var config = _configuration
-            .GetSection($"{ApiVersioningModelOptions.SectionName}:{ApiVersioningModelOptions.ApiVersionSectionName}");
+            .GetRequiredSection($"{ApiVersioningModelOptions.SectionName}:{ApiVersioningModelOptions.ApiVersionSectionName}");
 
         options.DefaultApiVersion = new()
         {
-            majorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MajorVersionSectionName)!.Value),
-            minorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MinorVersionSectionName)!.Value)
+            majorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MajorVersionSectionName)!.Value!),
+            minorVersion = int.Parse(config.GetSection(ApiVersioningModelOptions.MinorVersionSectionName)!.Value!)
         };
 
         _configuration.GetSection(ApiVersioningModelOptions.SectionName).Bind(options);
