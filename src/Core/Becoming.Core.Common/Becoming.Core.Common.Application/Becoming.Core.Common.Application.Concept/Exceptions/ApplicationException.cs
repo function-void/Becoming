@@ -1,11 +1,9 @@
-﻿using System.Runtime.Serialization;
+﻿namespace Becoming.Core.Common.Application.Concept.Exceptions;
 
-namespace Becoming.Core.Common.Application.Concept.Exceptions;
-
+[Serializable]
 public abstract class ApplicationException : Exception
 {
     protected ApplicationException() : this(string.Empty) { }
     protected ApplicationException(string message) : base(message) { }
     protected ApplicationException(string message, Exception ex) : base(message, ex) { }
-    protected ApplicationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }

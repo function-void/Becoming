@@ -1,7 +1,6 @@
-﻿using Becoming.Core.TaskManager.Application;
-using Becoming.Core.TaskManager.Domain.Repositories;
-using Becoming.Core.TaskManager.Infrastructure.Persistence;
-using Becoming.Core.TaskManager.Infrastructure.Repositories;
+﻿using System.Reflection;
+using Becoming.Core.TaskManager.Application;
+using Becoming.Core.TaskManager.Domain.Root;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,10 +11,8 @@ public static class ConfigurationExtensions
     public static IServiceCollection AddServicesInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ITaskManagerRepository, TaskManagerRepository>();
-        services.AddScoped<IQueryTaskManagerRepository, QueryTaskManagerRepository>();
-
         services.AddScoped<ITaskManagerFactory, TaskManagerFactory>();
-
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         return services;
     }
 }

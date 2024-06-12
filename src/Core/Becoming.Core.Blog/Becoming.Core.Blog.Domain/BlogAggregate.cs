@@ -110,19 +110,13 @@ public sealed class Comment : Entity
 {
     public Comment(
       Guid id,
-      string text,
-      string createdBy) : base(id)
+      string text) : base(id)
     {
         Text = text;
         Rating = new Rating(default!);
-        CreatedBy = createdBy;
     }
 
     public string Text { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
-    public string CreatedBy { get; private set; }
-    public string UpdatedBy { get; private set; }
     public Guid ArticleId { get; private set; }
     public Rating Rating { get; private set; }
 

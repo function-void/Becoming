@@ -58,7 +58,7 @@ public static class ConfigurationExtensions
             switch (providerModelOptions.Name)
             {
                 case DatabaseSetupProvider.PostgreSqlDatabaseProvider:
-                    conf.UsePostgreSqlStorage(connectionString, new PostgreSqlStorageOptions()
+                    conf.UsePostgreSqlStorage(c => c.UseNpgsqlConnection(connectionString), new PostgreSqlStorageOptions()
                     {
                         SchemaName = Scheme.EventsSchemaName
                     });
@@ -81,7 +81,7 @@ public static class ConfigurationExtensions
         var jsonSettings = new JsonSerializerSettings
         {
             TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
-            TypeNameHandling = TypeNameHandling.Objects,
+            TypeNameHandling = TypeNameHandling.All,
             Formatting = Formatting.Indented,
         };
 

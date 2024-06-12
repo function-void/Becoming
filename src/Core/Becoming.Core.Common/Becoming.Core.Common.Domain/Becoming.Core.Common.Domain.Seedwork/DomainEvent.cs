@@ -6,21 +6,19 @@ public abstract class DomainEvent : IDomainEvent
 {
     public Guid EventId { get; init; }
     public Guid AggregateId { get; init; }
-    public DateTime CreatedAt { get; init; }
+    public DateTimeOffset CreatedAt { get; init; }
     //TODO: change on guid enumeration
     public AggregateType Type { get; init; }
-    public string Message { get => GetMessage(); }
 
     protected DomainEvent(
         Guid eventId,
         Guid aggregateId,
-        AggregateType type,
-        DateTime createAt)
+        AggregateType type)
     {
         EventId = eventId;
         AggregateId = aggregateId;
         Type = type;
-        CreatedAt = createAt;
+        CreatedAt = DateTimeOffset.Now;
     }
 
     public virtual string GetMessage() =>

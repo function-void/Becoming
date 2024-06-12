@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Becoming.Core.Common.Presentation.Tools;
 using Microsoft.AspNetCore.Authorization;
-using Becoming.Core.TaskManager.Application.Commands.Create;
-using Becoming.Core.TaskManager.Application.Queries.Get;
-using Becoming.Core.TaskManager.Application.Commands.Update;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Text.Json;
 using Becoming.Core.Common.Presentation.Tools.Attributes;
+using Becoming.Core.TaskManager.Application.Root.Commands.Create;
+using Becoming.Core.TaskManager.Application.Root.Queries;
+using Becoming.Core.TaskManager.Application.Root.Commands.Update;
 
 namespace Becoming.Core.TaskManager.Presentation.Controllers;
 

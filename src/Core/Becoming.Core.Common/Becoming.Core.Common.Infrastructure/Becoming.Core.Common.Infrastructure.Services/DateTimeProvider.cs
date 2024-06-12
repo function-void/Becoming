@@ -11,4 +11,10 @@ public sealed class DateTimeProvider : IDateTimeProvider
     public DateTimeOffset TimeOffsetUtcNow => DateTimeOffset.UtcNow;
 
     public DateTimeOffset TimeOffsetNow => DateTimeOffset.Now;
+
+    public DateOnly DateOnly => throw new NotImplementedException();
+
+    public TimeOnly TimeOnly => throw new NotImplementedException();
+
+    public TimeSpan TimeSpanUtcNow => TimeSpan.Zero;
 }
