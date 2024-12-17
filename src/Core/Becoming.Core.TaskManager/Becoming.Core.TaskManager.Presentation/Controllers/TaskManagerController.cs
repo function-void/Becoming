@@ -24,7 +24,6 @@ public sealed class TaskManagerController : ApiController
 
     #region commands
     [HttpPost]
-    [ServiceFilter(typeof(DataTransferObjecFilterAttribute))]
     [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

@@ -29,8 +29,6 @@ public sealed class CommonDefinition : AppDefinition
         //builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options => {
         //    options.JsonSerializerOptions.IncludeFields = true;
         //});
-
-        builder.Services.AddScoped<DataTransferObjecFilterAttribute>();
         #endregion
     }
 
